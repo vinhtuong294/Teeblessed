@@ -654,8 +654,8 @@
                     {% comment %} END PROMO BANNER COLUMNS {% endcomment %}
 
                     {%- unless promo_banner or promo_collection or menu_recently_viewed_products == false -%}
-                        <li class="wide l4cl-container recently-viewed recently-viewed-products menu-recently-viewed-products">
-                            <h4 class="strong ff-primary">{{ 'header.navigation.recently_viewed_products' | t }}</h4>
+                        <li class="wide l4cl-container recently-viewed recently-viewed-products menu-recently-viewed-products" data-recently-viewed-fill-to-items="true" data-recently-viewed-limit-to-items="true">
+                            <h4 class="strong ff-primary menu-recently-viewed-products__title">{{ 'header.navigation.recently_viewed_products' | t | upcase }}</h4>
                             <ul class="l4cl width-33 menu-recently-viewed-products__list" data-number_of_items="3"></ul>
                             {%- liquid
                                 assign best_seller_collection = collections['best-sellers']

@@ -1,0 +1,160 @@
+{%- style -%}
+    #shopify-section-{{ section.id }} {margin-left: -33%; margin-right: -33%;}
+  .fs-minimal-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding: 8px 15px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    
+  }
+
+  .fs-note {
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .fs-timer-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: monospace; /* Giữ các con số không bị nhảy khi thay đổi */
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .timer-block {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+  }
+
+  .timer-label {
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: lowercase;
+    opacity: 0.8;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .fs-minimal-{{ section.id }} {
+      flex-direction: column;
+      gap: 5px;
+      padding: 10px;
+    }
+    .fs-note {
+      font-size: 12px;
+    }
+    .fs-timer-wrap {
+      font-size: 14px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="fs-minimal-{{ section.id }}" id="fs-bar-{{ section.id }}">
+  {% if section.settings.note_text != blank %}
+    <p class="fs-note">{{ section.settings.note_text }}</p>
+  {% endif %}
+
+  <div class="fs-timer-wrap" id="timer-{{ section.id }}" data-endtime="{{ section.settings.end_date }}">
+    <div class="timer-block">
+      <span id="d-{{ section.id }}">00</span><span class="timer-label">d</span>
+    </div>
+    <span>:</span>
+    <div class="timer-block">
+      <span id="h-{{ section.id }}">00</span><span class="timer-label">h</span>
+    </div>
+    <span>:</span>
+    <div class="timer-block">
+      <span id="m-{{ section.id }}">00</span><span class="timer-label">m</span>
+    </div>
+    <span>:</span>
+    <div class="timer-block">
+      <span id="s-{{ section.id }}">00</span><span class="timer-label">s</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const setupTimer = () => {
+    const timerContainer = document.getElementById('timer-{{ section.id }}');
+    const endDateRaw = timerContainer.getAttribute('data-endtime');
+    const endDate = new Date(endDateRaw).getTime();
+
+    const update = () => {
+      const now = new Date().getTime();
+      const distance = endDate - now;
+
+      if (distance < 0) {
+        document.getElementById('fs-bar-{{ section.id }}').style.display = 'none';
+        return;
+      }
+
+      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('d-{{ section.id }}').innerText = d.toString().padStart(2, '0');
+      document.getElementById('h-{{ section.id }}').innerText = h.toString().padStart(2, '0');
+      document.getElementById('m-{{ section.id }}').innerText = m.toString().padStart(2, '0');
+      document.getElementById('s-{{ section.id }}').innerText = s.toString().padStart(2, '0');
+    };
+
+    setInterval(update, 1000);
+    update();
+  };
+
+  setupTimer();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Flashsale Minimal Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "note_text",
+      "label": "Note Text",
+      "default": "FLASH SALE ENDS IN:"
+    },
+    {
+      "type": "text",
+      "id": "end_date",
+      "label": "End Date (ISO Format)",
+      "info": "Format: YYYY-MM-DDTHH:MM:SS (e.g. 2026-12-31T23:59:59)",
+      "default": "2026-12-31T23:59:59"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ff0000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flashsale Bar"
+    }
+  ]
+}
+{% endschema %}

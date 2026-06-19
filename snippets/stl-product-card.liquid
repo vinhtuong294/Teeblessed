@@ -1,0 +1,16 @@
+<div class="shop-the-look__product-content{% if active %} is-active{% endif %}" data-content-id="{{ target_id }}-{{ suffix }}">
+  <div class="shop-the-look__card">
+    <div class="shop-the-look__card-media">
+      <img src="{{ product.featured_image | img_url: '240x240', crop: 'center' }}" alt="{{ product.title | escape }}" loading="lazy">
+    </div>
+    <div class="shop-the-look__card-info">
+      <div class="shop-the-look__card-text">
+        <h3 class="shop-the-look__product-title">{{ product.title }}</h3>
+        <div class="shop-the-look__product-price">{{ product.price | money }}</div>
+      </div>
+      <div class="shop-the-look__product-actions">
+        <a href="{{ product.url }}" class="button button--secondary shop-the-look__btn-view">View Product</a>
+      </div>
+    </div>
+  </div>
+</div>

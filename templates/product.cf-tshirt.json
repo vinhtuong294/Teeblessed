@@ -1,0 +1,449 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "74050fd1-3b74-482c-b07b-8f854296f104": {
+      "type": "section-spacer",
+      "settings": {
+        "height": -50,
+        "height_mobile": -30
+      }
+    },
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": true,
+        "back_button": false
+      }
+    },
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "spacer_RAMDJF": {
+          "type": "spacer",
+          "settings": {
+            "height": 0,
+            "height_mobile": 0
+          }
+        },
+        "custom_liquid_cXxR4A": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<link href=\"https://fonts.googleapis.com/css2?family=Roboto:wght@700;800&display=swap\" rel=\"stylesheet\">\n\n<div class=\"flash-sale-container\">\n  <div class=\"fs-left\">\n    <span class=\"fs-highlight\">FLASH SALE</span>\n  </div>\n  <div class=\"fs-right\">\n    <span id=\"countdown-clock\">45 : 00</span>\n  </div>\n</div>\n<style>\n  .flash-sale-container {\n    display: inline-flex;\n    align-items: stretch;\n    border: 1.5px solid #f40c1d;\n    border-radius: 4px;\n    overflow: hidden;\n    font-family: 'Roboto', sans-serif;\n    font-style: italic;\n    margin: 10px 0;\n  }\n  .fs-left {\n    background-color: #f40c1d;\n    color: #ffffff;\n    padding: 4px 6px;\n    display: flex;\n    align-items: center;\n  }\n  .fs-highlight {\n    font-family: 'Roboto', sans-serif;\n    font-weight: 800;\n    font-size: 0.72rem;\n    line-height: 1;\n    letter-spacing: 0px;\n    font-style: italic;\n  }\n  .fs-right {\n    background-color: #FFF9F9;\n    color: #f40c1d;\n    padding: 4px 8px;\n    display: flex;\n    align-items: center;\n  }\n  #countdown-clock {\n    font-family: 'Roboto', sans-serif;\n    font-weight: 700;\n    font-size: 0.92rem;\n    line-height: 1;\n    letter-spacing: 0px;\n    display: inline-block;\n    font-style: italic;\n  }\n</style>\n<script>\n(function() {\n  const MINUTES_LIMIT = 45; \n  const STORAGE_KEY = 'shopify_flash_sale_timestamp';\n  function startCountdown() {\n    let endTime = localStorage.getItem(STORAGE_KEY);\n    const now = new Date().getTime();\n    if (!endTime || now > parseInt(endTime)) {\n      endTime = now + (MINUTES_LIMIT * 60 * 1000);\n      localStorage.setItem(STORAGE_KEY, endTime);\n    }\n    const clockElement = document.getElementById('countdown-clock');\n    if (!clockElement) return;\n    const updateClock = setInterval(function() {\n      const currentTime = new Date().getTime();\n      const distance = parseInt(endTime) - currentTime;\n      if (distance <= 0) {\n        clearInterval(updateClock);\n        clockElement.innerHTML = \"00 : 00\";\n        return;\n      }\n      const minutes = Math.floor(distance / (1000 * 60));\n      const seconds = Math.floor((distance % (1000 * 60)) / 1000);\n      const mDisplay = minutes < 10 ? \"0\" + minutes : minutes;\n      const sDisplay = seconds < 10 ? \"0\" + seconds : seconds;\n      clockElement.innerHTML = mDisplay + \" : \" + sDisplay;\n    }, 1000);\n  }\n  if (document.readyState === 'complete' || document.readyState === 'interactive') {\n    startCountdown();\n  } else {\n    document.addEventListener('DOMContentLoaded', startCountdown);\n  }\n})();\n</script>"
+          }
+        },
+        "c7259cb9-7235-4028-b6df-3a68077fed80": {
+          "type": "title",
+          "settings": {
+            "title_size": "h3",
+            "title": "",
+            "layout_mobile": "title-bottom",
+            "mobile_title_size": "h3"
+          }
+        },
+        "judge_me_reviews_preview_badge_R7nVVn": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_tax": false,
+            "sale_label": false,
+            "font_size_price": 16
+          }
+        },
+        "spacer_gCjcnF": {
+          "type": "spacer",
+          "settings": {
+            "height": 20,
+            "height_mobile": 10
+          }
+        },
+        "variant_selection": {
+          "type": "variant_selection",
+          "settings": {
+            "selection_type": "buttons",
+            "options": true,
+            "button_options": "Color",
+            "dropdown_options": "",
+            "show_variant_label": true,
+            "show_variant_images": false,
+            "show_variant_one_available": true,
+            "show_unavailable_variants": true,
+            "enable_selling_plans": true,
+            "show_selected_variant_images": false,
+            "selected_variant_images_source": "default",
+            "variant_images_metafield": "custom.images"
+          }
+        },
+        "custom_html_PaaKGR": {
+          "type": "custom_html",
+          "settings": {
+            "custom_html": "<style>\n    /* General container styling */\n    .size-chart-container {\n        width: 100%;\n        margin: 20px 0;\n    }\n    @media (min-width:768px)\n    {\n        .size-chart-container{\n            width: 100%;\n        }\n    }\n\n    /* * DROPDOWN STYLING \n     * Uses the <details> and <summary> tags for pure CSS toggle\n     */\n    details.size-chart-dropdown {\n        border: 1px solid #e0e0e0;\n        border-radius: 4px;\n        overflow: hidden;\n        transition: all 0.3s ease;\n    }\n\n    details.size-chart-dropdown[open] {\n        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);\n    }\n\n    /* The \"Size Chart\" button style */\n    summary.size-chart-toggle {\n        background-color: #ffffff;\n        padding: 10px 20px;\n        cursor: pointer;\n        font-weight: 600;\n        color: #333;\n        list-style: none; /* Hides default triangle in some browsers */\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n        user-select: none;\n    }\n\n    /* Custom arrow icon */\n    summary.size-chart-toggle::after {\n        content: '+';\n        font-size: 18px;\n        font-weight: normal;\n    }\n\n    details[open] summary.size-chart-toggle::after {\n        content: '-';\n    }\n\n    /* Remove default marker for Webkit */\n    summary.size-chart-toggle::-webkit-details-marker {\n        display: none;\n    }\n\n    /* * TABLE STYLING \n     */\n    .size-chart-table {\n        width: 100%;\n        border-collapse: collapse;\n        text-align: center;\n        font-size: 15px;\n        background-color: #fff;\n        margin: 0\n    }\n    .size-chart-table th {\n        background-color: #fff;\n        color: #666;\n        font-weight: 600;\n        padding: 15px;\n        border-bottom: 2px solid #eee;\n        text-transform: uppercase;\n        font-size: 12px;\n        letter-spacing: 1px;\n    }\n\n    .size-chart-table td {\n        padding: 15px;\n        border-bottom: 1px solid #eee;\n        color: #333;\n        transition: background-color 0.2s ease;\n    }\n\n    /* * HOVER EFFECT \n     * When hovering a row (tr), change background color\n     */\n    .size-chart-table tbody tr:hover {\n        background-color: #f0f4f8; /* Light blue-grey highlight */\n        cursor: default;\n    }\n\n    /* Enhance the Size column text on hover */\n    .size-chart-table tbody tr:hover {\n        font-weight: bold;\n        color: #000;\n    }\n\n    /* Remove border from last row */\n    .size-chart-table tbody tr:last-child td {\n        border-bottom: none;\n    }\n    .size-chart-footer-img {\n        background-color: #fff;\n        padding: 15px;\n        text-align: center;\n        border-top: 1px solid #eee; /* Đường kẻ ngăn cách giữa bảng và ảnh */\n    }\n\n    .size-chart-footer-img img {\n        max-width: 100%; /* Đảm bảo ảnh không bị tràn ra ngoài trên mobile */\n        height: auto;\n        display: block;\n        margin: 0 auto;\n    }\n    /* ... Giữ nguyên các CSS cũ ... */\n\n    /* THÊM MỚI: Định dạng dòng lưu ý đơn vị đo */\n    .size-chart-note {\n        text-align: center;\n        font-size: 13px;\n        color: #666; /* Màu xám nhẹ cho tinh tế */\n        padding: 12px 0;\n        background-color: #fff;\n        border-bottom: 1px solid #eee;\n        font-style: italic;\n        letter-spacing: 0.5px;\n    }\n</style>\n\n\n\n<div class=\"size-chart-container\">\n    <details class=\"size-chart-dropdown\">\n        <summary class=\"size-chart-toggle\">📏 Size Chart</summary><div class=\"size-chart-note\">Unisex Fit • Measurements in Inches</div>\n<table class=\"size-chart-table\">\n\n            <thead>\n                <tr>\n                    <th>Size</th>\n                    <th>Length</th>\n                    <th>Width</th>\n                    <th>Sleeve</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>S</td>\n                    <td>26.625</td>\n                    <td>18.25</td>\n                    <td>16.25</td>\n                </tr>\n                <tr>\n                    <td>M</td>\n                    <td>28</td>\n                    <td>20.25</td>\n                    <td>17.75</td>\n                </tr>\n                <tr>\n                    <td>L</td>\n                    <td>29.375</td>\n                    <td>22</td>\n                    <td>19</td>\n                </tr>\n                <tr>\n                    <td>XL</td>\n                    <td>30.75</td>\n                    <td>24</td>\n                    <td>20.5</td>\n                </tr> \n                <tr>\n                    <td>2XL</td>\n                    <td>31.625</td>\n                    <td>26</td>\n                    <td>21.75</td>\n                </tr>\n                <tr>\n                    <td>3XL</td>\n                    <td>32.5</td>\n                    <td>27.75</td>\n                    <td>23.25</td>\n                </tr>              \n            </tbody>\n        </table>\n        <div class=\"size-chart-footer-img\">\n            <img src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/Screenshot_2026-03-03_112027.png?v=1772511650\" alt=\"Measurement Guide\">\n        <div class=\"size-chart-note\">Please note that the chest measurements in our sizing chart are taken from one side to the other (pit-to-pit / 2 ends of the chest). To find your full chest circumference, please multiply this number by 2 when choosing your size.</div>\n        </div>\n    </details>\n</div>"
+          }
+        },
+        "spacer_e3DAFc": {
+          "type": "spacer",
+          "settings": {
+            "height": 20,
+            "height_mobile": 20
+          }
+        },
+        "selleasy_lb_upsell_widget_pal_pVKdq6": {
+          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-pal/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+          "settings": {}
+        },
+        "spacer_DjnN4H": {
+          "type": "spacer",
+          "settings": {
+            "height": 0,
+            "height_mobile": 10
+          }
+        },
+        "buy_button": {
+          "type": "buy_button",
+          "settings": {
+            "button_style": "plain",
+            "show_amount_selection": true,
+            "show_dynamic_buybutton": false,
+            "button_style_dynamic_buybutton": "inv",
+            "show_gift_card_recipient": false
+          }
+        },
+        "custom_html_y8p9yn": {
+          "type": "custom_html",
+          "name": "Banner giảm giá",
+          "settings": {
+            "custom_html": "<div class=\"custom-banner\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/USP_29f3249c-ff17-4c81-8e6b-529b6b5fa6a1.png?v=1780990477\">\n    </div>"
+          }
+        },
+        "spacer_tGGLEq": {
+          "type": "spacer",
+          "settings": {
+            "height": 10,
+            "height_mobile": 5
+          }
+        },
+        "custom_html_bLrpeQ": {
+          "type": "custom_html",
+          "name": "Freeship",
+          "settings": {
+            "custom_html": "<div class=\"custom-banner\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/USP_be6be555-bd07-4ef0-9a2a-e14b8a371d04.gif?v=1777449311\">\n    </div>"
+          }
+        },
+        "spacer_QFaMhi": {
+          "type": "spacer",
+          "settings": {
+            "height": 10,
+            "height_mobile": 5
+          }
+        },
+        "custom_html_TMiMpA": {
+          "type": "custom_html",
+          "name": "USP",
+          "settings": {
+            "custom_html": "<div class=\"custom-banner\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/USP_1_84fc02b1-ba2b-4c52-b79c-5c32791f1d97.png?v=1771897756\">\n    </div>"
+          }
+        },
+        "spacer_CBEpwz": {
+          "type": "spacer",
+          "settings": {
+            "height": 20,
+            "height_mobile": 30
+          }
+        },
+        "selleasy_lb_upsell_widget_cpal_tjAnaM": {
+          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-cpal/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+          "settings": {}
+        },
+        "51846939-6835-411d-94d1-a9fbe0cf04c2": {
+          "type": "content",
+          "settings": {
+            "layout": "accordion",
+            "collapse": true,
+            "title_size": "h2",
+            "title": "Care guide",
+            "icon": "none",
+            "header_image_width": 150,
+            "text": "<h6>Maintenance instructions</h6><p>• Machine wash 40°<br/>• Iron medium temperature<br/>• Drying medium temperature<br/>• Do not dry clean<br/>• Only non-chlorine bleach if needed</p>",
+            "page": "",
+            "image_width": 555,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        }
+      },
+      "block_order": [
+        "spacer_RAMDJF",
+        "custom_liquid_cXxR4A",
+        "c7259cb9-7235-4028-b6df-3a68077fed80",
+        "judge_me_reviews_preview_badge_R7nVVn",
+        "price",
+        "spacer_gCjcnF",
+        "variant_selection",
+        "custom_html_PaaKGR",
+        "spacer_e3DAFc",
+        "selleasy_lb_upsell_widget_pal_pVKdq6",
+        "spacer_DjnN4H",
+        "buy_button",
+        "custom_html_y8p9yn",
+        "spacer_tGGLEq",
+        "custom_html_bLrpeQ",
+        "spacer_QFaMhi",
+        "custom_html_TMiMpA",
+        "spacer_CBEpwz",
+        "selleasy_lb_upsell_widget_cpal_tjAnaM",
+        "51846939-6835-411d-94d1-a9fbe0cf04c2"
+      ],
+      "custom_css": [
+        "heightbutton.overlay-buy_button {cursor: pointer; /* Hiển thị con trỏ khi hover */ text-transform: uppercase; /* Chữ in hoa */}",
+        "input.lb-qty-count {--input_height: 22px;}",
+        ".old {color: #d11616; font-size: 14px;}",
+        ".new-price-001 {font-size: 22px !important;}",
+        ".lb-addon-title {text-align: center;}",
+        ".overlay-buy_button:before {background: #103778; border: none;}",
+        "div.lb-button {background-color: #103778 !important;}",
+        "span#new-price-1 {font-size: 20px !important;}",
+        "span.old {font-size: 13px !important;}",
+        ".margin-content {margin: 0;}"
+      ],
+      "settings": {
+        "width": "wide",
+        "images_layout": "slider",
+        "images_grid_spacing": 0,
+        "custom_product_image_ratio": 100,
+        "fill_images": false,
+        "fill_not_first": true,
+        "images_padding": 0,
+        "images_vertical_position": 0,
+        "enable_custom_font_size": true,
+        "font_size": "16px",
+        "show_product_description": true,
+        "title_size": "h2",
+        "show_product_description_drawer": false,
+        "product_description_enable_read_more": false,
+        "product_description_mobile_collapse": true,
+        "images_layout_mobile": "full_width",
+        "tabs_title_size": "h4"
+      }
+    },
+    "section_featured_collection_r3FGFf": {
+      "type": "section-featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "collection": "christian-nature-symbols-t-shirts",
+        "limit": 10,
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "background_color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 100,
+        "background_height": 100,
+        "background_color_section": false,
+        "title": "<h2><strong>Customer also loved</strong></h2>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "show_link": false,
+        "link_text": "Button",
+        "button_style": "primary plain",
+        "background_width_mobile": 100,
+        "background_height_mobile": 100,
+        "spacing_desktop": 20,
+        "spacing_mobile": 30,
+        "fix_zindex": 0
+      }
+    },
+    "1755140934a979b353": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_review_widget_EPCWhQ": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_EPCWhQ"
+      ],
+      "custom_css": [
+        ".jdgm-write-rev-link {background-color: #103778 !important; color: #fff; border: none;}",
+        ".jdgm-ask-question-btn.jdgm-ask-question-btn {border: none; color: #103778 !important;}",
+        ".jdgm-histogram__bar-content {background-color: #103778 !important;}",
+        ".jdgm-sort-dropdown {color: #000 !important;}",
+        ".jdgm-sort-dropdown-arrow {color: #000 !important;}"
+      ],
+      "settings": {
+        "width": "wide",
+        "layout_direction": "vertical",
+        "layout_mobile": "column",
+        "justify_content": "center",
+        "align_items": "center",
+        "gap_desktop": 20,
+        "gap_mobile": 15,
+        "color_palette": "",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_left": 0,
+        "padding_right": 0,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "padding_left_mobile": 0,
+        "padding_right_mobile": 0,
+        "spacing_desktop": 50,
+        "spacing_mobile": 30,
+        "fix_zindex": 0
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "limit": 5,
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "background_color_palette": "light_2",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 100,
+        "background_height": 100,
+        "background_color_section": false,
+        "title": "<h3>We recommend</h3>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "text_color_palette": "black",
+        "font_size": "16px",
+        "mobile_collapse": false,
+        "background_width_mobile": 100,
+        "background_height_mobile": 100,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_faq_3bCKfd": {
+      "type": "section-faq",
+      "blocks": {
+        "text_mcAKam": {
+          "type": "text",
+          "settings": {
+            "collapse": true,
+            "title": "Can I personalize the designs with my own text?",
+            "icon": "none",
+            "header_image_width": 50,
+            "faq_answer": "<p>Yes, absolutely! Many of our products are designed for customization. You can add names, special dates, or meaningful messages in the designated fields on the product page to create a truly one-of-a-kind gift.</p>",
+            "page": "",
+            "image_width": 465,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        },
+        "text_7i6kwN": {
+          "type": "text",
+          "settings": {
+            "collapse": true,
+            "title": "How long will it take to receive my order?",
+            "icon": "none",
+            "header_image_width": 50,
+            "faq_answer": "<p>Since our items are made-to-order, please allow <strong>1-2 business days</strong> for production. Once shipped, delivery time depends on the option you choose: <strong>Standard (3–4 business days)</strong> or <strong>Economy (5–8 business days)</strong>.</p>",
+            "page": "",
+            "image_width": 465,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        },
+        "text_dTfJ99": {
+          "type": "text",
+          "settings": {
+            "collapse": true,
+            "title": "How do I choose the right size for apparel?",
+            "icon": "none",
+            "header_image_width": 50,
+            "faq_answer": "<p>We recommend checking our <strong>Size Chart</strong> located on each product page before placing an order. Our apparel is true-to-size, but if you prefer a looser fit, we suggest ordering one size up.</p>",
+            "page": "",
+            "image_width": 465,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        },
+        "text_cYKmz9": {
+          "type": "text",
+          "settings": {
+            "collapse": true,
+            "title": "What is your return and exchange policy?",
+            "icon": "none",
+            "header_image_width": 50,
+            "faq_answer": "<p>We stand behind the quality of our products. If your item arrives damaged, defective, or with a printing error, please contact our support team within <strong>7 days</strong> of delivery. We will happily arrange a free replacement or a full refund for you.</p><p>Visit: <a href=\"/pages/policy\" title=\"POLICY\">Policy Page</a> to learn more.</p>",
+            "page": "",
+            "image_width": 465,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        }
+      },
+      "block_order": [
+        "text_mcAKam",
+        "text_7i6kwN",
+        "text_dTfJ99",
+        "text_cYKmz9"
+      ],
+      "name": "FAQs",
+      "settings": {
+        "text_alignment": "center",
+        "alignment": "center",
+        "content_width": 1100,
+        "media_position": "bottom",
+        "image_width": 460,
+        "enable_controls": false,
+        "video_mute": true,
+        "title": "<h2>FAQs</h2>",
+        "title_underline_style": "none",
+        "text": "Questions we are often asked",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "blocks_title_font": "primary",
+        "blocks_title_size": "h4",
+        "blocks_enable_custom_font_styling": false,
+        "blocks_font_size": "16px",
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    }
+  },
+  "order": [
+    "74050fd1-3b74-482c-b07b-8f854296f104",
+    "breadcrumbs",
+    "main-product",
+    "section_featured_collection_r3FGFf",
+    "1755140934a979b353",
+    "recommendations",
+    "section_faq_3bCKfd"
+  ]
+}

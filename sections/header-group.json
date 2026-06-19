@@ -1,0 +1,152 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "t:static_sections.header.name",
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "disabled": true,
+      "settings": {
+        "color_palette": "scheme-8",
+        "height": "s",
+        "font": "secondary",
+        "font_size": "14px",
+        "enable_slider_arrows": true,
+        "enable_slider_autoplay": true,
+        "slider_autoplay_seconds": 3
+      }
+    },
+    "top_bar_slider_jprQwH": {
+      "type": "top-bar-slider",
+      "blocks": {
+        "message_mcHAjd": {
+          "type": "message",
+          "settings": {
+            "text": "🚚 FREE shipping on orders over $79",
+            "link": ""
+          }
+        },
+        "message_7dVyyM": {
+          "type": "message",
+          "settings": {
+            "text": "Buy 4+ Items Save 20% 🔥",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "message_mcHAjd",
+        "message_7dVyyM"
+      ],
+      "name": "Top Bar Slider",
+      "settings": {
+        "enable_autoplay": true,
+        "bg_color": "#103778",
+        "text_color": "#ffffff",
+        "font_size": 16,
+        "font_size_mobile": 14,
+        "font_weight": 700,
+        "padding_y": 13,
+        "speed": 3
+      }
+    },
+    "flashsale_Qpy9qU": {
+      "type": "FLASHSALE",
+      "disabled": true,
+      "name": "Flashsale Bar",
+      "settings": {
+        "note_text": "FLASH SALE ENDS IN:",
+        "end_date": "2026-03-20T15:59:59",
+        "bg_color": "#f40c1d",
+        "text_color": "#ffffff"
+      }
+    },
+    "header": {
+      "type": "header",
+      "custom_css": [
+        "span {font-weight: bold; color: white;}",
+        ".icon-archive {color: white; /* If using an icon font like Font Awesome */}",
+        ".icon-coupon {color: white; /* If using an icon font like Font Awesome */}",
+        ".icon-refresh {color: white; /* If using an icon font like Font Awesome */}",
+        ".search-compact-toggle {color: black;}"
+      ],
+      "settings": {
+        "logo_height": 60,
+        "layout": "layout_1",
+        "width": 2000,
+        "enable_language_selector": false,
+        "enable_country_selector": false,
+        "header_shadow": false,
+        "header_height": "69px|55px",
+        "top_bar_color": "scheme-e2343d99-4c2a-4bc9-8d2f-9b7e2d94859a",
+        "header_color": "scheme-f111c947-dcb3-4403-8808-73559b483f46",
+        "search_color": "scheme-2",
+        "menubar_color": "scheme-7",
+        "show_top_bar": false,
+        "top_bar_height": "55px|45px",
+        "top_bar_font_size": "14px",
+        "topbar_extra_menu_item": "",
+        "topbar_extra_menu_item_link_styling": "inline",
+        "enable_usp_slider": true,
+        "enable_usp_slider_arrows": false,
+        "enable_usp_slider_autoplay": true,
+        "usp_slider_autoplay_seconds": 3,
+        "extra_image_width": 25,
+        "extra_image_link": "",
+        "enable_transparent_header": false,
+        "enable_search": true,
+        "searchbar_height": "55px",
+        "searchbar_font": "secondary",
+        "searchbar_font_size": "14px",
+        "enable_sticky_header": true,
+        "blur_opacity": 52,
+        "cart_icon": "cart-bag-wide|e965",
+        "cart_icon_color": "scheme-3b7c705f-b3e5-4b0d-88b9-a5bbaf7afda9",
+        "header_icon_width": 24,
+        "darkmode_toggle": false,
+        "menu": "main-menu",
+        "menubar_height": "55px",
+        "menu_layout": "mega",
+        "show_dropdown_images": true,
+        "show_dropdown_images_autofill": false,
+        "show_dropdown_images_rounded": true,
+        "show_dropdown_images_fill": false,
+        "menu_recently_viewed_products": true,
+        "menubar_alignment": "center",
+        "menu_border": false,
+        "menu_border_width": "wide",
+        "main_menu_items_clickable": true,
+        "menubar_caps": false,
+        "sale_highlight": false,
+        "sale_highlight_item": "Sale",
+        "menu_font": "secondary",
+        "menu_font_weight": "700",
+        "menu_font_size": 16,
+        "menu_letter_spacing": 0,
+        "menu_items_limit": 5,
+        "menu_subs_font": "primary",
+        "enable_menu_subs_font_size": true,
+        "menu_subs_font_size": 15,
+        "enable_socials": false,
+        "enable_online_store": true,
+        "enable_account_dropdown": false,
+        "logo_height_mobile": 100,
+        "mobile_menu_color": "scheme-1"
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "top_bar_slider_jprQwH",
+    "flashsale_Qpy9qU",
+    "header"
+  ]
+}

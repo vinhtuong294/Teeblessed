@@ -1,0 +1,119 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": false,
+        "back_button": false
+      }
+    },
+    "main-collection": {
+      "type": "main-collection",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "text_alignment": "center",
+            "title_size": "h2",
+            "title": ""
+          }
+        },
+        "description_KEeYLV": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "text_alignment": "center",
+            "enable_read_more": false,
+            "text": "<p>⭐⭐⭐⭐⭐ 10,000+ Happy Faithful Believers</p>"
+          }
+        },
+        "description_WN8MBV": {
+          "type": "description",
+          "settings": {
+            "text_alignment": "center",
+            "enable_read_more": false,
+            "text": "<p>TELL YOUR LOVE JOURNEY IN A CUTE WAY 💕</p>"
+          }
+        },
+        "spacer_DEa7bB": {
+          "type": "spacer",
+          "settings": {
+            "height": 10
+          }
+        },
+        "sorting": {
+          "type": "sorting",
+          "settings": {}
+        },
+        "product_grid": {
+          "type": "product_grid",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "description_KEeYLV",
+        "description_WN8MBV",
+        "spacer_DEa7bB",
+        "sorting",
+        "product_grid"
+      ],
+      "custom_css": [
+        "h2 {font-weight: bold;}"
+      ],
+      "settings": {
+        "pagination_qty": 20,
+        "pagination_type": "pages",
+        "show_amount_of_products_in_collection": true,
+        "products_per_row": 4,
+        "secondary_products_per_row": 3,
+        "fill_images": false,
+        "fill_not_first": false,
+        "images_padding": 0,
+        "images_vertical_position": 0,
+        "show_collection_image": false,
+        "enable_filters": true,
+        "enable_menu": false,
+        "enable_collections": true,
+        "filters_layout": "drawer",
+        "enable_filters_checkboxes": false,
+        "filter_menu": "main-menu",
+        "collections_menu": [],
+        "main_menu_items_clickable": true,
+        "filter_sticky": false,
+        "filters_show_more_limit": 7,
+        "enable_custom_filters_font_size": true,
+        "filters_font_size": "14px",
+        "image_swatches_size": "m",
+        "image_swatches_fill_images": true,
+        "image_swatches_show_in_circle": true,
+        "fix_zindex": 1
+      }
+    },
+    "section_custom_html_U3fPEA": {
+      "type": "section-custom-html",
+      "name": "USP",
+      "settings": {
+        "custom_html": "<img id=\"d111\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/products_highlight.png?v=1767005075\">\n    <img id=\"d222\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/products_highlight_3.png?v=1767005338\">\n    <style>\n        img#d111,#d222 {\n            width: 100%;\n        } \n        @media (max-width: 1000px)\n        {\n            #d111{\n                display: none;\n            }\n        }\n        @media (min-width: 1001px)\n        {\n            #d222 {\n                display: none;\n            }\n        }\n    </style>",
+        "spacing_desktop": 50,
+        "spacing_mobile": 30,
+        "fix_zindex": 0
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main-collection",
+    "section_custom_html_U3fPEA"
+  ]
+}

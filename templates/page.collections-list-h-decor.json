@@ -1,0 +1,94 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": false,
+        "back_button": false
+      }
+    },
+    "main-page": {
+      "type": "main-page",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_size": "h2"
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {
+        "max_width": 980,
+        "content_alignment": "center",
+        "text_alignment": "start",
+        "spacing_desktop": 50,
+        "spacing_mobile": 30
+      }
+    },
+    "section_collection_list_wpMHAB": {
+      "type": "section-collection-list",
+      "name": "t:sections.collection_list.presets.name",
+      "settings": {
+        "collections": [
+          "story-board"
+        ],
+        "custom_image_ratio": 100,
+        "show_in_circle": false,
+        "fill_images": true,
+        "layout": "grid",
+        "number_of_items": 4,
+        "show_below": true,
+        "show_arrow": false,
+        "color_palette": "",
+        "image_overlay_opacity": 15,
+        "text_alignment": "center",
+        "background_color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": false,
+        "title": "<h2><strong>ALL COLLECTIONS</strong></h2>",
+        "title_underline_style": "none",
+        "show_link": false,
+        "link_text": "Button",
+        "link_url": "",
+        "button_style": "primary plain",
+        "collection_title_position": "start",
+        "show_collection_titles": true,
+        "collection_title_size": "h4",
+        "mobile_layout": "grid",
+        "number_of_items_mobile": "w50-mobile",
+        "background_width_mobile": 0,
+        "background_height_mobile": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main-page",
+    "section_collection_list_wpMHAB"
+  ]
+}

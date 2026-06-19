@@ -1,0 +1,545 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": true,
+        "back_button": false
+      }
+    },
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "spacer_eirhE6": {
+          "type": "spacer",
+          "settings": {
+            "height": 0,
+            "height_mobile": 0
+          }
+        },
+        "custom_liquid_kLaJGb": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<link href=\"https://fonts.googleapis.com/css2?family=Roboto:wght@700;800&display=swap\" rel=\"stylesheet\">\n\n<div class=\"flash-sale-container\">\n  <div class=\"fs-left\">\n    <span class=\"fs-highlight\">FLASH SALE</span>\n  </div>\n  <div class=\"fs-right\">\n    <span id=\"countdown-clock\">45 : 00</span>\n  </div>\n</div>\n<style>\n  .flash-sale-container {\n    display: inline-flex;\n    align-items: stretch;\n    border: 1.5px solid #f40c1d;\n    border-radius: 4px;\n    overflow: hidden;\n    font-family: 'Roboto', sans-serif;\n    font-style: italic;\n    margin: 10px 0;\n  }\n  .fs-left {\n    background-color: #f40c1d;\n    color: #ffffff;\n    padding: 4px 6px;\n    display: flex;\n    align-items: center;\n  }\n  .fs-highlight {\n    font-family: 'Roboto', sans-serif;\n    font-weight: 800;\n    font-size: 0.72rem;\n    line-height: 1;\n    letter-spacing: 0px;\n    font-style: italic;\n  }\n  .fs-right {\n    background-color: #FFF9F9;\n    color: #f40c1d;\n    padding: 4px 8px;\n    display: flex;\n    align-items: center;\n  }\n  #countdown-clock {\n    font-family: 'Roboto', sans-serif;\n    font-weight: 700;\n    font-size: 0.92rem;\n    line-height: 1;\n    letter-spacing: 0px;\n    display: inline-block;\n    font-style: italic;\n  }\n</style>\n<script>\n(function() {\n  const MINUTES_LIMIT = 45; \n  const STORAGE_KEY = 'shopify_flash_sale_timestamp';\n  function startCountdown() {\n    let endTime = localStorage.getItem(STORAGE_KEY);\n    const now = new Date().getTime();\n    if (!endTime || now > parseInt(endTime)) {\n      endTime = now + (MINUTES_LIMIT * 60 * 1000);\n      localStorage.setItem(STORAGE_KEY, endTime);\n    }\n    const clockElement = document.getElementById('countdown-clock');\n    if (!clockElement) return;\n    const updateClock = setInterval(function() {\n      const currentTime = new Date().getTime();\n      const distance = parseInt(endTime) - currentTime;\n      if (distance <= 0) {\n        clearInterval(updateClock);\n        clockElement.innerHTML = \"00 : 00\";\n        return;\n      }\n      const minutes = Math.floor(distance / (1000 * 60));\n      const seconds = Math.floor((distance % (1000 * 60)) / 1000);\n      const mDisplay = minutes < 10 ? \"0\" + minutes : minutes;\n      const sDisplay = seconds < 10 ? \"0\" + seconds : seconds;\n      clockElement.innerHTML = mDisplay + \" : \" + sDisplay;\n    }, 1000);\n  }\n  if (document.readyState === 'complete' || document.readyState === 'interactive') {\n    startCountdown();\n  } else {\n    document.addEventListener('DOMContentLoaded', startCountdown);\n  }\n})();\n</script>"
+          }
+        },
+        "c7259cb9-7235-4028-b6df-3a68077fed80": {
+          "type": "title",
+          "settings": {
+            "title_size": "h3",
+            "title": "",
+            "layout_mobile": "title-bottom",
+            "mobile_title_size": "h3"
+          }
+        },
+        "judge_me_reviews_preview_badge_yLNHpA": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_tax": false,
+            "sale_label": false,
+            "font_size_price": 16
+          }
+        },
+        "variant_selection": {
+          "type": "variant_selection",
+          "settings": {
+            "selection_type": "buttons",
+            "options": true,
+            "button_options": "Color",
+            "dropdown_options": "",
+            "show_variant_label": true,
+            "show_variant_images": false,
+            "show_variant_one_available": true,
+            "show_unavailable_variants": true,
+            "enable_selling_plans": true,
+            "show_selected_variant_images": false,
+            "selected_variant_images_source": "default",
+            "variant_images_metafield": "custom.images"
+          }
+        },
+        "buy_button": {
+          "type": "buy_button",
+          "settings": {
+            "button_style": "plain",
+            "show_amount_selection": true,
+            "show_dynamic_buybutton": false,
+            "button_style_dynamic_buybutton": "inv",
+            "show_gift_card_recipient": false
+          }
+        },
+        "selleasy_lb_upsell_widget_pal_aQkD8Q": {
+          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-pal/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+          "settings": {}
+        },
+        "custom_html_kVHjRi": {
+          "type": "custom_html",
+          "name": "Note",
+          "settings": {
+            "custom_html": "<style>\n        /* --- CSS CHO COMPONENT --- */\n        \n        /* Container chính */\n        .promo-card11 {\n            display: flex;           /* Sử dụng Flexbox để dàn trang ngang */\n            align-items: center;     /* Căn giữa theo trục dọc (Vertical alignment) */\n            background-color: #f9fafc; /* Màu nền xanh nhạt (Light Lavender) */\n            border-left: 5px solid #4c2b12; /* Đường viền bên trái màu cam đất */\n            padding: 16px 15px;      /* Khoảng cách đệm bên trong */\n            border-radius: 4px;      /* Bo góc nhẹ cho thẻ */\n            width: 100%;\n           \n        }\n\n        /* Phần nội dung chữ */\n        .promo-content11 {\n            font-size: 15px;        /* Kích thước chữ */\n            line-height: 1.5;       /* Khoảng cách dòng giúp dễ đọc */\n            color: #444444;         /* Màu chữ xám đậm */\n            margin: 0;              /* Loại bỏ margin mặc định của thẻ p */\n        }\n\n        /* Style cho emoji (tùy chọn để chỉnh vị trí nếu cần) */\n        .emoji {\n            font-style: normal;\n        }\n    </style>\n\n\n\n    <div class=\"promo-card11\">\n        <p class=\"promo-content11\">\nWe have a designer reworking your customization, so you don’t need to worry about the one you’ll receive.       \n        </p>\n    </div>"
+          }
+        },
+        "spacer_dADndy": {
+          "type": "spacer",
+          "settings": {
+            "height": 5,
+            "height_mobile": 5
+          }
+        },
+        "custom_html_Q47BiN": {
+          "type": "custom_html",
+          "name": "Note",
+          "settings": {
+            "custom_html": "<style>\n        /* --- CSS CHO COMPONENT --- */\n        \n        /* Container chính */\n        .promo-card12 {\n            display: flex;           /* Sử dụng Flexbox để dàn trang ngang */\n            align-items: center;     /* Căn giữa theo trục dọc (Vertical alignment) */\n            background-color: #f9fafc; /* Màu nền xanh nhạt (Light Lavender) */\n            border-left: 5px solid #798631; /* Đường viền bên trái màu cam đất */\n            padding: 16px 15px;      /* Khoảng cách đệm bên trong */\n            border-radius: 4px;      /* Bo góc nhẹ cho thẻ */\n            width: 100%;\n            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Đổ bóng nhẹ (tùy chọn) */\n        }\n\n        /* Phần nội dung chữ */\n        .promo-content12 {\n            font-size: 15px;        /* Kích thước chữ */\n            line-height: 1.5;       /* Khoảng cách dòng giúp dễ đọc */\n            color: #444444;         /* Màu chữ xám đậm */\n            margin: 0;              /* Loại bỏ margin mặc định của thẻ p */\n        }\n\n        /* Style cho emoji (tùy chọn để chỉnh vị trí nếu cần) */\n        .emoji {\n            font-style: normal;\n        }\n    </style>\n\n\n\n    <div class=\"promo-card12\">\n        <p class=\"promo-content12\">\nPlease check your email frequently after purchasing from us, as we may contact you to double-check your details.      \n        </p>\n    </div>"
+          }
+        },
+        "spacer_VtG88f": {
+          "type": "spacer",
+          "settings": {
+            "height": 10,
+            "height_mobile": 10
+          }
+        },
+        "custom_html_iNWac3": {
+          "type": "custom_html",
+          "name": "USP",
+          "settings": {
+            "custom_html": "<img src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/Morty_11_01c11f13-2aad-4afb-aa50-7ded9723ffa4.png?v=1767694246\">"
+          }
+        },
+        "spacer_jc8rtB": {
+          "type": "spacer",
+          "settings": {
+            "height": 5,
+            "height_mobile": 5
+          }
+        },
+        "custom_html_YPeJ3F": {
+          "type": "custom_html",
+          "name": "Freeship",
+          "settings": {
+            "custom_html": "<img src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/78.png?v=1767693970\">"
+          }
+        }
+      },
+      "block_order": [
+        "spacer_eirhE6",
+        "custom_liquid_kLaJGb",
+        "c7259cb9-7235-4028-b6df-3a68077fed80",
+        "judge_me_reviews_preview_badge_yLNHpA",
+        "price",
+        "variant_selection",
+        "buy_button",
+        "selleasy_lb_upsell_widget_pal_aQkD8Q",
+        "custom_html_kVHjRi",
+        "spacer_dADndy",
+        "custom_html_Q47BiN",
+        "spacer_VtG88f",
+        "custom_html_iNWac3",
+        "spacer_jc8rtB",
+        "custom_html_YPeJ3F"
+      ],
+      "custom_css": [
+        "button.overlay-buy_button {cursor: pointer; /* Hiển thị con trỏ khi hover */ text-transform: uppercase; /* Chữ in hoa */}",
+        "input.lb-qty-count {--input_height: 22px;}",
+        ".overlay-buy_button:before {background: #4c2b12; border: none;}",
+        "div.lb-button {background-color: #4c2b12 !important;}",
+        ".cm-file-upload__change-btn-container.cm-relative.cm-overflow-hidden.cm-cursor-pointer.cm-pointer-events-auto > button:before {display: none;}",
+        "span#new-price-1 {font-size: 20px !important;}",
+        "span.old {font-size: 13px !important;}",
+        ".margin-content {margin: 0;}"
+      ],
+      "settings": {
+        "width": "wide",
+        "images_layout": "slider",
+        "images_grid_spacing": 0,
+        "custom_product_image_ratio": 100,
+        "fill_images": false,
+        "fill_not_first": true,
+        "images_padding": 0,
+        "images_vertical_position": 0,
+        "enable_custom_font_size": true,
+        "font_size": "16px",
+        "show_product_description": true,
+        "title_size": "h2",
+        "show_product_description_drawer": false,
+        "product_description_enable_read_more": false,
+        "product_description_mobile_collapse": true,
+        "images_layout_mobile": "full_width",
+        "tabs_title_size": "h4"
+      }
+    },
+    "marquee2_LeTCgB": {
+      "type": "marquee2",
+      "blocks": {
+        "text_block_tTd6Vi": {
+          "type": "text_block",
+          "settings": {
+            "text": "YOUR SIGN - YOUR STORY",
+            "link": ""
+          }
+        },
+        "text_block_pBNexM": {
+          "type": "text_block",
+          "settings": {
+            "text": "CUSTOM MADE",
+            "link": ""
+          }
+        },
+        "text_block_Mfjhpa": {
+          "type": "text_block",
+          "settings": {
+            "text": "UNIQUE",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_block_tTd6Vi",
+        "text_block_pBNexM",
+        "text_block_Mfjhpa"
+      ],
+      "name": "Scrolling Marquee V2",
+      "settings": {
+        "speed": 60,
+        "direction": "left",
+        "pause_on_hover": false,
+        "separator_icon": "star",
+        "icon_size": 14,
+        "gap": 50,
+        "bg_color": "#ffffff",
+        "text_color": "#798361",
+        "border_color": "rgba(0,0,0,0)",
+        "font_size": 41,
+        "font_size_mobile": 19,
+        "font_weight": "500",
+        "padding_y": 31
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "limit": 5,
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "background_color_palette": "light_2",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 100,
+        "background_height": 100,
+        "background_color_section": false,
+        "title": "<h3>We recommend</h3>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "text_color_palette": "black",
+        "font_size": "16px",
+        "mobile_collapse": false,
+        "background_width_mobile": 100,
+        "background_height_mobile": 100,
+        "spacing_desktop": 0,
+        "spacing_mobile": 30,
+        "fix_zindex": 0
+      }
+    },
+    "section_image_with_text_6iMdjb": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "text_NaCgzK": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Life is a collection of moments, but some are just too special to be left in a photo album. </strong></p><p>We turn your personal milestones into a piece of art you can actually feel. </p><p>By combining traditional craftsmanship with modern laser-cut precision, we create a tactile timeline that brings your journey to life in three dimensions.</p>",
+            "font": "secondary",
+            "enable_custom_text_styling": true,
+            "font_size": "16px"
+          }
+        }
+      },
+      "block_order": [
+        "text_NaCgzK"
+      ],
+      "custom_css": [
+        "video {border-radius: 5px;}"
+      ],
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "video": "shopify://files/videos/21de7e2c98c84400a7b9e3511b6c6ad3.HD-720p-1.6Mbps-39678300.mp4",
+        "fill_image": true,
+        "overlay_opacity_img": 0,
+        "enable_controls": false,
+        "video_mute": true,
+        "width": "wide",
+        "height": "size-s",
+        "enable_custom_height": true,
+        "custom_height": 450,
+        "color_palette": "",
+        "overlay_opacity": 0,
+        "layout": "image-right",
+        "text_position": "text-start",
+        "background_color_palette": "scheme-6",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 100,
+        "background_height": 100,
+        "background_width_mobile": 100,
+        "background_height_mobile": 100,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_image_with_text_bK3EnB": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "text_N4rnah": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The <strong>3D layered technique</strong> brings a beautiful depth to your story—from that first nervous date to the day you brought your fur-baby home. </p><p>The rustic wood finish gives the piece a sense of familiarity, like it’s been part of your home for years.</p><p>It’s more than just decor; it’s a living tribute to your story, designed to bring a warm sense of belonging to the heart of your home.</p>",
+            "font": "secondary",
+            "enable_custom_text_styling": true,
+            "font_size": "16px"
+          }
+        }
+      },
+      "block_order": [
+        "text_N4rnah"
+      ],
+      "custom_css": [
+        "img {border-radius: 5px;}"
+      ],
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Morty_6_f9ea8087-f027-4be7-bda3-ed2bb957107a.png",
+        "fill_image": true,
+        "overlay_opacity_img": 0,
+        "enable_controls": false,
+        "video_mute": true,
+        "width": "wide",
+        "height": "size-s",
+        "enable_custom_height": true,
+        "custom_height": 450,
+        "color_palette": "",
+        "overlay_opacity": 0,
+        "layout": "image-left",
+        "text_position": "text-start",
+        "background_color_palette": "scheme-6",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 100,
+        "background_height": 100,
+        "background_width_mobile": 0,
+        "background_height_mobile": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_custom_mJrLQP": {
+      "type": "section-custom",
+      "blocks": {
+        "judge_me_reviews_review_widget_JJkdKy": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_JJkdKy"
+      ],
+      "custom_css": [
+        ".jdgm-write-rev-link {background-color: #4b2c12; border: none;}",
+        ".jdgm-ask-question-btn {border-color: #4b2c12; color: #4b2c12;}",
+        ".jdgm-histogram__bar-content {background-color: #4b2c12;}",
+        ".jdgm-sort-dropdown,.jdgm-sort-dropdown-arrow {color: #4b2c12;}"
+      ],
+      "name": "Review Section (CSSed)",
+      "settings": {
+        "width": "wide",
+        "color_palette": "",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_left": 0,
+        "padding_right": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_left_mobile": 0,
+        "padding_right_mobile": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_faq_ytWYVw": {
+      "type": "section-faq",
+      "blocks": {
+        "text_Uaaxba": {
+          "type": "text",
+          "settings": {
+            "collapse": true,
+            "title": "How can I preview my sign?",
+            "icon": "none",
+            "header_image_width": 50,
+            "faq_answer": "<p>We’ve made it incredibly easy! Simply enter your custom dates, names, and select your milestones. Our system will generate a <strong>real-time digital rendering</strong> of your sign instantly. This allows you to see exactly how the 3D layered icons and text will look together, ensuring your story is perfect before we even start crafting it. No waiting for proofs—what you see is what we build!</p>",
+            "page": "",
+            "image_width": 465,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        },
+        "text_TXhJbY": {
+          "type": "text",
+          "settings": {
+            "collapse": true,
+            "title": "What material is used to make my wooden signs?",
+            "icon": "none",
+            "header_image_width": 50,
+            "faq_answer": "<p><strong>Material:</strong> 5mm wood board + 5mm white acrylic sheet<br/><strong>Thickness:</strong> 10mm<br/><strong>Sizes:</strong> 10x27 inches and 12x30 inches.<br/><strong>Printing Process:</strong> UV printing<br/><strong>Processing Technology:</strong> Laser cutting<br/><strong>Accessories:</strong> Hemp rope<br/><strong>Packaging:</strong> Boxed</p>",
+            "page": "",
+            "image_width": 465,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        },
+        "text_GhENPL": {
+          "type": "text",
+          "settings": {
+            "collapse": true,
+            "title": "How do I track my package?",
+            "icon": "none",
+            "header_image_width": 50,
+            "faq_answer": "<p>We use USPS, UPS, DHL or FedEx, the most reliable shipping carriers available. <strong>At any time, you can track your package to find out exactly where it is. </strong>And of course, we will send you the tracking link a few days after you purchase from us</p>",
+            "page": "",
+            "image_width": 465,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        },
+        "text_eGExDq": {
+          "type": "text",
+          "settings": {
+            "collapse": true,
+            "title": "When will my order arrive?",
+            "icon": "none",
+            "header_image_width": 50,
+            "faq_answer": "<p>12–15 days after you place your order.</p>",
+            "page": "",
+            "image_width": 465,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        }
+      },
+      "block_order": [
+        "text_Uaaxba",
+        "text_TXhJbY",
+        "text_GhENPL",
+        "text_eGExDq"
+      ],
+      "name": "FAQs",
+      "settings": {
+        "text_alignment": "center",
+        "alignment": "center",
+        "content_width": 800,
+        "media_position": "bottom",
+        "image_width": 460,
+        "enable_controls": false,
+        "video_mute": true,
+        "title": "<h2>FAQs</h2>",
+        "title_underline_style": "none",
+        "text": "frequently asked questions",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "blocks_title_font": "primary",
+        "blocks_title_size": "h4",
+        "blocks_enable_custom_font_styling": false,
+        "blocks_font_size": "16px",
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_featured_products_Uqc7Gy": {
+      "type": "section-featured-products",
+      "name": "t:sections.featured_products.presets.name",
+      "settings": {
+        "products": [
+          "story-board-curvy-line-white",
+          "story-board-white",
+          "story-board-white-vertical",
+          "story-board-2-white"
+        ],
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 100,
+        "background_height": 100,
+        "background_color_section": false,
+        "title": "<h2>Customers also loved</h2>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "show_link": true,
+        "link_text": "Button",
+        "link_url": "",
+        "button_style": "primary plain",
+        "background_width_mobile": 100,
+        "background_height_mobile": 100,
+        "spacing_desktop": 50,
+        "spacing_mobile": 30,
+        "fix_zindex": 0
+      }
+    },
+    "section_custom_html_DCYQkW": {
+      "type": "section-custom-html",
+      "name": "USP",
+      "settings": {
+        "custom_html": "<img id=\"d111\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/products_highlight.png?v=1767005075\">\n    <img id=\"d222\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/products_highlight_3.png?v=1767005338\">\n    <style>\n        img#d111,#d222 {\n            width: 100%;\n        } \n        @media (max-width: 1000px)\n        {\n            #d111{\n                display: none;\n            }\n        }\n        @media (min-width: 1001px)\n        {\n            #d222 {\n                display: none;\n            }\n        }\n    </style>",
+        "spacing_desktop": 50,
+        "spacing_mobile": 30,
+        "fix_zindex": 0
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main-product",
+    "marquee2_LeTCgB",
+    "recommendations",
+    "section_image_with_text_6iMdjb",
+    "section_image_with_text_bK3EnB",
+    "section_custom_mJrLQP",
+    "section_faq_ytWYVw",
+    "section_featured_products_Uqc7Gy",
+    "section_custom_html_DCYQkW"
+  ]
+}

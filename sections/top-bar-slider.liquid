@@ -1,0 +1,224 @@
+{% comment %}
+  Section: Top Bar Slider
+  Author: Gemini AI
+  Usage: Use {% section 'top-bar-slider' %} or add via Theme Editor
+{% endcomment %}
+
+{%- if section.blocks.size > 0 -%}
+<style>
+  #shopify-section-{{ section.id }} {margin-left: -33%; margin-right: -33%;}
+  /* Cấu hình CSS cơ bản */
+  .tb-slider-wrapper {
+    position: relative;
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.font_size }}px;
+    padding: {{ section.settings.padding_y }}px 15px;
+    font-weight: {{ section.settings.font_weight }};
+    text-align: center;
+    overflow: hidden;
+    z-index: -1;
+    transition: height 0.3s ease;
+  }
+
+  .tb-slide-container {
+    position: relative;
+    max-width: 2000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 2em; /* Giữ chiều cao tối thiểu */
+  }
+
+  .tb-msg {
+    display: none; /* Ẩn mặc định */
+    width: 100%;
+    margin: 0;
+    line-height: 2;
+    animation: tbFadeIn 0.5s ease-in-out;
+  }
+
+  .tb-msg a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .tb-msg a:hover {
+    text-decoration: underline;
+  }
+
+  .tb-msg.active {
+    display: block; /* Hiện khi active */
+  }
+
+  @keyframes tbFadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive Mobile */
+  @media screen and (max-width: 768px) {
+    .tb-slider-wrapper {
+      font-size: {{ section.settings.font_size_mobile }}px;
+      padding: 10px;
+    }
+  }
+</style>
+
+<div class="tb-slider-wrapper" id="TopBarSlider-{{ section.id }}" role="region" aria-label="Announcement">
+  <div class="tb-slide-container">
+    {% for block in section.blocks %}
+      <div class="tb-msg {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }} data-index="{{ forloop.index0 }}">
+        {% if block.settings.link != blank %}
+          <a href="{{ block.settings.link }}">
+        {% endif %}
+          
+        {{ block.settings.text }}
+
+        {% if block.settings.link != blank %}
+          </a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+      const wrapper = document.getElementById('TopBarSlider-{{ section.id }}');
+      const slides = wrapper.querySelectorAll('.tb-msg');
+      
+      // Lấy giá trị cài đặt từ Liquid
+      const speed = {{ section.settings.speed }} * 1000;
+      const isAutoplay = {{ section.settings.enable_autoplay | json }}; // Trả về true/false
+
+      let currentIndex = 0;
+
+      // Chỉ chạy Slider nếu có nhiều hơn 1 slide VÀ chế độ Autoplay đang bật
+      if (slides.length > 1 && isAutoplay) {
+        setInterval(() => {
+          slides[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add('active');
+        }, speed);
+      }
+});
+</script>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Top Bar Slider",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable Autoplay",
+      "default": true,
+      "info": "Uncheck to show only the first message."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Desktop)",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Mobile)",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "font_weight",
+      "min": 100,
+      "max": 1000,
+      "step": 100,
+      "label": "Font Weight",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "sec",
+      "label": "Autoplay Speed (Seconds)",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Message",
+          "default": "Welcome to our store"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Top Bar Slider",
+      "blocks": [
+        {
+          "type": "message",
+          "settings": {
+            "text": "Free Shipping on orders over $50"
+          }
+        },
+        {
+          "type": "message",
+          "settings": {
+            "text": "New Arrivals are here! Shop now."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

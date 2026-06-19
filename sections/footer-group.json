@@ -1,0 +1,202 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "t:static_sections.footer.name",
+  "sections": {
+    "section_icon_text_blocks_4qRJkd": {
+      "type": "section-icon-text-blocks",
+      "blocks": {
+        "text_wkrtx4": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/quality.png",
+            "image_height": 100,
+            "image_border_radius": false,
+            "title": "PREMIUM QUALITY",
+            "text": "<p>Premium fabrics designed for ultimate comfort and lasting wear!</p>",
+            "show_link": true,
+            "link_text": "Button",
+            "link_url": "",
+            "button_style": "primary plain"
+          }
+        },
+        "text_KeBcqr": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/free-delivery.png",
+            "image_height": 100,
+            "image_border_radius": false,
+            "title": "FREE SHIPPING",
+            "text": "<p>Free shipping on orders $79+</p>",
+            "show_link": true,
+            "link_text": "Button",
+            "link_url": "",
+            "button_style": "primary plain"
+          }
+        },
+        "text_PKPLHe": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/customer-service.png",
+            "image_height": 100,
+            "image_border_radius": false,
+            "title": "24/7 SUPPORT",
+            "text": "<p>We are here to help! Reach us at contact@teeblessed.com</p>",
+            "show_link": true,
+            "link_text": "Button",
+            "link_url": "",
+            "button_style": "primary plain"
+          }
+        },
+        "text_jEUxWg": {
+          "type": "text",
+          "settings": {
+            "icon": "none",
+            "image": "shopify://shop_images/secure-payment.png",
+            "image_height": 100,
+            "image_border_radius": false,
+            "title": "100% SECURE PAYMENT",
+            "text": "<p>Your transactions are fully encrypted and 100% secure.</p>",
+            "show_link": true,
+            "link_text": "Button",
+            "link_url": "",
+            "button_style": "primary plain"
+          }
+        }
+      },
+      "block_order": [
+        "text_wkrtx4",
+        "text_KeBcqr",
+        "text_PKPLHe",
+        "text_jEUxWg"
+      ],
+      "custom_css": [
+        ".ff-primary {font-weight: bold;}",
+        "h2 {font-weight: bold;}"
+      ],
+      "name": "t:sections.icon_text_blocks.presets.name",
+      "settings": {
+        "items_width": 4,
+        "text_alignment": "center",
+        "color_palette": "scheme-1",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 50,
+        "background_height": 100,
+        "background_color_section": true,
+        "title": "<h2>What we offer?</h2>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "font_size": "14px",
+        "show_link": false,
+        "link_text": "Button",
+        "link_url": "",
+        "button_style": "primary plain",
+        "blocks_text_alignment": "center",
+        "blocks_title_font": "primary",
+        "blocks_title_size": "h3",
+        "blocks_enable_custom_font_styling": true,
+        "blocks_font_size": "14px",
+        "layout_mobile": "rows",
+        "mobile_blocks_text_alignment": "center",
+        "background_width_mobile": 100,
+        "background_height_mobile": 100,
+        "spacing_desktop": -10,
+        "spacing_mobile": -10,
+        "fix_zindex": 0
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "7daca3af-bb39-4413-b954-ec9094bca0f7": {
+          "type": "customer_support",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "title_underline_style": "none",
+            "customer_support_img": "shopify://shop_images/LOGOs.png",
+            "customer_support_img_width": 250,
+            "customer_support_img_rounded": false,
+            "text": "",
+            "show_phone_link": false,
+            "show_mail_link": false,
+            "show_whatsapp_link": false,
+            "enable_follow_on_shop": false
+          }
+        },
+        "text_zEjE8N": {
+          "type": "text",
+          "settings": {
+            "title": "<strong>CONTACT US</strong>",
+            "title_underline_style": "none",
+            "text": "<ul><li><strong>Email</strong>: contact@teeblessed.com</li><li><strong>Text Message</strong>: +1 (307) 310-5550</li><li><strong>Support Hours: </strong>9AM- 5PM CDT (UTC -5)</li></ul><p><strong>Registered Office</strong><br/><strong>ANTISOCIAL APPAREL LLC</strong>: 30 N GOULD ST STE N, SHERIDAN WYOMING 82801 UNITED STATES<br/></p>"
+          }
+        },
+        "29fd4919-250d-4101-b146-11305de34929": {
+          "type": "menu",
+          "settings": {
+            "menu": "footer",
+            "split_menu": false
+          }
+        },
+        "newsletter_gNYtpj": {
+          "type": "newsletter",
+          "settings": {
+            "title": "",
+            "title_underline_style": "none",
+            "newsletter_text": "<p>Never miss any news and be the first to know about sale and offers</p>",
+            "footer_button_color": "primary plain",
+            "enable_newsletter_terms_checkbox": false,
+            "newsletter_terms_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "7daca3af-bb39-4413-b954-ec9094bca0f7",
+        "text_zEjE8N",
+        "29fd4919-250d-4101-b146-11305de34929",
+        "newsletter_gNYtpj"
+      ],
+      "settings": {
+        "footer_color": "scheme-2",
+        "column_text_alignment": "left",
+        "content_position": "center",
+        "title_size_blocks": "h5",
+        "title_font": "primary",
+        "enable_custom_text_styling": true,
+        "font_size": "14px",
+        "enable_language_selector": false,
+        "enable_country_selector": false,
+        "copyright_img_width": 80,
+        "copyright_img_link": "",
+        "show_socials": true,
+        "bottom_color": "scheme-2",
+        "bottom_height": "65px",
+        "bottom_img_width": 50,
+        "bottom_img_link": "",
+        "show_payment_methods": true,
+        "enable_follow_on_shop": false,
+        "footer_bg_offset": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0
+      }
+    }
+  },
+  "order": [
+    "section_icon_text_blocks_4qRJkd",
+    "footer"
+  ]
+}

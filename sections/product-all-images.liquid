@@ -1,0 +1,174 @@
+{% comment %}
+  Section: Product All Images Gallery
+  Author: Gemini AI
+  Description: Hiển thị tất cả ảnh của sản phẩm hiện tại, 4 ảnh/hàng.
+{% endcomment %}
+
+<style>
+  .pai-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .pai-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  {% if section.settings.heading != blank %}
+  .pai-heading {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: {{ section.settings.text_color }};
+  }
+  {% endif %}
+
+  /* HỆ THỐNG LƯỚI (GRID) */
+  .pai-grid {
+    display: grid;
+    /* Desktop: Luôn chia 4 cột đều nhau */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: {{ section.settings.gap }}px;
+  }
+
+  .pai-item {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px; /* Bo góc ảnh */
+    background-color: #f4f4f4; /* Màu nền chờ khi ảnh chưa tải */
+  }
+
+  .pai-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover; /* Cắt ảnh vừa khung, không méo */
+    aspect-ratio: 1 / 1; /* Mặc định hình vuông cho đều (có thể chỉnh CSS nếu muốn ảnh gốc) */
+    transition: transform 0.5s ease;
+  }
+
+  /* Hiệu ứng Zoom nhẹ khi di chuột */
+  .pai-item:hover img {
+    transform: scale(1.05);
+  }
+
+  /* RESPONSIVE */
+  @media screen and (max-width: 990px) {
+    .pai-grid {
+      grid-template-columns: repeat(3, 1fr); /* Tablet: 3 cột */
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .pai-section {
+      padding-top: {{ section.settings.padding_top | divided_by: 2 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | divided_by: 2 }}px;
+    }
+    .pai-grid {
+      grid-template-columns: repeat(2, 1fr); /* Mobile: 2 cột cho dễ nhìn */
+      gap: 10px;
+    }
+  }
+</style>
+
+<div class="pai-section-{{ section.id }}">
+  <div class="pai-container">
+    
+    {% if section.settings.heading != blank %}
+      <h2 class="pai-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="pai-grid">
+      {% if product.images.size > 0 %}
+        {% comment %} VÒNG LẶP LẤY ẢNH SẢN PHẨM {% endcomment %}
+        {% for image in product.images %}
+          <div class="pai-item">
+            <img src="{{ image | image_url: width: 800 }}" 
+                 alt="{{ image.alt | escape }}" 
+                 loading="lazy" 
+                 width="{{ image.width }}" 
+                 height="{{ image.height }}">
+          </div>
+        {% endfor %}
+      {% else %}
+        {% for i in (1..8) %}
+          <div class="pai-item">
+             {{ 'product-' | append: i | placeholder_svg_tag }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product All Images",
+  "templates": ["product"], 
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Product Gallery"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Grid Gap",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product All Images"
+    }
+  ]
+}
+{% endschema %}

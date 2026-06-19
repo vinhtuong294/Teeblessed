@@ -1,0 +1,393 @@
+{% comment %}
+  Section: Collection Tabs with Product Grid
+  Author: AI Collaborator
+{% endcomment %}
+
+{%- style -%}
+  /* Section Container */
+  .ai-collection-tabs-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+    overflow: hidden; /* Đảm bảo nội dung không tràn ra ngoài trang */
+  }
+
+  /* Navigation Bar Wrapper */
+  .ai-tabs-nav-wrapper {
+    display: flex;
+    flex-wrap: nowrap; /* Ngăn các item xuống dòng */
+    overflow-x: auto; /* Cho phép cuộn ngang */
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; /* Cuộn mượt trên iOS */
+    justify-content: {{ section.settings.nav_alignment }};
+    margin-bottom: 35px;
+    border-bottom: 1px solid #e5e5e5;
+    
+    /* Hide Scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    gap: 5px;
+  }
+
+  .ai-tabs-nav-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Brave */
+  }
+
+  /* Navigation Items */
+  .ai-nav-item {
+    flex: 0 0 auto; /* Quan trọng: Giữ nguyên kích thước, không bị co lại trên mobile */
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: #777;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap; /* Không cho phép ngắt dòng chữ */
+  }
+
+  /* Active State & Hover */
+  .ai-nav-item:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: {{ section.settings.accent_color }};
+    transition: width 0.3s ease;
+  }
+
+  .ai-nav-item:hover {
+    color: {{ section.settings.accent_color }};
+  }
+
+  .ai-nav-item.is-active {
+    color: {{ section.settings.accent_color }};
+  }
+
+  .ai-nav-item.is-active:after {
+    width: 100%;
+  }
+
+  /* Content Area */
+  .ai-tabs-content-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .ai-tab-panel {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.4s ease;
+  }
+
+  .ai-tab-panel.is-active {
+    display: grid;
+    opacity: 1;
+    transform: translateY(0);
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+    gap: {{ section.settings.grid_gap }}px;
+  }
+
+  /* Product Card Styling */
+  .ai-product-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    group: hover;
+  }
+
+  .ai-product-image-wrapper {
+    position: relative;
+    aspect-ratio: 1/1; /* Có thể đổi thành 3/4 tùy layout */
+    overflow: hidden;
+    background-color: #f5f5f5;
+    margin-bottom: 15px;
+    border-radius: 4px;
+  }
+
+  .ai-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .ai-product-card:hover .ai-product-image {
+    transform: scale(1.08);
+  }
+
+  .ai-product-info {
+    text-align: {{ section.settings.info_alignment }};
+  }
+
+  .ai-product-title {
+    font-size: 14px;
+    margin: 0 0 8px 0;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #333;
+  }
+
+  .ai-product-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: {{ section.settings.accent_color }};
+  }
+
+  /* Responsive Design for Mobile */
+  @media screen and (max-width: 749px) {
+    .ai-tabs-nav-wrapper {
+      justify-content: flex-start; /* Luôn bắt đầu từ bên trái để dễ cuộn */
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-left: -20px; /* Tạo hiệu ứng tràn viền (bleed) */
+      margin-right: -20px;
+      gap: 0;
+    }
+
+    .ai-nav-item {
+      padding: 10px 18px;
+      font-size: 13px;
+    }
+
+    .ai-tab-panel.is-active {
+      grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
+      gap: 15px;
+    }
+    
+    .ai-product-title {
+      font-size: 13px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="ai-collection-tabs-{{ section.id }}">
+  <div class="page-width">
+    
+    <div class="ai-tabs-nav-wrapper">
+      {%- for block in section.blocks -%}
+        {%- assign collection = collections[block.settings.collection] -%}
+        <div 
+          class="ai-nav-item {% if forloop.first %}is-active{% endif %}" 
+          data-tab-target="tab-{{ block.id }}"
+          {{ block.shopify_attributes }}>
+          {{ block.settings.title | default: collection.title | default: 'Collection name' }}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="ai-tabs-content-wrapper">
+      {%- for block in section.blocks -%}
+        {%- assign collection = collections[block.settings.collection] -%}
+        <div 
+          class="ai-tab-panel {% if forloop.first %}is-active{% endif %}" 
+          id="tab-{{ block.id }}">
+          
+          {%- if collection != blank -%}
+            {%- for product in collection.products limit: section.settings.products_to_show -%}
+              <a href="{{ product.url }}" class="ai-product-card">
+                <div class="ai-product-image-wrapper">
+                  <img 
+                    src="{{ product.featured_image | image_url: width: 600 }}" 
+                    alt="{{ product.title }}"
+                    class="ai-product-image"
+                    loading="lazy">
+                </div>
+                <div class="ai-product-info">
+                  <h3 class="ai-product-title" style="font-weight: bold">{{ product.title }}</h3>
+                  <span class="ai-product-price" style="font-weight: bold; color: red;">{{ product.price | money }}</span>
+                </div>
+              </a>
+            {%- endfor -%}
+          {%- else -%}
+            {% comment %} Empty State {% endcomment %}
+            {%- for i in (1..section.settings.products_to_show) -%}
+              <div class="ai-product-card">
+                <div class="ai-product-image-wrapper">
+                  {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+                <div class="ai-product-info">
+                  <h3 class="ai-product-title">Sample Product Title</h3>
+                  <span class="ai-product-price">$99.00</span>
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.ai-collection-tabs-{{ section.id }}');
+    const navItems = container.querySelectorAll('.ai-nav-item');
+    const panels = container.querySelectorAll('.ai-tab-panel');
+
+    navItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const target = this.getAttribute('data-tab-target');
+
+        // Update Nav Class
+        navItems.forEach(nav => nav.classList.remove('is-active'));
+        this.classList.add('is-active');
+
+        // Update Panel Visibility
+        panels.forEach(panel => {
+          if (panel.id === target) {
+            panel.classList.add('is-active');
+          } else {
+            panel.classList.remove('is-active');
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Collection Tabs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout settings"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4,
+      "label": "Products to show per collection"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" },
+        { "value": "5", "label": "5" }
+      ],
+      "default": "4",
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "2",
+      "label": "Columns on mobile"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20,
+      "label": "Gap between products"
+    },
+    {
+      "type": "select",
+      "id": "nav_alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "center",
+      "label": "Navigation alignment"
+    },
+    {
+      "type": "header",
+      "content": "Style settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color (Active tab & Price)",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "info_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left",
+      "label": "Product info alignment"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36,
+      "label": "Padding top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36,
+      "label": "Padding bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom title (optional)",
+          "info": "Leave blank to use collection title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Tabs",
+      "blocks": [
+        { "type": "collection_block" },
+        { "type": "collection_block" },
+        { "type": "collection_block" }
+      ]
+    }
+  ]
+}
+{% endschema %}

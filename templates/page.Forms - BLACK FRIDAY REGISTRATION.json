@@ -1,0 +1,162 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "e6f519e5-b5ec-41e9-9897-b40509ed927c": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "max_width": 980,
+        "content_alignment": "start",
+        "text_alignment": "start",
+        "spacing_desktop": 0,
+        "spacing_mobile": 0
+      }
+    },
+    "section_custom_html_QNAnK9": {
+      "type": "section-custom-html",
+      "custom_css": [],
+      "name": "Running Marquee",
+      "settings": {
+        "custom_html": "<meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Running Information Bar Marquee (Native CSS)</title>\n    \n    <style>\n        @media (min-width: 761px)\n        {\n            .info-bar-container {\n                margin-top: -45px;\n            }\n        }\n        \n        /* Marquee Container Styling (Equivalent to Tailwind classes) */\n        .info-bar-container {\n            width: 100%;\n            background-color: #000000; /* Equivalent to bg-gray-900 */\n            color: rgb(255, 0, 0);\n            padding-top: 0.25rem; /* Equivalent to py-3 */\n            padding-bottom: 0.25rem; /* Equivalent to py-3 */\n            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* Equivalent to shadow-lg */\n        }\n\n        /* Marquee Mechanism CSS */\n        .marquee-container {\n            /* Hides content overflowing the container */\n            overflow: hidden;\n            white-space: nowrap;\n        }\n\n        .marquee-content {\n            /* This is the key to the animation. It ensures the content strip is longer than the container */\n            display: inline-block;\n            /* Start position for the animation */\n            transform: translateX(0);\n            /* Apply the continuous scroll animation */\n            animation: continuousScroll 30s linear infinite;\n        }\n\n        /* Define the animation keyframes */\n        @keyframes continuousScroll {\n            /* Start the content on the right edge of the screen */\n            0% {\n                transform: translateX(0%);\n            }\n            /* End the content off the left edge of the screen */\n            100% {\n                transform: translateX(-50%); /* Move exactly 50% to scroll the content strip once */\n            }\n        }\n\n        /* Pause animation on hover */\n        .marquee-container:hover .marquee-content {\n            animation-play-state: paused;\n        }\n\n        /* Styling for each item and the inner container */\n        .marquee-inner-flex {\n            display: flex;\n            flex-direction: row;\n            align-items: center;\n        }\n\n        .marquee-item {\n            display: flex;\n            align-items: center;\n            font-size: 1.25rem; /* text-sm */\n            font-weight: Bold; /* font-medium */\n            letter-spacing: 0.025em; /* tracking-wide */\n            margin-left: 2rem; /* mx-8 */\n            margin-right: 2rem; /* mx-8 */\n        }\n        @media (max-width: 760px) {\n            .marquee-item {\n                font-size: 1rem;\n            }\n        }\n\n        .item-icon {\n            font-size: 1.125rem; /* text-lg */\n            margin-right: 0.5rem; /* mr-2 */\n        }\n\n        /* Color Utility Classes */\n        .text-green-400 { color: #4ade80; }\n        .text-blue-400 { color: #60a5fa; }\n        .text-red-400 { color: #f87171; }\n\n        /* Style for the decorative separator dot */\n        .separator {\n            content: \"\";\n            display: inline-block;\n            width: 4px;\n            height: 4px;\n            background-color: #888;\n            border-radius: 50%;\n            margin-left: 1.5rem;\n            vertical-align: middle;\n        }\n\n        /* Demo Content Styling */\n        .demo-content {\n            padding: 2rem;\n            text-align: center;\n            color: #374151; /* text-gray-700 */\n        }\n        .demo-content h1 {\n            font-size: 1.875rem; /* text-3xl */\n            font-weight: 700; /* font-bold */\n            margin-bottom: 1rem; /* mb-4 */\n        }\n\n    </style>\n\n\n\n    <!-- Information Bar Container -->\n    <div class=\"info-bar-container\">\n        <div id=\"marqueeContainer\" class=\"marquee-container\">\n            <div id=\"marqueeContent\" class=\"marquee-content\">\n                <!-- Content will be injected by JavaScript -->\n            </div>\n        </div>\n    </div>\n\n    <script src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/marquee2.js?v=1763546507\">\n            </script>",
+        "spacing_desktop": 10,
+        "spacing_mobile": 10,
+        "fix_zindex": 0
+      }
+    },
+    "section_custom_html_jX4W3B": {
+      "type": "section-custom-html",
+      "name": "Banner \"Apply code\"",
+      "settings": {
+        "custom_html": "<div>\n<img id=\"bf-desktop\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/21_d175548b-ff3a-4011-adc4-7df40474cf25.svg?v=1763545722\">\n<img id=\"bf-mobile\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/22.svg?v=1763545721\">\n</div>\n<style>\n @media (max-width: 760px) {\n        #bf-desktop {\n            display: none;\n        }\n    }\n    @media (min-width: 761px) {\n        #bf-mobile {\n            display: none;\n        }\n    }\n</style>",
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_spacer_PEEEHm": {
+      "type": "section-spacer",
+      "name": "t:sections.spacer.presets.name",
+      "settings": {
+        "height": 20,
+        "height_mobile": 0
+      }
+    },
+    "section_custom_html_YWWmz7": {
+      "type": "section-custom-html",
+      "custom_css": [],
+      "name": "Countdown Timer",
+      "settings": {
+        "custom_html": "<meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Countdown Timer</title>\n\n\n    \n<h2 id=\"b\"> Black Friday 2025 countdown</h2>\n    <div id=\"countdown-container\">\n        <div class=\"time-block\" style=\"margin-left:10px;\">\n            <span id=\"days\" class=\"time-value\">00</span>\n            <span class=\"time-label\">Days</span>\n        </div>\n        <div class=\"time-block\">\n            <span id=\"hours\" class=\"time-value\">00</span>\n            <span class=\"time-label\">Hours</span>\n        </div>\n        <div class=\"time-block\">\n            <span id=\"minutes\" class=\"time-value\">00</span>\n            <span class=\"time-label\">Minutes</span>\n        </div>\n        <div class=\"time-block\" style=\"margin-right:10px;\">\n            <span id=\"seconds\" class=\"time-value\">00</span>\n            <span class=\"time-label\">Seconds</span>\n        </div>\n    </div>\n\n\n\n<style>\n    /* @media (max-width: 760px)\n    {\n        #countdown-container {\n            transform: scale(0.2);\n        }\n        \n    } */\n    /* --- Google Font Import --- */\n/* (This is also in the HTML <head> as a backup) */\n@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');\n\n/* --- Basic page setup --- */\nbody {\n    font-family: 'Montserrat', sans-serif; /* Clean, premium font */\n    background-color: #ffffff; /* Deep black for Black Friday */\n    color: #f0f0f0;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    min-height: 100vh;\n    margin: 0;\n    \n}\n\n#b {\n    text-align: center;\n    color: #e61b1b;\n    font-size: 2rem;\n    text-shadow: 0 0 10px rgba(169, 62, 16, 0.4);\n}\n\n/* --- Main container for the timer blocks --- */\n#countdown-container {\n    display: flex;\n    gap: 20px;\n    justify-content: center;\n    flex-wrap: nowrap; /* Không wrap */\n    width: 100%;\n    transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển đổi */\n}\n\n#countdown-container > div {\n    flex-grow: 1;\n    max-width: 200px;\n}\n\n@media (max-width: 480px) {\n    #countdown-container {\n        transform: scale(0.7);  /* Thu nhỏ toàn bộ div với tỷ lệ 80% khi màn hình nhỏ hơn 768px */\n        gap: 10px;  /* Giảm khoảng cách giữa các phần tử khi màn hình nhỏ */\n    }\n    .time-block {\n        transform: scale(1);\n        padding: 0px 0px;\n    }\n    .time-value {\n        transform: scale(0.7);\n    }\n    .time-label {\n        transform: scale(0.7);\n    }\n    #b {\n        margin-top: 10px;\n        font-size: 1.5rem;\n    }\n\n}\n\n\n/* --- Individual time block (Days, Hours, etc.) --- */\n.time-block {\n    background-color: #111; /* Very dark gray, just off-black */\n    padding: 20px 30px;\n    border-radius: 8px;\n    text-align: center;\n    \n    /* A solid gold border */\n    border: 2px solid #e61b1b;\n    /* A subtle glow effect from the gold border */\n    box-shadow: 0 0 20px rgba(169, 62, 16, 0.4);\n    transition: transform 0.2s ease, box-shadow 0.2s ease;\n}\n\n\n/* --- The large number (e.g., \"00\") --- */\n.time-value {\n    font-family: 'Montserrat', sans-serif;\n    font-size: 3.5rem;\n    font-weight: 700;\n    color: #FFFFFF; /* Bright white for high contrast */\n    display: block;\n    line-height: 1.2;\n}\n\n/* --- The small label (e.g., \"Days\") --- */\n.time-label {\n    font-family: 'Montserrat', sans-serif;\n    font-size: 0.9rem;\n    font-weight: 400;\n    text-transform: uppercase;\n    color: #e61b1b; /* Gold to match the title and border */\n    letter-spacing: 1.5px;\n}\n</style>\n<script src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/dongho_b7c2ae5a-b5ac-447e-b1e6-04084913faaa.js?v=1763612745\">\n\n</script>",
+        "spacing_desktop": 50,
+        "spacing_mobile": 10,
+        "fix_zindex": 0
+      }
+    },
+    "section_featured_collection_bnRDnm": {
+      "type": "section-featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "collection": "black-friday-exclusive",
+        "limit": 2,
+        "number_of_items": 1,
+        "text_alignment": "start",
+        "background_color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": false,
+        "title": "<h2><strong>BLACK FRIDAY EXCLUSIVE</strong></h2>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "show_link": true,
+        "link_text": "Explore",
+        "button_style": "tertiary link",
+        "background_width_mobile": 100,
+        "background_height_mobile": 100,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_featured_collection_xze8m9": {
+      "type": "section-featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "collection": "best-sellers",
+        "limit": 4,
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "background_color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": false,
+        "title": "<h2><strong>BEST SELLERS</strong></h2>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "show_link": true,
+        "link_text": "Explore",
+        "button_style": "tertiary link",
+        "background_width_mobile": 100,
+        "background_height_mobile": 100,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_featured_collection_AA6KDU": {
+      "type": "section-featured-collection",
+      "name": "t:sections.featured_collection.presets.name",
+      "settings": {
+        "collection": "christmas-3d-print-collection-2025",
+        "limit": 4,
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "background_color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": false,
+        "title": "<h2><strong>3D SWEATERS</strong></h2>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "show_link": true,
+        "link_text": "Explore",
+        "button_style": "tertiary link",
+        "background_width_mobile": 100,
+        "background_height_mobile": 100,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    }
+  },
+  "order": [
+    "e6f519e5-b5ec-41e9-9897-b40509ed927c",
+    "section_custom_html_QNAnK9",
+    "section_custom_html_jX4W3B",
+    "section_spacer_PEEEHm",
+    "section_custom_html_YWWmz7",
+    "section_featured_collection_bnRDnm",
+    "section_featured_collection_xze8m9",
+    "section_featured_collection_AA6KDU"
+  ]
+}

@@ -1,0 +1,674 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6ed76557-f01f-4c16-be59-921274d42b0b": {
+      "type": "section-slideshow",
+      "blocks": {
+        "template--21657903202617__6ed76557-f01f-4c16-be59-921274d42b0b-slide-1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner_floral.png",
+            "show_play_button": false,
+            "video_mute": true,
+            "layout": "background",
+            "image_width": 50,
+            "overlay_opacity": 0,
+            "color_palette": "scheme-2",
+            "background_overlay_opacity": 0,
+            "text_position": "end center",
+            "max_width": 640,
+            "title": "",
+            "title_underline_style": "secondary_font",
+            "text": "",
+            "enable_custom_font_styling": true,
+            "font_size": "18px",
+            "show_first_link": false,
+            "first_link_text": "",
+            "first_link_url": "shopify://collections/best-sellers",
+            "first_button_style": "primary plain",
+            "show_second_link": false,
+            "second_link_text": "SHOP NOW",
+            "second_link_url": "shopify://collections/best-sellers",
+            "second_button_style": "primary inv",
+            "image_mobile": "shopify://shop_images/bia_2026_1_45ba888a-91f3-4b72-ab6f-de239badb0b6.png"
+          }
+        }
+      },
+      "block_order": [
+        "template--21657903202617__6ed76557-f01f-4c16-be59-921274d42b0b-slide-1"
+      ],
+      "settings": {
+        "width": "wide",
+        "height": "16/9",
+        "enable_custom_height": false,
+        "custom_height": 700,
+        "autoplay": false,
+        "autoplay_seconds": 3,
+        "enable_controls": false,
+        "height_mobile": "adapt",
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "coverflow_H6adJX": {
+      "type": "coverflow",
+      "blocks": {
+        "slide_UHbLnw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/8c4b2b90-99f1-451f-999a-e775bee1742f.png"
+          }
+        },
+        "slide_BkRBqU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/88b26350-dc1f-4fc4-84f1-2d517f735e98.png"
+          }
+        },
+        "slide_ywpKE6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/38de2018-6d00-4480-b6d9-a2b5be7b65bb_1.png"
+          }
+        },
+        "slide_DdDcqd": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/29376c35-0198-4708-bf42-81fb3647b3a2.png"
+          }
+        },
+        "slide_zAQR6F": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/117784da-6ac1-4580-97fe-d2d0ad097e2a.png"
+          }
+        }
+      },
+      "block_order": [
+        "slide_UHbLnw",
+        "slide_BkRBqU",
+        "slide_ywpKE6",
+        "slide_DdDcqd",
+        "slide_zAQR6F"
+      ],
+      "name": "3D Carousel Responsive",
+      "settings": {
+        "show_on_desktop": false,
+        "show_on_mobile": true,
+        "bg_color": "#fff2f1",
+        "container_width": 1600,
+        "padding_y": 0,
+        "item_width": 250,
+        "item_height": 350,
+        "translate_x": 220,
+        "scale_center": 1.2,
+        "mobile_item_width": 160,
+        "mobile_item_height": 220,
+        "mobile_translate_x": 110,
+        "mobile_scale_center": 1.3,
+        "rotate_deg": 35,
+        "autoplay_speed": 3000,
+        "show_dots": false,
+        "dot_color": "#333333"
+      }
+    },
+    "blocks_M3EwH6": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_28ad635_9hwMRB": {
+          "type": "ai_gen_block_28ad635",
+          "settings": {
+            "title": "Best Sellers",
+            "subtitle": "",
+            "featured_products": [
+              "comfort-colors-250-years-of-freedom-watercolor-flag-t-shirt-tsta09",
+              "comfort-colors-america-god-shed-his-grace-on-thee-t-shirt-tsta10",
+              "comfort-colors-america-250-years-of-freedom-floral-t-shirt-tsta11",
+              "comfort-colors-america-floral-watercolor-faith-freedom-pride-t-shirt-tsta35",
+              "comfort-colors-250th-america-faith-freedom-hope-mason-jars-t-shirt-tsta45",
+              "comfort-colors-new-creation-justified-sanctified-t-shirt-tst04",
+              "comfort-colors-i-sing-because-im-free-sparrow-t-shirt-tst10",
+              "comfort-colors-saved-by-grace-butterfly-t-shirt-tst12"
+            ],
+            "products_to_show": 8,
+            "text_alignment": "center",
+            "product_text_alignment": "left",
+            "product_spacing": 20,
+            "header_spacing": 20,
+            "image_aspect_ratio": "1",
+            "show_vendor": false,
+            "show_price": true,
+            "show_button": false,
+            "button_text": "View product",
+            "card_padding": 10,
+            "card_border_radius": 6,
+            "background_color": "#ffffff",
+            "product_card_bg": "#ffffff",
+            "title_color": "#000000",
+            "subtitle_color": "#666666",
+            "product_title_color": "#000000",
+            "product_title_hover_color": "#ff6602",
+            "product_vendor_color": "#666666",
+            "product_price_color": "#f40c1d",
+            "compare_price_color": "#999999",
+            "button_bg_color": "#ff6602",
+            "button_text_color": "#ffffff",
+            "button_hover_bg_color": "#e55a02",
+            "button_hover_text_color": "#ffffff",
+            "title_size": 32,
+            "subtitle_size": 16,
+            "product_title_size": 16,
+            "product_vendor_size": 13,
+            "product_price_size": 14,
+            "button_text_size": 14,
+            "button_border_radius": 4,
+            "section_padding_top": 20,
+            "section_padding_bottom": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_28ad635_9hwMRB"
+      ],
+      "custom_css": [
+        ".ai-featured-product-price-anvnxqwzobflocnboeaigenblock28ad6359hwmrb {font-size: 15px !important;}",
+        ".ai-featured-product-compare-price-anvnxqwzobflocnboeaigenblock28ad6359hwmrb {font-size: 13px !important;}",
+        "a {display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}"
+      ],
+      "name": "Featured products AI",
+      "settings": {
+        "width": "wide",
+        "layout_direction": "vertical",
+        "layout_mobile": "column",
+        "justify_content": "center",
+        "align_items": "center",
+        "gap_desktop": 20,
+        "gap_mobile": 15,
+        "color_palette": "",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_left": 0,
+        "padding_right": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_left_mobile": 0,
+        "padding_right_mobile": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "nav_bar_clt_z36U9W": {
+      "type": "nav-bar-clt",
+      "blocks": {
+        "collection_block_GPQAUm": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "embroidery-sweatshirt",
+            "title": "Embroidered Sweatshirts"
+          }
+        },
+        "collection_block_Rjpx7q": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "easter-embroidered-hoodie",
+            "title": ""
+          }
+        },
+        "collection_block_x4DyJN": {
+          "type": "collection_block",
+          "settings": {
+            "collection": "embroidered-hoodie-clone",
+            "title": "Embroidered Hoodies"
+          }
+        }
+      },
+      "block_order": [
+        "collection_block_GPQAUm",
+        "collection_block_Rjpx7q",
+        "collection_block_x4DyJN"
+      ],
+      "disabled": true,
+      "name": "Collection Tabs",
+      "settings": {
+        "products_to_show": 8,
+        "columns_desktop": "4",
+        "columns_mobile": "2",
+        "grid_gap": 20,
+        "nav_alignment": "center",
+        "background_color": "#ffffff",
+        "accent_color": "#000000",
+        "info_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "section_spacer_6Rbb96": {
+      "type": "section-spacer",
+      "name": "t:sections.spacer.presets.name",
+      "settings": {
+        "height": 20,
+        "height_mobile": 20
+      }
+    },
+    "section_slideshow_LWrciF": {
+      "type": "section-slideshow",
+      "blocks": {
+        "slide_hx4wYt": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/0609(2).mp4",
+            "show_play_button": false,
+            "video_mute": true,
+            "layout": "left",
+            "image_width": 50,
+            "overlay_opacity": 0,
+            "color_palette": "",
+            "background_overlay_opacity": 0,
+            "text_position": "center",
+            "max_width": 400,
+            "title": "",
+            "title_underline_style": "none",
+            "text": "<p>Crafted from ultra-soft cotton and printed with care, our faith-inspired T-shirts are designed to bring comfort, encouragement, and lasting quality with every wear.</p>",
+            "enable_custom_font_styling": true,
+            "font_size": "16px",
+            "show_first_link": true,
+            "first_link_text": "Shop now",
+            "first_link_url": "shopify://collections/christian-nature-symbols-t-shirts",
+            "first_button_style": "tertiary link",
+            "show_second_link": false,
+            "second_link_text": "Button",
+            "second_link_url": "/",
+            "second_button_style": "secondary plain"
+          }
+        }
+      },
+      "block_order": [
+        "slide_hx4wYt"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "width": "wide",
+        "height": "adapt",
+        "enable_custom_height": false,
+        "custom_height": 300,
+        "autoplay": false,
+        "autoplay_seconds": 3,
+        "enable_controls": false,
+        "height_mobile": "adapt",
+        "spacing_desktop": 50,
+        "spacing_mobile": 10,
+        "fix_zindex": 0
+      }
+    },
+    "section_featured_products_WxcjNG": {
+      "type": "section-featured-products",
+      "custom_css": [
+        "h3 {font-weight: BOLD;}",
+        "a {display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}"
+      ],
+      "name": "t:sections.featured_products.presets.name",
+      "settings": {
+        "products": [
+          "comfort-colors-new-creation-butterfly-t-shirt-tst03",
+          "comfort-colors-new-creation-justified-sanctified-t-shirt-tst04",
+          "comfort-colors-chase-peace-not-strife-dove-t-shirt-tst06",
+          "comfort-colors-but-the-lord-stood-by-me-dove-t-shirt-tst13"
+        ],
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 50,
+        "background_height": 0,
+        "background_color_section": false,
+        "title": "<h3><strong>EMBRACING THE NATURE</strong></h3>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "show_link": true,
+        "link_text": "See all",
+        "link_url": "shopify://collections/christian-nature-symbols-t-shirts",
+        "button_style": "secondary link",
+        "button_alignment": "end",
+        "background_width_mobile": 100,
+        "background_height_mobile": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_featured_products_Y9zHJF": {
+      "type": "section-featured-products",
+      "disabled": true,
+      "custom_css": [
+        "h3 {font-weight: BOLD;}",
+        "a {display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}"
+      ],
+      "name": "t:sections.featured_products.presets.name",
+      "settings": {
+        "products": [
+          "keep-your-eyes-on-jesus-t-shirt-1",
+          "blessings-can-be-little-things-t-shirt",
+          "this-world-need-jesus-t-shirt",
+          "its-okay-just-pray-t-shirt-copy"
+        ],
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 50,
+        "background_height": 0,
+        "background_color_section": false,
+        "title": "<h3><strong>BELLA CANVAS</strong></h3>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "show_link": true,
+        "link_text": "See all",
+        "link_url": "shopify://collections/comfort",
+        "button_style": "secondary link",
+        "button_alignment": "start",
+        "background_width_mobile": 100,
+        "background_height_mobile": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_featured_products_T4akwR": {
+      "type": "section-featured-products",
+      "disabled": true,
+      "custom_css": [
+        "h3 {font-weight: bold;}",
+        "a {display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}"
+      ],
+      "name": "t:sections.featured_products.presets.name",
+      "settings": {
+        "products": [
+          "can-do-all-things-through-christ-leather-handbag",
+          "be-still-leather-handbag",
+          "blessed-loved-led-leather-handbag",
+          "blessed-by-god-loved-by-jesus-leather-handbag"
+        ],
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 100,
+        "background_height": 0,
+        "background_color_section": false,
+        "title": "<h3><strong>LEATHER HANDBAGS</strong></h3>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "show_link": true,
+        "link_text": "See all",
+        "link_url": "shopify://collections/leather-handbags",
+        "button_style": "secondary link",
+        "button_alignment": "start",
+        "background_width_mobile": 0,
+        "background_height_mobile": 100,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_slideshow_Nb3qFc": {
+      "type": "section-slideshow",
+      "blocks": {
+        "slide_Dg6yqi": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/products_highlight_4.png",
+            "show_play_button": false,
+            "video_mute": false,
+            "layout": "background",
+            "image_width": 50,
+            "overlay_opacity": 0,
+            "color_palette": "",
+            "background_overlay_opacity": 0,
+            "text_position": "center",
+            "max_width": 600,
+            "title": "",
+            "title_underline_style": "none",
+            "text": "",
+            "enable_custom_font_styling": false,
+            "font_size": "16px",
+            "show_first_link": false,
+            "first_link_text": "Button",
+            "first_link_url": "/",
+            "first_button_style": "primary plain",
+            "show_second_link": false,
+            "second_link_text": "Button",
+            "second_link_url": "/",
+            "second_button_style": "secondary plain",
+            "image_mobile": "shopify://shop_images/products_highlight_3_5799533e-bac8-4e96-9070-9c50d2368d64.png"
+          }
+        }
+      },
+      "block_order": [
+        "slide_Dg6yqi"
+      ],
+      "custom_css": [],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "width": "wide",
+        "height": "adapt",
+        "enable_custom_height": false,
+        "custom_height": 350,
+        "autoplay": false,
+        "autoplay_seconds": 1,
+        "enable_controls": false,
+        "height_mobile": "adapt",
+        "spacing_desktop": -30,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_spacer_jKecyB": {
+      "type": "section-spacer",
+      "name": "t:sections.spacer.presets.name",
+      "settings": {
+        "height": 50,
+        "height_mobile": 10
+      }
+    },
+    "shopthelook_xP8Yhq": {
+      "type": "shop-the-look-slider",
+      "blocks": {
+        "product_CgqGyw": {
+          "type": "product",
+          "settings": {
+            "product": "comfort-colors-new-creation-justified-sanctified-t-shirt-tst04",
+            "hotspot_horizontal": 67,
+            "hotspot_vertical": 39,
+            "hotspot_mobile_horizontal": 67,
+            "hotspot_mobile_vertical": 42
+          }
+        }
+      },
+      "block_order": [
+        "product_CgqGyw"
+      ],
+      "name": "Shop the Look",
+      "settings": {
+        "show_on_desktop": true,
+        "show_on_mobile": true,
+        "heading": "Shop the Look",
+        "heading_alignment": "left",
+        "image": "shopify://shop_images/35_OFF_19.png",
+        "desktop_image_ratio": "1 / 1",
+        "mobile_image_ratio": "1 / 1",
+        "background_color": "#ffffff",
+        "product_card_panel_background": "#f7f7f5",
+        "product_card_background": "#ffffff",
+        "product_card_border": "#e6e2dc",
+        "product_card_title_color": "#121212",
+        "product_card_price_color": "#121212",
+        "product_card_button_background": "#121212",
+        "product_card_button_text": "#ffffff",
+        "product_card_button_background_hover": "#2a2a2a",
+        "product_card_font_family": "inherit",
+        "product_card_title_size_desktop": 18,
+        "product_card_title_size_mobile": 16,
+        "product_card_title_weight": "700",
+        "product_card_price_size_desktop": 15,
+        "product_card_price_size_mobile": 14,
+        "product_card_button_weight": "800",
+        "product_card_button_text_transform": "uppercase",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "shop_the_look_slider_E6c7yg": {
+      "type": "shop-the-look-slider",
+      "blocks": {
+        "product_9pfQgg": {
+          "type": "product",
+          "settings": {
+            "product": "comfort-colors-i-sing-because-im-free-sparrow-t-shirt-tst10",
+            "hotspot_horizontal": 26,
+            "hotspot_vertical": 29,
+            "hotspot_mobile_horizontal": 26,
+            "hotspot_mobile_vertical": 29
+          }
+        }
+      },
+      "block_order": [
+        "product_9pfQgg"
+      ],
+      "name": "Shop the Look",
+      "settings": {
+        "show_on_desktop": true,
+        "show_on_mobile": true,
+        "heading": "Shop the Look",
+        "heading_alignment": "left",
+        "image": "shopify://shop_images/35_OFF_18.png",
+        "desktop_image_ratio": "1 / 1",
+        "mobile_image_ratio": "1 / 1",
+        "background_color": "#ffffff",
+        "product_card_panel_background": "#f7f7f5",
+        "product_card_background": "#ffffff",
+        "product_card_border": "#e6e2dc",
+        "product_card_title_color": "#121212",
+        "product_card_price_color": "#121212",
+        "product_card_button_background": "#121212",
+        "product_card_button_text": "#ffffff",
+        "product_card_button_background_hover": "#2a2a2a",
+        "product_card_font_family": "inherit",
+        "product_card_title_size_desktop": 18,
+        "product_card_title_size_mobile": 16,
+        "product_card_title_weight": "700",
+        "product_card_price_size_desktop": 15,
+        "product_card_price_size_mobile": 14,
+        "product_card_button_weight": "800",
+        "product_card_button_text_transform": "uppercase",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "1773738797d061577b": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_cards_carousel_H8dapx": {
+          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": true,
+            "reviews_selection": "product_reviews",
+            "products": [],
+            "star_rating": "4_to_5_star",
+            "show_review_media": true,
+            "display_order": "most_recent",
+            "no_image_fallback": "review_text_only",
+            "max_reviews": 20,
+            "review_length": "small",
+            "text_size": "small",
+            "image_ratio": "0.75",
+            "reviews_shown": 4,
+            "show_reviewer_name": true,
+            "show_product_name": true,
+            "hide_arrows_mobile": true,
+            "arrows_position": "sides",
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "card_color": "#f9f9f9",
+            "stars_color": "",
+            "arrows_color": "#000000",
+            "transition_speed": 5,
+            "header_text": "Customers are saying",
+            "show_average_rating": true
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_cards_carousel_H8dapx"
+      ],
+      "settings": {
+        "width": "wide",
+        "layout_direction": "vertical",
+        "layout_mobile": "column",
+        "justify_content": "center",
+        "align_items": "center",
+        "gap_desktop": 20,
+        "gap_mobile": 15,
+        "color_palette": "",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_left": 0,
+        "padding_right": 0,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "padding_left_mobile": 0,
+        "padding_right_mobile": 0,
+        "spacing_desktop": -20,
+        "spacing_mobile": -20,
+        "fix_zindex": 0
+      }
+    }
+  },
+  "order": [
+    "6ed76557-f01f-4c16-be59-921274d42b0b",
+    "coverflow_H6adJX",
+    "blocks_M3EwH6",
+    "nav_bar_clt_z36U9W",
+    "section_spacer_6Rbb96",
+    "section_slideshow_LWrciF",
+    "section_featured_products_WxcjNG",
+    "section_featured_products_Y9zHJF",
+    "section_featured_products_T4akwR",
+    "section_slideshow_Nb3qFc",
+    "section_spacer_jKecyB",
+    "shopthelook_xP8Yhq",
+    "shop_the_look_slider_E6c7yg",
+    "1773738797d061577b"
+  ]
+}

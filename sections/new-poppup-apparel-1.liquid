@@ -1,0 +1,377 @@
+{% comment %}
+  Section: Smart Newsletter Popup - Final Version (Personalized & Clean Code)
+{% endcomment %}
+
+{%- assign show_popup = false -%}
+
+{%- if section.settings.display_scope == 'all' -%}
+  {%- assign show_popup = true -%}
+{%- else -%}
+  {%- if section.settings.show_on_home and template.name == 'index' -%}
+    {%- assign show_popup = true -%}
+  {%- endif -%}
+  {%- if section.settings.show_on_collection and template.name == 'collection' -%}
+    {%- assign show_popup = true -%}
+  {%- endif -%}
+  {%- if section.settings.show_on_product and template.name == 'product' -%}
+    {%- assign show_popup = true -%}
+  {%- endif -%}
+  {%- if section.settings.show_on_blog and template.name == 'article' or template.name == 'blog' -%}
+    {%- assign show_popup = true -%}
+  {%- endif -%}
+  {%- if section.settings.show_on_cart and template.name == 'cart' -%}
+    {%- assign show_popup = true -%}
+  {%- endif -%}
+
+  {%- if section.settings.target_handles != blank -%}
+    {%- assign handles = section.settings.target_handles | split: ',' -%}
+    {%- for handle in handles -%}
+      {%- assign clean_handle = handle | strip -%}
+      {%- if clean_handle == collection.template_suffix
+          or clean_handle == product.template_suffix
+          or clean_handle == page.template_suffix -%}
+        {%- assign show_popup = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if show_popup and section.settings.enable_popup -%}
+
+  <div id="newsletter-popup-{{ section.id }}" class="popup-overlay" style="display: none;">
+    <div class="popup-container">
+      
+      <button class="popup-close" aria-label="Close">&times;</button>
+
+      <div class="popup-image">
+        {%- if section.settings.image != blank -%}
+          <img 
+            src="{{ section.settings.image | image_url: width: 800 }}" 
+            alt="{{ section.settings.heading | escape }}"
+            loading="lazy"
+            width="400" height="500"
+          >
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      <div class="popup-content" style="background-color: {{ section.settings.bg_color }};">
+        <div class="popup-text-wrapper">
+          
+          <div id="popup-step-1">
+            {%- if section.settings.subheading != blank -%}
+              <p class="popup-subheading" style="color: {{ section.settings.text_color }};">{{ section.settings.subheading }}</p>
+            {%- endif -%}
+            
+            {%- if section.settings.heading != blank -%}
+              <h2 class="popup-heading" style="color: {{ section.settings.text_color }};">{{ section.settings.heading }}</h2>
+            {%- endif -%}
+
+            {%- if section.settings.description != blank -%}
+              <div class="popup-desc" style="color: {{ section.settings.text_color }}; opacity: 0.8;">
+                {{ section.settings.description }}
+              </div>
+            {%- endif -%}
+
+            {% form 'customer', id: 'newsletter-popup-form', class: 'popup-form-custom' %}
+              <input type="hidden" name="contact[tags]" value="newsletter, popup, apparel">
+              
+              <div class="input-group">
+                <input type="text" name="contact[first_name]" id="popup-name-input" class="popup-input" placeholder="First Name" required style="margin-bottom: 10px;">
+                
+                <input type="email" name="contact[email]" id="popup-email-input" class="popup-input" value="{{ form.email }}" placeholder="Your email address" required style="margin-bottom: 10px;">
+                
+                <button type="button" id="popup-manual-submit" class="popup-submit" 
+                        style="background-color: #a40102; color: #ffffff;">
+                  {{ section.settings.btn_label }}
+                </button>
+              </div>
+              
+              <div id="popup-error-msg" style="color: red; margin-top: 10px; display: none; font-size: 0.9rem;">Please enter your name and a valid email.</div>
+              
+              <p class="popup-disclaimer" style="color: {{ section.settings.text_color }}; opacity: 0.6;">
+                {{ section.settings.disclaimer }}
+              </p>
+            {% endform %}
+          </div>
+
+          <div id="popup-step-2" style="display: none; text-align: center; padding: 20px 0;">
+            
+            <p class="form-success" id="success-msg-dynamic" style="color: {{ section.settings.text_color }}; margin-bottom: 20px; font-weight: bold; font-size: 1.1rem; line-height: 1.4;">
+               </p>
+            
+            {%- if section.settings.discount_code != blank -%}
+              <div class="discount-box-wrapper" style="margin-bottom: 25px;">
+                <div class="discount-code-box" 
+                     onclick="navigator.clipboard.writeText('{{ section.settings.discount_code }}'); alert('Code copied to clipboard!');" 
+                     title="Click to copy"
+                     style="
+                        border: 2px dashed {{ section.settings.btn_bg }}; 
+                        background: rgba(0,0,0,0.03);
+                        padding: 15px 25px; 
+                        font-weight: 800; 
+                        font-size: 1.5rem; 
+                        display: inline-block; 
+                        color: {{ section.settings.btn_bg }}; 
+                        cursor: pointer;
+                        border-radius: 6px;
+                        letter-spacing: 1px;
+                     ">
+                  {{ section.settings.discount_code }}
+                </div>
+                <p style="font-size: 0.75rem; margin-top: 8px; opacity: 0.6; font-style: italic;">Tap code to copy</p>
+              </div>
+            {%- endif -%}
+
+            <button type="button" class="popup-submit close-success-btn" 
+                    style="
+                      background-color: #a40102; 
+                      color: #ffffff; 
+                      display: block; 
+                      margin: 20px auto 0 auto; 
+                      width: auto; 
+                      padding-left: 40px; 
+                      padding-right: 40px;
+                      border: none;
+                    ">
+              Close
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* --- CSS STYLES --- */
+    .popup-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+      z-index: 999999; display: flex; justify-content: center; align-items: center;
+      opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .popup-overlay.is-visible { opacity: 1; visibility: visible; }
+
+    .popup-container {
+      background: #fff; width: 90%; max-width: 850px; display: flex;
+      position: relative; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      transform: translateY(20px); transition: transform 0.4s ease;
+      min-height: 0px !important;
+    }
+    .popup-overlay.is-visible .popup-container { transform: translateY(0); }
+
+    .popup-close {
+      position: absolute; top: 10px; padding: 0; background: none; border: none;
+      font-size: 30px; line-height: 1; cursor: pointer; z-index: 10; color: #333; opacity: 0.6;
+      width: 40px !important; height: 40px !important;
+      min-width: 0px !important; min-height: 0px !important;
+      right: 0; top: 0;
+    }
+    .popup-close:before { display: none;}
+    .popup-image { width: 50%; display: none; }
+    @media (min-width: 769px) { .popup-image { display: block; } }
+    .popup-image img, .popup-image svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .popup-content { width: 100%; padding: 10px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+    @media (min-width: 769px) { .popup-content { width: 50%; padding: 40px 40px 0px 40px; text-align: left; } }
+
+    .popup-subheading { text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; font-weight: bold; margin-bottom: 10px; }
+    .popup-heading { font-size: 2rem; margin: 0 0 15px 0; line-height: 1.2; font-weight: 700; }
+    .popup-desc { margin-bottom: 25px; font-size: 1rem; line-height: 1.5; }
+
+    .popup-form-custom { width: 100%; }
+    .input-group { display: flex; flex-direction: column; }
+    .popup-input { padding: 12px 15px; border: 1px solid #ddd; border-radius: 4px; width: 100%; }
+    .popup-submit { padding: 12px 25px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; text-transform: uppercase; border-radius: 10px;}
+    .popup-submit:before { display: none;}
+    .popup-disclaimer { font-size: 0.75rem; margin-top: 15px; font-style: italic; }
+    .placeholder-svg { background: #eee; width: 100%; height: 100%; }
+    
+    /* Loading Effect */
+    .btn-loading { opacity: 0.7; pointer-events: none; position: relative; }
+    .btn-loading:after { content: "..."; margin-left: 5px; }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // --- CẤU HÌNH BIẾN TOÀN CỤC ---
+      const sectionId = "{{ section.id }}";
+      const popup = document.getElementById(`newsletter-popup-${sectionId}`);
+      if(!popup) return; 
+
+      const closeBtn = popup.querySelector('.popup-close');
+      const delay = {{ section.settings.delay }} * 1000;
+      const daysToExpire = {{ section.settings.frequency }};
+      const storageKey = 'shopifyPopupClosed';
+      
+      // Lấy các phần tử DOM
+      const form = document.getElementById('newsletter-popup-form');
+      const manualSubmitBtn = document.getElementById('popup-manual-submit');
+      const nameInputElement = document.getElementById('popup-name-input');
+      const emailInputElement = document.getElementById('popup-email-input');
+      const step1 = document.getElementById('popup-step-1');
+      const step2 = document.getElementById('popup-step-2');
+      const errorMsg = document.getElementById('popup-error-msg');
+      const successMsgBox = document.getElementById('success-msg-dynamic');
+
+      // --- 1. LOGIC KIỂM TRA & HIỂN THỊ POPUP ---
+      function shouldShowPopup() {
+        if (localStorage.getItem('popupSubscribed') === 'true') return false;
+        const lastClosed = localStorage.getItem(storageKey);
+        if (lastClosed) {
+          const now = new Date().getTime();
+          const daysSince = (now - lastClosed) / (1000 * 60 * 60 * 24);
+          if (daysSince < daysToExpire) return false;
+        }
+        return true;
+      }
+
+      function showPopup() {
+        if (shouldShowPopup()) {
+          popup.style.display = 'flex';
+          setTimeout(() => { popup.classList.add('is-visible'); }, 10);
+        }
+      }
+
+      function closePopup() {
+        popup.classList.remove('is-visible');
+        setTimeout(() => { popup.style.display = 'none'; }, 400);
+        if (localStorage.getItem('popupSubscribed') !== 'true') {
+           localStorage.setItem(storageKey, new Date().getTime());
+        }
+      }
+
+      setTimeout(showPopup, delay);
+      closeBtn.addEventListener('click', closePopup);
+      popup.addEventListener('click', function(e) { if (e.target === popup) closePopup(); });
+
+
+      // --- 2. LOGIC XỬ LÝ SỰ KIỆN SUBMIT (AJAX) ---
+      if(manualSubmitBtn) {
+        manualSubmitBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          // Validation: Kiểm tra email và tên có trống không
+          if (!emailInputElement.value.includes('@') || nameInputElement.value.trim() === "") {
+            errorMsg.style.display = 'block';
+            return;
+          }
+          errorMsg.style.display = 'none';
+
+          // Hiển thị trạng thái Loading
+          manualSubmitBtn.classList.add('btn-loading');
+          manualSubmitBtn.innerText = "Processing...";
+
+          // Chuẩn bị dữ liệu Form
+          const formData = new FormData(form);
+
+          // Gửi dữ liệu ngầm lên Shopify
+          fetch('/contact', {
+            method: 'POST',
+            body: formData
+          })
+          .then(() => {
+             // Gọi hàm xử lý và hiển thị kết quả
+             processAndDisplaySuccess();
+          })
+          .catch((err) => {
+             console.log(err);
+             // Vẫn hiện kết quả kể cả khi có lỗi mạng nhỏ để đảm bảo trải nghiệm
+             processAndDisplaySuccess(); 
+          });
+        });
+      }
+
+      // --- 3. HÀM XỬ LÝ BIẾN & HIỂN THỊ (VARIABLE ASSIGNMENT) ---
+      function processAndDisplaySuccess() {
+        // Đánh dấu đã đăng ký vào localStorage
+        localStorage.setItem('popupSubscribed', 'true');
+        
+        // --- BƯỚC A: GÁN GIÁ TRỊ VÀO BIẾN (Assign Values to Variables) ---
+        const customerName = nameInputElement.value.trim();   // Biến chứa Tên
+        const customerEmail = emailInputElement.value.trim(); // Biến chứa Email
+        let successTemplate = "{{ section.settings.success_message }}"; // Biến chứa Mẫu câu
+
+        // --- BƯỚC B: XỬ LÝ LOGIC THAY THẾ CHUỖI ---
+        let finalMessage = successTemplate.replace('[name]', customerName);
+        finalMessage = finalMessage.replace('[email]', customerEmail);
+        
+        // --- BƯỚC C: CẬP NHẬT GIAO DIỆN (DOM Manipulation) ---
+        successMsgBox.innerText = finalMessage;
+        
+        // Ẩn Step 1, Hiện Step 2
+        step1.style.display = 'none';
+        step2.style.display = 'block';
+        
+        // Reset nút (nếu cần)
+        manualSubmitBtn.classList.remove('btn-loading');
+      }
+
+      // Xử lý nút Đóng ở màn hình thành công
+      document.querySelector('.close-success-btn').addEventListener('click', function(){
+          closePopup();
+      });
+    });
+  </script>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Popup Final Personalized",
+  "settings": [
+    { "type": "header", "content": "Bật/Tắt & Cấu hình" },
+    { "type": "checkbox", "id": "enable_popup", "label": "Bật Popup", "default": true },
+    { "type": "range", "id": "delay", "min": 1, "max": 60, "step": 1, "label": "Delay (giây)", "default": 5 },
+    { "type": "range", "id": "frequency", "min": 0, "max": 30, "step": 1, "label": "Hiện lại sau (ngày)", "default": 7 },
+    
+    { "type": "header", "content": "🎯 Nơi hiển thị" },
+    {
+      "type": "select",
+      "id": "display_scope",
+      "label": "Phạm vi hiển thị",
+      "options": [
+        { "value": "all", "label": "Tất cả các trang" },
+        { "value": "specific", "label": "Chỉ các trang được chọn" }
+      ],
+      "default": "all"
+    },
+    { "type": "checkbox", "id": "show_on_home", "label": "Trang chủ", "default": true },
+    { "type": "checkbox", "id": "show_on_collection", "label": "Tất cả Collection", "default": false },
+    { "type": "checkbox", "id": "show_on_product", "label": "Tất cả Sản phẩm", "default": false },
+    { "type": "checkbox", "id": "show_on_cart", "label": "Giỏ hàng", "default": false },
+    {
+      "type": "textarea",
+      "id": "target_handles",
+      "label": "Danh sách Handles",
+      "info": "Nhập template_suffix, cách nhau bằng dấu phẩy."
+    },
+
+    { "type": "header", "content": "Hình ảnh" },
+    { "type": "image_picker", "id": "image", "label": "Hình ảnh" },
+    
+    { "type": "header", "content": "Nội dung: Mời Đăng Ký" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Join Our Community" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Get 5% Off For Your First Order And Lots Of Good Deals" },
+    { "type": "textarea", "id": "description", "label": "Mô tả", "default": "Sign up for exclusive offers." },
+    { "type": "text", "id": "btn_label", "label": "Nút bấm", "default": "Subscribe" },
+    { "type": "text", "id": "disclaimer", "label": "Ghi chú", "default": "No spam." },
+
+    { "type": "header", "content": "Nội dung: Thành công (Hiện Code)" },
+    { "type": "textarea", "id": "success_message", "label": "Lời nhắn thành công", "default": "Thanks [name]! Code sent to [email]. Here is your discount:", "info": "Dùng [name] và [email] để tự động điền thông tin khách." },
+    { "type": "text", "id": "discount_code", "label": "Mã giảm giá", "default": "WELCOME10" },
+    
+    { "type": "header", "content": "Màu sắc" },
+    { "type": "color", "id": "bg_color", "label": "Màu nền", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Màu chữ", "default": "#333333" },
+    { "type": "color", "id": "btn_bg", "label": "Màu nút", "default": "#000000" },
+    { "type": "color", "id": "btn_text", "label": "Màu chữ nút", "default": "#ffffff" },
+    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 90, "step": 10, "unit": "%", "label": "Độ tối nền", "default": 50 }
+  ],
+  "presets": [ { "name": "Popup Final Personalized" } ]
+}
+{% endschema %}

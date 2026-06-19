@@ -1,0 +1,332 @@
+{%- style -%}
+  .split-section-{{ section.id }} {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: {{ section.settings.section_height }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .split-column {
+    flex: 0 0 50%;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    box-sizing: border-box;
+  }
+
+  .split-column.left-side {
+    border-right: 1px solid {{ section.settings.divider_color }};
+  }
+
+  .split-block-item {
+    margin-bottom: 25px;
+    width: 100%;
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  .split-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .split-heading {
+    margin: 0 0 15px 0;
+    font-size: 2.5rem;
+    color: inherit;
+  }
+
+  .split-text {
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  .split-button {
+    display: inline-block;
+    padding: 14px 28px;
+    text-decoration: none;
+    background: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    border-radius: 4px;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+  }
+
+  .split-button:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .split-column {
+      flex: 0 0 100%;
+      max-width: 100%;
+      padding: 40px 20px;
+    }
+    .split-column.left-side {
+      border-right: none;
+      border-bottom: 1px solid {{ section.settings.divider_color }};
+    }
+  }
+{%- endstyle -%}
+
+<section class="split-section-{{ section.id }}">
+  <div class="split-column left-side">
+    {% for block in section.blocks %}
+      {% if block.type == '@app' or block.settings.column_side == 'left' %}
+        <div class="split-block-item" {{ block.shopify_attributes }}>
+          {% case block.type %}
+            {% when '@app' %}
+              {% render block %}
+            
+            {% when 'image_block' %}
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | img_url: '1000x' }}" alt="{{ block.settings.image.alt }}" class="split-image">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'split-image placeholder-svg' }}
+              {% endif %}
+
+            {% when 'heading_block' %}
+              <h2 class="split-heading">{{ block.settings.heading_text }}</h2>
+
+            {% when 'text_block' %}
+              <div class="split-text">{{ block.settings.content_text }}</div>
+
+            {% when 'button_block' %}
+              <a href="{{ block.settings.link_url }}" class="split-button">{{ block.settings.button_label }}</a>
+              
+            {% when 'custom_liquid' %}
+              {{ block.settings.custom_liquid }}
+          {% endcase %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="split-column right-side">
+    {% for block in section.blocks %}
+      {% if block.type == '@app' or block.settings.column_side == 'right' %}
+        {%- comment -%} 
+          Lưu ý: App Block mặc định sẽ render ở cả hai bên nếu không có logic lọc nâng cao. 
+          Thông thường App Block sẽ được kéo thả vào vị trí mong muốn.
+        {%- endcomment -%}
+        {% if block.settings.column_side == 'right' or block.type == '@app' %}
+           <div class="split-block-item" {{ block.shopify_attributes }}>
+            {% case block.type %}
+              {% when '@app' %}
+                {% render block %}
+
+              {% when 'image_block' %}
+                {% if block.settings.image != blank %}
+                  <img src="{{ block.settings.image | img_url: '1000x' }}" alt="{{ block.settings.image.alt }}" class="split-image">
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'split-image placeholder-svg' }}
+                {% endif %}
+
+              {% when 'heading_block' %}
+                <h2 class="split-heading">{{ block.settings.heading_text }}</h2>
+
+              {% when 'text_block' %}
+                <div class="split-text">{{ block.settings.content_text }}</div>
+
+              {% when 'button_block' %}
+                <a href="{{ block.settings.link_url }}" class="split-button">{{ block.settings.button_label }}</a>
+
+              {% when 'custom_liquid' %}
+                {{ block.settings.custom_liquid }}
+            {% endcase %}
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Split Screen Section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 400,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "label": "Section Height",
+      "default": 600
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Color",
+      "default": "transparent"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Button Styles"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "image_block",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "select",
+          "id": "column_side",
+          "label": "Column Side",
+          "options": [
+            { "value": "left", "label": "Left Side" },
+            { "value": "right", "label": "Right Side" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "heading_block",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "select",
+          "id": "column_side",
+          "label": "Column Side",
+          "options": [
+            { "value": "left", "label": "Left Side" },
+            { "value": "right", "label": "Right Side" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "text",
+          "id": "heading_text",
+          "label": "Heading Text",
+          "default": "Premium Title"
+        }
+      ]
+    },
+    {
+      "type": "text_block",
+      "name": "Rich Text",
+      "settings": [
+        {
+          "type": "select",
+          "id": "column_side",
+          "label": "Column Side",
+          "options": [
+            { "value": "left", "label": "Left Side" },
+            { "value": "right", "label": "Right Side" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "richtext",
+          "id": "content_text",
+          "label": "Content Text",
+          "default": "<p>Write your detailed brand story here.</p>"
+        }
+      ]
+    },
+    {
+      "type": "button_block",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "select",
+          "id": "column_side",
+          "label": "Column Side",
+          "options": [
+            { "value": "left", "label": "Left Side" },
+            { "value": "right", "label": "Right Side" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Button Link"
+        }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom Liquid",
+      "settings": [
+        {
+          "type": "select",
+          "id": "column_side",
+          "label": "Column Side",
+          "options": [
+            { "value": "left", "label": "Left Side" },
+            { "value": "right", "label": "Right Side" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom Liquid Code",
+          "info": "Add app snippets or custom HTML here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split Screen Section",
+      "blocks": [
+        { "type": "heading_block", "settings": { "column_side": "left" } },
+        { "type": "image_block", "settings": { "column_side": "right" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

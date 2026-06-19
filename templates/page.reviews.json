@@ -1,0 +1,169 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "section_collage_WYUKfP": {
+      "type": "section-collage",
+      "blocks": {
+        "image_YYRXBa": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Won_Trusted.jpg",
+            "overlay_opacity": 0,
+            "enable_controls": false,
+            "video_mute": true,
+            "color_palette": "scheme-1",
+            "text_position": "center",
+            "title": "",
+            "title_underline_style": "none",
+            "text": "",
+            "enable_custom_font_styling": false,
+            "font_size": "16px",
+            "show_link": true,
+            "link_text": "Button",
+            "link_url": "",
+            "button_style": "primary plain",
+            "image_mobile": "shopify://shop_images/Won_Trusted_1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_YYRXBa"
+      ],
+      "disabled": true,
+      "name": "t:sections.collage.presets.name",
+      "settings": {
+        "mirrored": false,
+        "width": "wide",
+        "height": "adapt",
+        "enable_custom_height": false,
+        "custom_height": 250,
+        "space_between": 16,
+        "image_zoom": false,
+        "layout_mobile": "compact",
+        "mobile_height": "16/9",
+        "spacing_desktop": 50,
+        "spacing_mobile": 30,
+        "fix_zindex": 0
+      }
+    },
+    "section_spacer_X6bUfP": {
+      "type": "section-spacer",
+      "settings": {
+        "height": -40,
+        "height_mobile": -20
+      }
+    },
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": false,
+        "back_button": false
+      }
+    },
+    "main-page": {
+      "type": "main-page",
+      "blocks": {
+        "content": {
+          "type": "content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "content"
+      ],
+      "settings": {
+        "max_width": 1020,
+        "content_alignment": "center",
+        "text_alignment": "start",
+        "spacing_desktop": 50,
+        "spacing_mobile": 30
+      }
+    },
+    "17561781158de0550a": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_c9b727d_eRR7YU": {
+          "type": "ai_gen_block_c9b727d",
+          "settings": {
+            "heading": "Read reviews, ride with confidence",
+            "content": "",
+            "text_alignment": "center",
+            "max_width": 800,
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "background_color": "#ffffff",
+            "heading_color": "#103778",
+            "text_color": "#333333",
+            "link_color": "#0066cc",
+            "link_hover_color": "#004499",
+            "heading_size": 32,
+            "heading_weight": "700",
+            "heading_margin": 0,
+            "text_size": 16,
+            "line_height": 1.6
+          },
+          "blocks": {}
+        },
+        "judge_me_reviews_medals_HKHxGk": {
+          "type": "shopify://apps/judge-me-reviews/blocks/medals/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "judge_me_reviews_all_reviews_page_eWeahd": {
+          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_page/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "max_width": 1200,
+            "review_source": "all",
+            "show_all_reviews_in_same_tab": false,
+            "show_first": "product",
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "ai_gen_block_c9b727d_eRR7YU",
+        "judge_me_reviews_medals_HKHxGk",
+        "judge_me_reviews_all_reviews_page_eWeahd"
+      ],
+      "custom_css": [
+        ".jdgm-rev.jdgm-divider-top.jdgm--done-setup.jdgm--leex-done-setup {border-radius: 10px;}",
+        ".jdgm-verified-wrapper,.jdgm-medals-separator {display: none;}"
+      ],
+      "settings": {
+        "width": "wide",
+        "color_palette": "",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_left": 0,
+        "padding_right": 0,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "padding_left_mobile": 0,
+        "padding_right_mobile": 0,
+        "spacing_desktop": 50,
+        "spacing_mobile": 30,
+        "fix_zindex": 0
+      }
+    }
+  },
+  "order": [
+    "section_collage_WYUKfP",
+    "section_spacer_X6bUfP",
+    "breadcrumbs",
+    "main-page",
+    "17561781158de0550a"
+  ]
+}

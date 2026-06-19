@@ -1,0 +1,254 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "74050fd1-3b74-482c-b07b-8f854296f104": {
+      "type": "section-spacer",
+      "settings": {
+        "height": -50,
+        "height_mobile": -30
+      }
+    },
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": true,
+        "back_button": false
+      }
+    },
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "539128a3-f3c6-435a-8f46-d68a7270f6d8": {
+          "type": "spacer",
+          "settings": {
+            "height": 30,
+            "height_mobile": -10
+          }
+        },
+        "669f3ddd-ace1-4a07-b1b4-f1414ec31142": {
+          "type": "vendor",
+          "settings": {
+            "show_vendor_brand": false,
+            "show_vendor_name": false
+          }
+        },
+        "24959bb8-5b19-4f37-aad6-3c8ea9de57bf": {
+          "type": "spacer",
+          "settings": {
+            "height": -10,
+            "height_mobile": -10
+          }
+        },
+        "c7259cb9-7235-4028-b6df-3a68077fed80": {
+          "type": "title",
+          "settings": {
+            "title_size": "h3",
+            "title": "",
+            "layout_mobile": "title-bottom",
+            "mobile_title_size": "h3"
+          }
+        },
+        "e9431daf-3b99-40f6-89ff-dab164cda2ff": {
+          "type": "spacer",
+          "settings": {
+            "height": -10,
+            "height_mobile": -10
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_tax": false,
+            "sale_label": false,
+            "font_size_price": 16
+          }
+        },
+        "spacer_XkHWFN": {
+          "type": "spacer",
+          "settings": {
+            "height": 20,
+            "height_mobile": 10
+          }
+        },
+        "custom_html_dKhfac": {
+          "type": "custom_html",
+          "disabled": true,
+          "settings": {
+            "custom_html": "<div class=\"custom-banner\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/USP_7.png?v=1757480430\">\n    </div>"
+          }
+        },
+        "spacer_gCjcnF": {
+          "type": "spacer",
+          "settings": {
+            "height": 20,
+            "height_mobile": 10
+          }
+        },
+        "variant_selection": {
+          "type": "variant_selection",
+          "settings": {
+            "selection_type": "buttons",
+            "options": true,
+            "button_options": "Color",
+            "dropdown_options": "",
+            "show_variant_label": true,
+            "show_variant_images": false,
+            "show_variant_one_available": true,
+            "show_unavailable_variants": true,
+            "enable_selling_plans": true,
+            "show_selected_variant_images": false,
+            "selected_variant_images_source": "default",
+            "variant_images_metafield": "custom.images"
+          }
+        },
+        "sizechart_7iFMDL": {
+          "type": "sizechart",
+          "settings": {
+            "size_name": "Size",
+            "hide_one_variant": false,
+            "sizechart_title": "Size chart",
+            "sizechart_text": "",
+            "sizechart_page": "",
+            "sizechart_image": "shopify://shop_images/BANG_MAU_SIZE_2_11d59f0c-5b91-4f76-8de6-ad5a83e14d9f.png",
+            "sizechart_image_width": 460,
+            "sizechart_liquid": "",
+            "sizechart_html": ""
+          }
+        },
+        "spacer_eTRVHD": {
+          "type": "spacer",
+          "settings": {
+            "height": -25,
+            "height_mobile": 0
+          }
+        },
+        "custom_html_kUBbUH": {
+          "type": "custom_html",
+          "disabled": true,
+          "settings": {
+            "custom_html": "<div class=\"custom-banner\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/D.svg?v=1758126593\" alt=\"USP Image\">\n    </div>"
+          }
+        },
+        "selleasy_lb_upsell_widget_pal_pVKdq6": {
+          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-pal/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+          "settings": {}
+        },
+        "spacer_DjnN4H": {
+          "type": "spacer",
+          "settings": {
+            "height": 15,
+            "height_mobile": 10
+          }
+        },
+        "buy_button": {
+          "type": "buy_button",
+          "settings": {
+            "button_style": "plain",
+            "show_amount_selection": true,
+            "show_dynamic_buybutton": false,
+            "button_style_dynamic_buybutton": "inv",
+            "show_gift_card_recipient": false
+          }
+        },
+        "90724a70-740a-4cc9-984c-764e1d76a5bd": {
+          "type": "codes",
+          "settings": {
+            "show_sku": false,
+            "show_barcode": false
+          }
+        },
+        "ee5e9f1c-a80a-4244-950f-03806a509775": {
+          "type": "shipping_timer",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "539128a3-f3c6-435a-8f46-d68a7270f6d8",
+        "669f3ddd-ace1-4a07-b1b4-f1414ec31142",
+        "24959bb8-5b19-4f37-aad6-3c8ea9de57bf",
+        "c7259cb9-7235-4028-b6df-3a68077fed80",
+        "e9431daf-3b99-40f6-89ff-dab164cda2ff",
+        "price",
+        "spacer_XkHWFN",
+        "custom_html_dKhfac",
+        "spacer_gCjcnF",
+        "variant_selection",
+        "sizechart_7iFMDL",
+        "spacer_eTRVHD",
+        "custom_html_kUBbUH",
+        "selleasy_lb_upsell_widget_pal_pVKdq6",
+        "spacer_DjnN4H",
+        "buy_button",
+        "90724a70-740a-4cc9-984c-764e1d76a5bd",
+        "ee5e9f1c-a80a-4244-950f-03806a509775"
+      ],
+      "custom_css": [
+        "heightbutton.overlay-buy_button {cursor: pointer; /* Hiển thị con trỏ khi hover */ text-transform: uppercase; /* Chữ in hoa */}",
+        "input.lb-qty-count {--input_height: 22px;}",
+        ".old {color: #d11616; font-size: 14px;}",
+        ".new-price-001 {font-size: 22px !important;}"
+      ],
+      "settings": {
+        "width": "wide",
+        "images_layout": "slider",
+        "images_grid_spacing": 0,
+        "custom_product_image_ratio": 100,
+        "fill_images": false,
+        "fill_not_first": true,
+        "images_padding": 0,
+        "images_vertical_position": 0,
+        "enable_custom_font_size": true,
+        "font_size": "16px",
+        "show_product_description": true,
+        "title_size": "h2",
+        "show_product_description_drawer": false,
+        "product_description_enable_read_more": false,
+        "product_description_mobile_collapse": true,
+        "images_layout_mobile": "full_width",
+        "tabs_title_size": "h4"
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "limit": 5,
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "background_color_palette": "light_2",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 100,
+        "background_height": 100,
+        "background_color_section": false,
+        "title": "<h3>We recommend</h3>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "text_color_palette": "black",
+        "font_size": "16px",
+        "mobile_collapse": false,
+        "background_width_mobile": 100,
+        "background_height_mobile": 100,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    }
+  },
+  "order": [
+    "74050fd1-3b74-482c-b07b-8f854296f104",
+    "breadcrumbs",
+    "main-product",
+    "recommendations"
+  ]
+}

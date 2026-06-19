@@ -1,0 +1,1460 @@
+{%- liquid
+  assign hotspot_count = 0
+  for block in section.blocks
+    if block.type == 'product'
+      if block.settings.product != blank or request.design_mode
+        assign hotspot_count = hotspot_count | plus: 1
+      endif
+    endif
+  endfor
+-%}
+
+<div
+  class="shop-the-look section-{{ section.id }}-padding{% unless section.settings.show_on_desktop %} shop-the-look--hide-desktop{% endunless %}{% unless section.settings.show_on_mobile %} shop-the-look--hide-mobile{% endunless %}"
+  style="background-color: {{ section.settings.background_color }};"
+  data-shop-the-look-section
+  data-design-mode="{% if request.design_mode %}true{% else %}false{% endif %}">
+
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="shop-the-look__header section-heading text-{{ section.settings.heading_alignment }}">
+        <h2 class="title h1">{{ section.settings.heading | escape }}</h2>
+      </div>
+    {%- endif -%}
+
+    {%- if hotspot_count > 0 -%}
+      <div class="shop-the-look__layout-container">
+        <div class="shop-the-look__image-column">
+          {%- liquid
+            assign desktop_look_image = section.settings.image
+            assign mobile_look_image = section.settings.mobile_image
+            assign fallback_look_image = desktop_look_image | default: mobile_look_image
+          -%}
+          <div class="shop-the-look__image-wrapper" data-stl-image-wrapper>
+            {%- if fallback_look_image != blank -%}
+              <picture class="shop-the-look__picture">
+                {%- if mobile_look_image != blank -%}
+                  <source
+                    media="(max-width: 749px)"
+                    srcset="
+                      {{ mobile_look_image | image_url: width: 375 }} 375w,
+                      {{ mobile_look_image | image_url: width: 550 }} 550w,
+                      {{ mobile_look_image | image_url: width: 750 }} 750w,
+                      {{ mobile_look_image | image_url: width: 990 }} 990w
+                    "
+                    sizes="100vw">
+                {%- endif -%}
+                {{ fallback_look_image | image_url: width: 2200 | image_tag:
+                  loading: 'lazy',
+                  sizes: '(min-width: 990px) calc(100vw - 460px), 100vw',
+                  widths: '375, 550, 750, 990, 1200, 1600, 1800, 2200',
+                  class: 'shop-the-look__image'
+                }}
+              </picture>
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg shop-the-look__image' }}
+            {%- endif -%}
+
+            {%- assign hotspot_index = 0 -%}
+            {%- for block in section.blocks -%}
+              {%- assign product = block.settings.product -%}
+              {%- assign render_hotspot = false -%}
+              {%- if block.type == 'product' -%}
+                {%- if product != blank or request.design_mode -%}
+                  {%- assign render_hotspot = true -%}
+                {%- endif -%}
+              {%- endif -%}
+              {%- if render_hotspot -%}
+                {%- liquid
+                  assign desktop_x = block.settings.hotspot_horizontal | default: 50
+                  assign desktop_y = block.settings.hotspot_vertical | default: 50
+                  assign mobile_x = block.settings.hotspot_mobile_horizontal | default: desktop_x
+                  assign mobile_y = block.settings.hotspot_mobile_vertical | default: desktop_y
+                  assign hotspot_label = product.title | default: 'Product hotspot'
+                -%}
+                <button
+                  type="button"
+                  class="shop-the-look__dot{% if hotspot_index == 0 %} is-active{% endif %}"
+                  style="--stl-x-desktop: {{ desktop_x }}%; --stl-y-desktop: {{ desktop_y }}%; --stl-x-mobile: {{ mobile_x }}%; --stl-y-mobile: {{ mobile_y }}%;"
+                  data-stl-hotspot="{{ block.id }}"
+                  data-stl-index="{{ hotspot_index | plus: 1 }}"
+                  aria-label="{{ hotspot_label | escape }}"
+                  aria-pressed="{% if hotspot_index == 0 %}true{% else %}false{% endif %}"
+                  {{ block.shopify_attributes }}>
+                  <span class="shop-the-look__dot-pulse" aria-hidden="true"></span>
+                  <span class="shop-the-look__dot-circle" aria-hidden="true">
+                    <span class="shop-the-look__dot-number">
+                      <svg viewBox="0 0 16 16" focusable="false" aria-hidden="true">
+                        <path d="M4.5 4.5 11.5 11.5M11.5 4.5 4.5 11.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      </svg>
+                    </span>
+                  </span>
+                  {%- if request.design_mode -%}
+                    <span class="shop-the-look__dot-coords" aria-hidden="true">
+                      Desktop: {{ desktop_x }}%, {{ desktop_y }}% / Mobile: {{ mobile_x }}%, {{ mobile_y }}%
+                    </span>
+                  {%- endif -%}
+                </button>
+                {%- assign hotspot_index = hotspot_index | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <div class="shop-the-look__products-column">
+          <div class="shop-the-look__products-header">
+            <span class="shop-the-look__eyebrow">Selected pieces</span>
+            <span class="shop-the-look__count">{{ hotspot_count }} item{% if hotspot_count != 1 %}s{% endif %}</span>
+          </div>
+
+          <div class="shop-the-look__products-holder" data-stl-products-holder>
+            {%- assign product_index = 0 -%}
+            {%- for block in section.blocks -%}
+              {%- assign product = block.settings.product -%}
+              {%- assign render_product_card = false -%}
+              {%- if block.type == 'product' -%}
+                {%- if product != blank or request.design_mode -%}
+                  {%- assign render_product_card = true -%}
+                {%- endif -%}
+              {%- endif -%}
+              {%- if render_product_card -%}
+                <article
+                  class="shop-the-look__product-content{% if product_index == 0 %} is-active{% endif %}"
+                  data-stl-product="{{ block.id }}"
+                  aria-current="{% if product_index == 0 %}true{% else %}false{% endif %}">
+                  <button
+                    type="button"
+                    class="shop-the-look__product-selector"
+                    data-stl-product-trigger="{{ block.id }}"
+                    aria-label="{% if product != blank %}Select {{ product.title | escape }}{% else %}Select product hotspot{% endif %}">
+                    <span class="shop-the-look__product-index">{{ product_index | plus: 1 }}</span>
+                  </button>
+                  {%- if product != blank -%}
+                    <a href="{{ product.url }}" class="shop-the-look__card-media" aria-label="{{ product.title | escape }}">
+                  {%- else -%}
+                    <div class="shop-the-look__card-media shop-the-look__card-media--placeholder" aria-hidden="true">
+                  {%- endif -%}
+                    {%- if product.featured_image != blank -%}
+                      <img src="{{ product.featured_image | image_url: width: 360 }}" alt="{{ product.title | escape }}" loading="lazy">
+                    {%- else -%}
+                      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {%- endif -%}
+                  {%- if product != blank -%}
+                    </a>
+                  {%- else -%}
+                    </div>
+                  {%- endif -%}
+                  <div class="shop-the-look__card-info">
+                    <div class="shop-the-look__card-text">
+                      <h3 class="shop-the-look__product-title">
+                        {%- if product != blank -%}
+                          <a href="{{ product.url }}">{{ product.title }}</a>
+                        {%- else -%}
+                          Product hotspot
+                        {%- endif -%}
+                      </h3>
+                      <div class="shop-the-look__product-price">
+                        {%- if product != blank -%}
+                          {{ product.price | money }}
+                        {%- else -%}
+                          Select a product
+                        {%- endif -%}
+                      </div>
+                    </div>
+                    {%- if product != blank -%}
+                      <a href="{{ product.url }}" class="shop-the-look__quick-view">
+                        <span aria-hidden="true">+</span>
+                        <span>View Product</span>
+                      </a>
+                    {%- else -%}
+                      <span class="shop-the-look__quick-view shop-the-look__quick-view--placeholder">
+                        <span aria-hidden="true">+</span>
+                        <span>Choose product</span>
+                      </span>
+                    {%- endif -%}
+                  </div>
+                </article>
+                {%- assign product_index = product_index | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (() => {
+    let stlCarouselActiveIndex = 0;
+
+    const getShopTheLookWrapper = (section) => {
+      return section.closest('.shopify-section') || section;
+    };
+
+    const getShopTheLookSections = () => {
+      return Array.from(document.querySelectorAll('[data-shop-the-look-section]'));
+    };
+
+    const initShopTheLookSectionCarousel = () => {
+      const sections = getShopTheLookSections();
+
+      sections.forEach((section) => {
+        section.querySelectorAll('[data-stl-section-carousel-control], [data-stl-section-carousel-pagination]').forEach((element) => element.remove());
+        getShopTheLookWrapper(section).style.display = '';
+        section.classList.remove('is-stl-section-slide-active');
+      });
+
+      if (sections.length <= 1) {
+        stlCarouselActiveIndex = 0;
+        return;
+      }
+
+      if (stlCarouselActiveIndex >= sections.length) stlCarouselActiveIndex = sections.length - 1;
+      if (stlCarouselActiveIndex < 0) stlCarouselActiveIndex = 0;
+
+      const setActive = (index) => {
+        stlCarouselActiveIndex = (index + sections.length) % sections.length;
+        initShopTheLookSectionCarousel();
+      };
+
+      sections.forEach((section, index) => {
+        const wrapper = getShopTheLookWrapper(section);
+        const isActive = index === stlCarouselActiveIndex;
+        wrapper.style.display = isActive ? '' : 'none';
+        section.classList.toggle('is-stl-section-slide-active', isActive);
+
+        const imageWrapper = section.querySelector('[data-stl-image-wrapper]');
+        const productsColumn = section.querySelector('.shop-the-look__products-column');
+
+        if (imageWrapper) {
+          const controls = document.createElement('div');
+          controls.className = 'shop-the-look__section-controls';
+          controls.setAttribute('data-stl-section-carousel-control', '');
+          controls.innerHTML = `
+            <button type="button" class="shop-the-look__section-arrow shop-the-look__section-arrow--prev" aria-label="Previous Shop the Look">
+              <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m12.5 4.5-5 5.5 5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="shop-the-look__section-arrow shop-the-look__section-arrow--next" aria-label="Next Shop the Look">
+              <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m7.5 4.5 5 5.5-5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          `;
+          controls.querySelector('.shop-the-look__section-arrow--prev').addEventListener('click', () => setActive(index - 1));
+          controls.querySelector('.shop-the-look__section-arrow--next').addEventListener('click', () => setActive(index + 1));
+          imageWrapper.appendChild(controls);
+        }
+
+        if (productsColumn) {
+          const pagination = document.createElement('div');
+          pagination.className = 'shop-the-look__section-pagination';
+          pagination.setAttribute('data-stl-section-carousel-pagination', '');
+          pagination.innerHTML = `
+            <span class="shop-the-look__section-fraction">${index + 1}/${sections.length}</span>
+            <span class="shop-the-look__section-progress" aria-hidden="true">
+              ${sections.map((_, dotIndex) => `<button type="button" class="shop-the-look__section-progress-dot${dotIndex === index ? ' is-active' : ''}" aria-label="Go to Shop the Look ${dotIndex + 1}" data-stl-section-dot="${dotIndex}"></button>`).join('')}
+            </span>
+          `;
+          pagination.querySelectorAll('[data-stl-section-dot]').forEach((button) => {
+            button.addEventListener('click', () => setActive(Number(button.dataset.stlSectionDot)));
+          });
+          productsColumn.appendChild(pagination);
+        }
+      });
+    };
+
+    const initShopTheLook = (scope = document) => {
+      scope.querySelectorAll('[data-shop-the-look-section]').forEach((section) => {
+        if (section.dataset.stlInitialized === 'true') return;
+        section.dataset.stlInitialized = 'true';
+
+        const imageWrapper = section.querySelector('[data-stl-image-wrapper]');
+        const productsHolder = section.querySelector('[data-stl-products-holder]');
+        const hotspots = Array.from(section.querySelectorAll('[data-stl-hotspot]'));
+        const productCards = Array.from(section.querySelectorAll('[data-stl-product]'));
+        const productTriggers = Array.from(section.querySelectorAll('[data-stl-product-trigger]'));
+        const isDesignMode = section.dataset.designMode === 'true';
+        let selectedHotspotId = hotspots[0]?.dataset.stlHotspot;
+        if (!imageWrapper || hotspots.length === 0) return;
+
+        const getMode = () => window.innerWidth < 750 ? 'mobile' : 'desktop';
+
+        const getPointFromEvent = (event) => {
+          const rect = imageWrapper.getBoundingClientRect();
+          const x = Math.max(0, Math.min(100, ((event.clientX - rect.left) / rect.width) * 100));
+          const y = Math.max(0, Math.min(100, ((event.clientY - rect.top) / rect.height) * 100));
+          return {
+            x,
+            y,
+            roundedX: Math.round(x),
+            roundedY: Math.round(y),
+            mode: getMode()
+          };
+        };
+
+        const updateHotspotPreview = (hotspot, point) => {
+          hotspot.style.setProperty(`--stl-x-${point.mode}`, `${point.x}%`);
+          hotspot.style.setProperty(`--stl-y-${point.mode}`, `${point.y}%`);
+          const coords = hotspot.querySelector('.shop-the-look__dot-coords');
+          if (coords) {
+            coords.textContent = `${point.mode.charAt(0).toUpperCase() + point.mode.slice(1)}: ${point.roundedX}%, ${point.roundedY}%`;
+          }
+        };
+
+        const scrollProductIntoView = (card) => {
+          if (!productsHolder || !card) return;
+          if (window.innerWidth >= 990) return;
+
+          const holderRect = productsHolder.getBoundingClientRect();
+          const cardRect = card.getBoundingClientRect();
+          const left = productsHolder.scrollLeft + cardRect.left - holderRect.left - ((productsHolder.clientWidth - card.offsetWidth) / 2);
+          productsHolder.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+        };
+
+        const activate = (id, shouldScroll = true) => {
+          hotspots.forEach((hotspot) => {
+            const isActive = hotspot.dataset.stlHotspot === id;
+            hotspot.classList.toggle('is-active', isActive);
+            hotspot.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          });
+
+          productCards.forEach((card) => {
+            const isActive = card.dataset.stlProduct === id;
+            card.classList.toggle('is-active', isActive);
+            card.setAttribute('aria-current', isActive ? 'true' : 'false');
+            if (isActive && shouldScroll) {
+              scrollProductIntoView(card);
+            }
+          });
+        };
+
+        const activateByBlockId = (id, shouldScroll = true) => {
+          if (!id || !hotspots.some((hotspot) => hotspot.dataset.stlHotspot === id)) return false;
+          selectedHotspotId = id;
+          activate(id, shouldScroll);
+          return true;
+        };
+
+        hotspots.forEach((hotspot) => {
+          let didDrag = false;
+
+          hotspot.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (didDrag) {
+              didDrag = false;
+              return;
+            }
+            activateByBlockId(hotspot.dataset.stlHotspot);
+          });
+
+          if (!isDesignMode) return;
+
+          hotspot.addEventListener('pointerdown', (event) => {
+            if (event.button !== 0) return;
+            event.preventDefault();
+            activateByBlockId(hotspot.dataset.stlHotspot, false);
+            hotspot.setPointerCapture(event.pointerId);
+            hotspot.dataset.dragging = 'true';
+          });
+
+          hotspot.addEventListener('pointermove', (event) => {
+            if (hotspot.dataset.dragging !== 'true') return;
+            didDrag = true;
+            updateHotspotPreview(hotspot, getPointFromEvent(event));
+          });
+
+          const endDrag = (event) => {
+            if (hotspot.dataset.dragging !== 'true') return;
+            hotspot.dataset.dragging = 'false';
+            try {
+              hotspot.releasePointerCapture(event.pointerId);
+            } catch (error) {
+              // Pointer capture can already be released by the browser.
+            }
+          };
+
+          hotspot.addEventListener('pointerup', endDrag);
+          hotspot.addEventListener('pointercancel', endDrag);
+        });
+
+        if (isDesignMode) {
+          imageWrapper.addEventListener('pointerdown', (event) => {
+            if (event.button !== 0 || event.target.closest('[data-stl-hotspot]')) return;
+            const activeHotspot = hotspots.find((hotspot) => hotspot.dataset.stlHotspot === selectedHotspotId)
+              || hotspots.find((hotspot) => hotspot.classList.contains('is-active'))
+              || hotspots[0];
+            if (!activeHotspot) return;
+            event.preventDefault();
+            updateHotspotPreview(activeHotspot, getPointFromEvent(event));
+            activateByBlockId(activeHotspot.dataset.stlHotspot, false);
+          });
+
+          section.addEventListener('shopify:block:select', (event) => {
+            const selectedElement = event.target?.closest?.('[data-stl-hotspot], [data-stl-product], [data-stl-product-trigger]');
+            const blockId = selectedElement?.dataset.stlHotspot
+              || selectedElement?.dataset.stlProduct
+              || selectedElement?.dataset.stlProductTrigger
+              || event.detail?.blockId;
+            activateByBlockId(blockId);
+          });
+        }
+
+        productTriggers.forEach((button) => {
+          button.addEventListener('click', (event) => {
+            event.preventDefault();
+            activateByBlockId(button.dataset.stlProductTrigger);
+          });
+        });
+
+        activate(hotspots[0].dataset.stlHotspot, false);
+      });
+
+      initShopTheLookSectionCarousel();
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => initShopTheLook());
+    } else {
+      initShopTheLook();
+    }
+
+    document.addEventListener('shopify:section:load', (event) => {
+      initShopTheLook(event.target);
+      initShopTheLookSectionCarousel();
+    });
+
+    document.addEventListener('shopify:section:select', (event) => {
+      const selectedSection = event.target.querySelector?.('[data-shop-the-look-section]')
+        || (event.target.matches?.('[data-shop-the-look-section]') ? event.target : null);
+      if (!selectedSection) return;
+
+      const sections = getShopTheLookSections();
+      const index = sections.indexOf(selectedSection);
+      if (index >= 0) {
+        stlCarouselActiveIndex = index;
+        initShopTheLookSectionCarousel();
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Shop the Look",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Visibility Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_desktop",
+      "default": true,
+      "label": "Show on Desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_mobile",
+      "default": true,
+      "label": "Show on Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Shop the Look",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center",
+      "label": "Heading Alignment"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop banner image",
+      "info": "Use an image that matches the desktop ratio below. This is also used on mobile when no mobile image is selected."
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile banner image",
+      "info": "Optional. Use a mobile-cropped version of the same look image."
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_ratio",
+      "label": "Desktop image ratio",
+      "options": [
+        { "value": "16 / 9", "label": "16:9 landscape" },
+        { "value": "3 / 2", "label": "3:2 landscape" },
+        { "value": "4 / 3", "label": "4:3 landscape" },
+        { "value": "1 / 1", "label": "1:1 square" },
+        { "value": "4 / 5", "label": "4:5 portrait" },
+        { "value": "3 / 4", "label": "3:4 portrait" }
+      ],
+      "default": "16 / 9"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_ratio",
+      "label": "Mobile image ratio",
+      "options": [
+        { "value": "16 / 9", "label": "16:9 landscape" },
+        { "value": "3 / 2", "label": "3:2 landscape" },
+        { "value": "4 / 3", "label": "4:3 landscape" },
+        { "value": "1 / 1", "label": "1:1 square" },
+        { "value": "4 / 5", "label": "4:5 portrait" },
+        { "value": "3 / 4", "label": "3:4 portrait" }
+      ],
+      "default": "4 / 5"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "default": "#ffffff",
+      "label": "Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Product Card Style"
+    },
+    {
+      "type": "color",
+      "id": "product_card_panel_background",
+      "default": "#f7f7f5",
+      "label": "Desktop panel background"
+    },
+    {
+      "type": "color",
+      "id": "product_card_background",
+      "default": "#ffffff",
+      "label": "Card background"
+    },
+    {
+      "type": "color",
+      "id": "product_card_border",
+      "default": "#e6e2dc",
+      "label": "Card border"
+    },
+    {
+      "type": "color",
+      "id": "product_card_title_color",
+      "default": "#121212",
+      "label": "Product title color"
+    },
+    {
+      "type": "color",
+      "id": "product_card_price_color",
+      "default": "#121212",
+      "label": "Product price color"
+    },
+    {
+      "type": "color",
+      "id": "product_card_button_background",
+      "default": "#121212",
+      "label": "Button background"
+    },
+    {
+      "type": "color",
+      "id": "product_card_button_text",
+      "default": "#ffffff",
+      "label": "Button text"
+    },
+    {
+      "type": "color",
+      "id": "product_card_button_background_hover",
+      "default": "#2a2a2a",
+      "label": "Button hover background"
+    },
+    {
+      "type": "select",
+      "id": "product_card_font_family",
+      "label": "Product card font",
+      "options": [
+        { "value": "inherit", "label": "Theme default" },
+        { "value": "sans", "label": "Clean sans" },
+        { "value": "serif", "label": "Classic serif" }
+      ],
+      "default": "inherit"
+    },
+    {
+      "type": "range",
+      "id": "product_card_title_size_desktop",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size on desktop",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "product_card_title_size_mobile",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Title size on mobile",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "product_card_title_weight",
+      "label": "Title weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "product_card_price_size_desktop",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Price size on desktop",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "product_card_price_size_mobile",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Price size on mobile",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "product_card_button_weight",
+      "label": "Button weight",
+      "options": [
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semibold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra bold" }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "select",
+      "id": "product_card_button_text_transform",
+      "label": "Button text style",
+      "options": [
+        { "value": "none", "label": "Normal" },
+        { "value": "uppercase", "label": "Uppercase" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "X hotspot",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
+          "type": "range",
+          "id": "hotspot_horizontal",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Desktop horizontal position (X)",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "hotspot_vertical",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Desktop vertical position (Y)",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "hotspot_mobile_horizontal",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Mobile horizontal position (X)",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "hotspot_mobile_vertical",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Mobile vertical position (Y)",
+          "default": 50
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop the Look",
+      "blocks": [
+        { "type": "product", "settings": { "hotspot_horizontal": 35, "hotspot_vertical": 45, "hotspot_mobile_horizontal": 35, "hotspot_mobile_vertical": 45 } },
+        { "type": "product", "settings": { "hotspot_horizontal": 62, "hotspot_vertical": 58, "hotspot_mobile_horizontal": 62, "hotspot_mobile_vertical": 58 } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+  @media screen and (min-width: 750px) {
+    .shop-the-look--hide-desktop {
+      display: none !important;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .shop-the-look--hide-mobile {
+      display: none !important;
+    }
+  }
+
+  .section-{{ section.id }}-padding {
+    --stl-text: #121212;
+    --stl-muted: rgba(18, 18, 18, 0.62);
+    --stl-border: rgba(18, 18, 18, 0.12);
+    --stl-surface: #ffffff;
+    --stl-soft: #f6f6f3;
+    --stl-shadow: 0 18px 45px rgba(18, 18, 18, 0.1);
+    --stl-card-panel-background: {{ section.settings.product_card_panel_background }};
+    --stl-card-background: {{ section.settings.product_card_background }};
+    --stl-card-border: {{ section.settings.product_card_border }};
+    --stl-card-title-color: {{ section.settings.product_card_title_color }};
+    --stl-card-price-color: {{ section.settings.product_card_price_color }};
+    --stl-card-button-background: {{ section.settings.product_card_button_background }};
+    --stl-card-button-text: {{ section.settings.product_card_button_text }};
+    --stl-card-button-background-hover: {{ section.settings.product_card_button_background_hover }};
+    --stl-card-title-size-desktop: {{ section.settings.product_card_title_size_desktop }}px;
+    --stl-card-title-size-mobile: {{ section.settings.product_card_title_size_mobile }}px;
+    --stl-card-title-weight: {{ section.settings.product_card_title_weight }};
+    --stl-card-price-size-desktop: {{ section.settings.product_card_price_size_desktop }}px;
+    --stl-card-price-size-mobile: {{ section.settings.product_card_price_size_mobile }}px;
+    --stl-card-button-weight: {{ section.settings.product_card_button_weight }};
+    --stl-card-button-text-transform: {{ section.settings.product_card_button_text_transform }};
+    --stl-image-ratio-desktop: {{ section.settings.desktop_image_ratio | default: '16 / 9' }};
+    --stl-image-ratio-mobile: {{ section.settings.mobile_image_ratio | default: '4 / 5' }};
+    {%- case section.settings.product_card_font_family -%}
+      {%- when 'sans' -%}
+        --stl-card-font-family: Arial, Helvetica, sans-serif;
+      {%- when 'serif' -%}
+        --stl-card-font-family: Georgia, 'Times New Roman', serif;
+      {%- else -%}
+        --stl-card-font-family: inherit;
+    {%- endcase -%}
+    padding-top: {{ section.settings.padding_top | multiply: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | multiply: 0.75 | round: 0 }}px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    scroll-margin-top: 110px;
+  }
+
+  .section-{{ section.id }}-padding::before,
+  .section-{{ section.id }}-padding::after,
+  .section-{{ section.id }}-padding .page-width::before,
+  .section-{{ section.id }}-padding .page-width::after,
+  .section-{{ section.id }}-padding .shop-the-look__layout-container::before,
+  .section-{{ section.id }}-padding .shop-the-look__layout-container::after,
+  .section-{{ section.id }}-padding .shop-the-look__image-column::before,
+  .section-{{ section.id }}-padding .shop-the-look__image-column::after,
+  .section-{{ section.id }}-padding .shop-the-look__products-column::before,
+  .section-{{ section.id }}-padding .shop-the-look__products-column::after,
+  .section-{{ section.id }}-padding .shop-the-look__image-wrapper::before,
+  .section-{{ section.id }}-padding .shop-the-look__image-wrapper::after,
+  .section-{{ section.id }}-padding .shop-the-look__product-content::before,
+  .section-{{ section.id }}-padding .shop-the-look__product-content::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .section-{{ section.id }}-padding .page-width {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: none;
+    padding-left: clamp(16px, 2.8vw, 52px);
+    padding-right: clamp(16px, 2.8vw, 52px);
+  }
+
+  .shop-the-look__header {
+    margin-bottom: 22px;
+  }
+
+  .shop-the-look__header .title {
+    margin: 0;
+    color: var(--stl-text);
+    letter-spacing: 0;
+  }
+
+  .shop-the-look__layout-container {
+    display: grid;
+    gap: 0;
+  }
+
+  .shop-the-look__image-column,
+  .shop-the-look__products-column {
+    min-width: 0;
+    position: relative;
+  }
+
+  .shop-the-look__image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: var(--stl-soft);
+    aspect-ratio: var(--stl-image-ratio-desktop);
+    min-height: 0;
+    box-shadow: 0 14px 34px rgba(18, 18, 18, 0.08);
+    touch-action: pan-y;
+  }
+
+  .shop-the-look__picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .shop-the-look__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .shop-the-look__dot {
+    position: absolute;
+    top: var(--stl-y-desktop);
+    left: var(--stl-x-desktop);
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    min-height: 46px;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer;
+    transform: translate(-50%, -50%) !important;
+    z-index: 7;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+    transition: none !important;
+  }
+
+  .shop-the-look__dot::before,
+  .shop-the-look__dot::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .shop-the-look__dot-pulse {
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    animation: stlPulse 1.8s ease-out infinite;
+  }
+
+  .shop-the-look__dot-circle {
+    position: relative;
+    z-index: 1;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(18, 18, 18, 0.14);
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .shop-the-look__dot-number {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    font-size: 0;
+    font-weight: 800;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .shop-the-look__dot.is-active .shop-the-look__dot-circle {
+    background: #121212;
+    border-color: #121212;
+    color: #ffffff;
+    transform: none;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+  }
+
+  .shop-the-look__dot-number svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    overflow: visible;
+  }
+
+  .shop-the-look__dot-number::before,
+  .shop-the-look__dot-number::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .shop-the-look__dot-coords {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 8px);
+    transform: translateX(-50%);
+    min-width: max-content;
+    padding: 5px 7px;
+    border-radius: 999px;
+    background: #121212;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .shop-the-look__dot:hover .shop-the-look__dot-coords,
+  .shop-the-look__dot[data-dragging="true"] .shop-the-look__dot-coords,
+  .shop-the-look__dot.is-active .shop-the-look__dot-coords {
+    opacity: 1;
+  }
+
+  .shop-the-look__section-controls {
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+    pointer-events: none;
+  }
+
+  .shop-the-look__section-arrow {
+    position: absolute;
+    top: 50%;
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    min-height: 46px;
+    padding: 0 !important;
+    border: 1px solid rgba(18, 18, 18, 0.08) !important;
+    border-radius: 50%;
+    background: #ffffff !important;
+    color: #121212;
+    box-shadow: 0 12px 28px rgba(18, 18, 18, 0.16) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transform: translateY(-50%) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .shop-the-look__section-arrow::before,
+  .shop-the-look__section-arrow::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .shop-the-look__section-arrow:hover {
+    transform: translateY(-50%) !important;
+    box-shadow: 0 16px 36px rgba(18, 18, 18, 0.22) !important;
+  }
+
+  .shop-the-look__section-arrow:focus,
+  .shop-the-look__section-arrow:active {
+    transform: translateY(-50%) !important;
+  }
+
+  .shop-the-look__section-arrow svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+
+  .shop-the-look__section-arrow--prev {
+    left: 18px;
+  }
+
+  .shop-the-look__section-arrow--next {
+    right: 18px;
+  }
+
+  .shop-the-look__section-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 14px;
+    color: var(--stl-text);
+  }
+
+  .shop-the-look__section-fraction {
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1;
+    min-width: 30px;
+    text-align: right;
+  }
+
+  .shop-the-look__section-progress {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .shop-the-look__section-progress-dot {
+    display: block;
+    width: 26px;
+    height: 5px;
+    min-width: 26px;
+    min-height: 5px;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 999px;
+    background: rgba(18, 18, 18, 0.16) !important;
+    box-shadow: none !important;
+    cursor: pointer;
+  }
+
+  .shop-the-look__section-progress-dot::before,
+  .shop-the-look__section-progress-dot::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .shop-the-look__section-progress-dot.is-active {
+    background: #121212 !important;
+  }
+
+  @keyframes stlPulse {
+    0% {
+      opacity: 0.7;
+      transform: scale(0.75);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.65);
+    }
+  }
+
+  .shop-the-look__products-column {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .shop-the-look__products-header {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--stl-text);
+  }
+
+  .shop-the-look__eyebrow,
+  .shop-the-look__count {
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .shop-the-look__count {
+    color: var(--stl-muted);
+    white-space: nowrap;
+  }
+
+  .shop-the-look__products-holder {
+    width: 100%;
+    position: relative;
+    display: block;
+    overflow: visible;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+
+  .shop-the-look__product-content {
+    position: relative;
+    display: none;
+    grid-template-columns: 112px minmax(0, 1fr);
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+    min-width: 0;
+    padding: 16px;
+    background: var(--stl-card-background);
+    border: 1px solid var(--stl-card-border);
+    border-radius: 0;
+    box-shadow: none;
+    scroll-snap-align: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  }
+
+  .shop-the-look__product-content.is-active {
+    display: grid;
+    border-color: var(--stl-card-border);
+  }
+
+  .shop-the-look__product-selector {
+    display: none;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 0 !important;
+    border: 1px solid rgba(18, 18, 18, 0.2) !important;
+    border-radius: 50%;
+    background: #ffffff !important;
+    color: var(--stl-text);
+    box-shadow: none !important;
+    cursor: pointer;
+  }
+
+  .shop-the-look__product-selector::before,
+  .shop-the-look__product-selector::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .shop-the-look__product-index {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .shop-the-look__product-content.is-active .shop-the-look__product-selector {
+    background: #121212 !important;
+    border-color: #121212 !important;
+    color: #ffffff;
+  }
+
+  .shop-the-look__card-media {
+    display: block;
+    width: 112px;
+    height: 134px;
+    overflow: hidden;
+    border-radius: 0;
+    background: var(--stl-soft);
+    border: 0;
+  }
+
+  .shop-the-look__card-media img,
+  .shop-the-look__card-media svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .shop-the-look__card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .shop-the-look__card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .shop-the-look__product-title {
+    margin: 0;
+    color: var(--stl-card-title-color);
+    font-family: var(--stl-card-font-family);
+    font-size: var(--stl-card-title-size-mobile);
+    font-weight: var(--stl-card-title-weight);
+    line-height: 1.28;
+    letter-spacing: 0;
+  }
+
+  .shop-the-look__product-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .shop-the-look__product-price {
+    color: var(--stl-card-price-color);
+    font-family: var(--stl-card-font-family);
+    font-size: var(--stl-card-price-size-mobile);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .shop-the-look__quick-view {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    color: var(--stl-card-title-color);
+    font-family: var(--stl-card-font-family);
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .shop-the-look__quick-view span:first-child {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .shop-the-look__quick-view:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @keyframes stlProductReveal {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .shop-the-look__layout-container {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.36fr);
+      align-items: stretch;
+      gap: clamp(24px, 3.2vw, 44px);
+      width: 100%;
+      max-width: none;
+      margin: 0 auto;
+    }
+
+    .shop-the-look__image-wrapper {
+      height: auto;
+      min-height: 0;
+      box-shadow: 0 18px 42px rgba(18, 18, 18, 0.08);
+    }
+
+    .shop-the-look__products-column {
+      min-height: 560px;
+      justify-content: center;
+      padding: clamp(18px, 2.3vw, 28px);
+      border: 1px solid rgba(18, 18, 18, 0.08);
+      border-radius: 8px;
+      background: var(--stl-card-panel-background);
+    }
+
+    .shop-the-look__products-holder {
+      display: flex;
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shop-the-look__products-header {
+      display: flex;
+      margin-bottom: 2px;
+    }
+
+    .shop-the-look__product-content {
+      grid-template-columns: 1fr;
+      gap: 0;
+      max-width: 420px;
+      min-height: 0;
+      padding: 0;
+      border: 1px solid var(--stl-card-border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 18px 42px rgba(18, 18, 18, 0.11);
+      animation: stlProductReveal 0.24s ease both;
+    }
+
+    .shop-the-look__card-media {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      background: #f3f3f0;
+    }
+
+    .shop-the-look__card-info {
+      padding: 22px 24px 24px;
+      gap: 22px;
+      background: var(--stl-card-background);
+    }
+
+    .shop-the-look__card-text {
+      gap: 8px;
+    }
+
+    .shop-the-look__product-title {
+      font-size: var(--stl-card-title-size-desktop);
+      line-height: 1.24;
+    }
+
+    .shop-the-look__product-price {
+      font-size: var(--stl-card-price-size-desktop);
+    }
+
+    .shop-the-look__quick-view {
+      width: 100%;
+      min-height: 46px;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 4px;
+      background: var(--stl-card-button-background);
+      color: var(--stl-card-button-text);
+      font-size: 13px;
+      font-weight: var(--stl-card-button-weight);
+      letter-spacing: 0.02em;
+      text-transform: var(--stl-card-button-text-transform);
+    }
+
+    .shop-the-look__quick-view:hover {
+      text-decoration: none;
+      background: var(--stl-card-button-background-hover);
+    }
+  }
+
+  @media screen and (max-width: 989px) {
+    .shop-the-look__product-title {
+      font-size: 15px;
+    }
+
+    .shop-the-look__product-price {
+      font-size: 14px;
+    }
+
+    .shop-the-look__quick-view {
+      font-size: 13px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .shop-the-look__image-wrapper {
+      aspect-ratio: var(--stl-image-ratio-mobile);
+      min-height: 0;
+    }
+
+    .shop-the-look__image {
+      min-height: 0;
+    }
+
+    .shop-the-look__dot {
+      top: var(--stl-y-mobile);
+      left: var(--stl-x-mobile);
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      min-height: 42px;
+    }
+
+    .shop-the-look__dot-circle {
+      width: 30px;
+      height: 30px;
+    }
+
+    .shop-the-look__section-arrow {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      min-height: 38px;
+    }
+
+    .shop-the-look__section-arrow--prev {
+      left: 12px;
+    }
+
+    .shop-the-look__section-arrow--next {
+      right: 12px;
+    }
+  }
+{% endstyle %}

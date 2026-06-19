@@ -1,0 +1,63 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": false,
+        "back_button": false
+      }
+    },
+    "main-page": {
+      "type": "main-page",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_size": "h2"
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {
+        "max_width": 980,
+        "content_alignment": "center",
+        "text_alignment": "start",
+        "spacing_desktop": 50,
+        "spacing_mobile": 30
+      }
+    },
+    "section_custom_html_Wi6nLR": {
+      "type": "section-custom-html",
+      "name": "t:sections.custom_html.presets.name",
+      "settings": {
+        "custom_html": "<meta charset=\"UTF-8\">\n<style>\n    /* --- CẤU TRÚC CHUNG --- */\n    .policy-wrapper {\n        max-width: 800px;\n        margin: 0 auto;\n        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;\n        color: #333;\n        padding: 20px 10px;\n    }\n\n    /* --- 1. STYLE CHO DANH MỤC LỚN (CHA) --- */\n    .main-category {\n        margin-bottom: 20px;\n        border: 1px solid #000; /* Khung viền đen cho mục lớn */\n        border-radius: 4px;\n        overflow: hidden;\n    }\n\n    /* Tiêu đề lớn (APPAREL / HOME DECOR) */\n    .main-summary {\n        background-color: #f8f8f8; /* Màu nền nhẹ cho tiêu đề lớn */\n        padding: 20px;\n        cursor: pointer;\n        list-style: none;\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n        transition: background-color 0.3s;\n    }\n\n    .main-summary:hover {\n        background-color: #eee;\n    }\n\n    /* Ẩn tam giác mặc định */\n    .main-summary::-webkit-details-marker {\n        display: none;\n    }\n\n    /* Chữ tiêu đề lớn */\n    .main-title-text {\n        font-size: 20px;\n        font-weight: 800;\n        text-transform: uppercase;\n        letter-spacing: 1px;\n        margin: 0;\n    }\n\n    /* Icon mũi tên cho mục lớn */\n    .main-summary::after {\n        content: '▼'; /* Dùng mũi tên cho khác biệt */\n        font-size: 14px;\n        transition: transform 0.3s ease;\n    }\n\n    /* Khi mục lớn mở ra thì xoay mũi tên */\n    details[open] > .main-summary::after {\n        transform: rotate(180deg);\n    }\n\n    /* Nội dung bên trong mục lớn (Chứa các mục con) */\n    .main-content {\n        padding: 0 20px 20px 20px;\n        background-color: #fff;\n        animation: fadeIn 0.3s ease;\n    }\n\n    /* --- 2. STYLE CHO MỤC NHỎ (CON) --- */\n    .sub-item {\n        border-bottom: 1px solid #e0e0e0;\n        margin-bottom: 5px;\n    }\n\n    /* Tiêu đề mục nhỏ */\n    .sub-summary {\n        cursor: pointer;\n        padding: 15px 0;\n        font-weight: 700;\n        font-size: 15px;\n        list-style: none;\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n        color: #444;\n    }\n\n    .sub-summary::-webkit-details-marker {\n        display: none;\n    }\n\n    .sub-summary:hover {\n        color: #000;\n    }\n\n    /* Icon cộng/trừ cho mục nhỏ */\n    .sub-summary::after {\n        content: '+'; \n        font-size: 20px;\n        font-weight: 300;\n        color: #777;\n        margin-left: 10px;\n    }\n\n    details[open] > .sub-summary::after {\n        content: '-';\n        color: #000;\n    }\n\n    /* Nội dung chi tiết của mục nhỏ */\n    .sub-content {\n        padding-bottom: 15px;\n        font-size: 14px;\n        line-height: 1.6;\n        color: #555;\n        padding-left: 10px; /* Thụt đầu dòng chút cho đẹp */\n    }\n\n    .sub-content ul {\n        margin: 5px 0 5px 20px;\n        padding-left: 0;\n    }\n    .sub-content li {\n        margin-bottom: 5px;\n    }\n\n    /* Hiệu ứng hiện dần */\n    @keyframes fadeIn {\n        from { opacity: 0; transform: translateY(-5px); }\n        to { opacity: 1; transform: translateY(0); }\n    }\n</style>\n\n\n<h1 style=\"text-align: center;\">POLICY</h1>\n<div class=\"policy-wrapper\">\n\n    <details class=\"main-category\" open=\"\">\n        <summary class=\"main-summary\" style=\"background-color: #000; color: #fff;\"> <h2 class=\"main-title-text\" style=\"font-size: 16px; color:#fff\">📮 HOW TO CONTACT US</h2>\n        </summary>\n        <div class=\"main-content\">\n            <div style=\"padding-top: 20px;\">\n                <p>If you’d like to initiate a return or have questions, please contact us at:</p>\n                <p>\n                    <strong>Email:</strong> <a href=\"mailto:contact@teeblessed.com\" style=\"color: blue; text-decoration: underline;\">contact@teeblessed.com</a><br>\n                    <strong>Business Hours:</strong> Mon–Fri, 9:00 AM – 6:00 PM (CST)<br>\n                    or visit our <a href=\"https://teeblessed.com/pages/contact\" style=\"color: black;\"><strong>CONTACT PAGE</strong></a>\n                </p>\n                <p style=\"font-style: italic; font-size: 0.9em; margin-top: 15px; color: #888;\">Note: This policy may be updated or changed during sales or special promotions.</p>\n            </div>\n        </div>\n    </details>\n    <details class=\"main-category\"> <summary class=\"main-summary\">\n            <h2 class=\"main-title-text\">APPAREL</h2>\n        </summary>\n        \n        <div class=\"main-content\">\n            <details class=\"sub-item\">\n                <summary class=\"sub-summary\">🔁 1. Return Period</summary>\n                <div class=\"sub-content\">\n                    <p>You may request a return or exchange within <strong>7 days</strong> of receiving your order.</p>\n                </div>\n            </details>\n\n            <details class=\"sub-item\">\n                <summary class=\"sub-summary\">📦 2. Eligibility for Returns</summary>\n                <div class=\"sub-content\">\n                    <p>To be eligible for a return, items must:</p>\n                    <ul>\n                        <li>Be unused, unwashed, and in original condition.</li>\n                        <li>Include all original tags and packaging.</li>\n                        <li>Not be damaged due to misuse or mishandling.</li>\n                    </ul>\n                </div>\n            </details>\n\n            <details class=\"sub-item\">\n                <summary class=\"sub-summary\">🚫 3. Non-Returnable Items</summary>\n                <div class=\"sub-content\">\n                    <p>We do not accept returns or refunds for:</p>\n                    <ul>\n                        <li>Customized or personalized items.</li>\n                        <li>Sale or clearance items.</li>\n                        <li>Orders with incorrect information provided by the customer.</li>\n                    </ul>\n                </div>\n            </details>\n\n            <details class=\"sub-item\">\n                <summary class=\"sub-summary\">🛠️ 4. Damaged/Defective Items</summary>\n                <div class=\"sub-content\">\n                    <p>Contact us within <strong>48 hours</strong> with photos. We will send a replacement or issue a full refund.</p>\n                </div>\n            </details>\n\n            <details class=\"sub-item\">\n                <summary class=\"sub-summary\">💸 5. Refund Process</summary>\n                <div class=\"sub-content\">\n                    <ul>\n                        <li>Our error: Full refund + shipping covered.</li>\n                        <li>Your discretion: Max 100% product value (no shipping refund).</li>\n                        <li>Timeframe: 5–10 business days.</li>\n                    </ul>\n                </div>\n            </details>\n        </div>\n    </details>\n</div>",
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main-page",
+    "section_custom_html_Wi6nLR"
+  ]
+}

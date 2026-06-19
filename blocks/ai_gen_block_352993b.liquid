@@ -1,0 +1,745 @@
+{% doc %}
+  @prompt
+    featured products, let me set a initial stock count then when customer buy, stock count get updated
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-featured-products-{{ ai_gen_id }} {
+    padding: {{ block.settings.section_padding }}px 0;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-featured-products__container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-featured-products__header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-featured-products__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 10px;
+  }
+
+  .ai-featured-products__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+  }
+
+  .ai-featured-products__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: {{ block.settings.grid_gap }}px;
+  }
+
+  .ai-featured-product-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid {{ block.settings.card_border_color }};
+  }
+
+  .ai-featured-product-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-featured-product-card__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  .ai-featured-product-card__image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-featured-product-card__image-placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-featured-product-card__image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-featured-product-card__stock-badge-{{ ai_gen_id }} {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: {{ block.settings.stock_badge_bg }};
+    color: {{ block.settings.stock_badge_text }};
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .ai-featured-product-card__stock-badge--low-{{ ai_gen_id }} {
+    background-color: {{ block.settings.low_stock_badge_bg }};
+    color: {{ block.settings.low_stock_badge_text }};
+  }
+
+  .ai-featured-product-card__stock-badge--out-{{ ai_gen_id }} {
+    background-color: {{ block.settings.out_stock_badge_bg }};
+    color: {{ block.settings.out_stock_badge_text }};
+  }
+
+  .ai-featured-product-card__content-{{ ai_gen_id }} {
+    padding: 20px;
+  }
+
+  .ai-featured-product-card__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.product_title_size }}px;
+    color: {{ block.settings.product_title_color }};
+    margin: 0 0 8px;
+    font-weight: 600;
+  }
+
+  .ai-featured-product-card__title-link-{{ ai_gen_id }} {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ai-featured-product-card__title-link-{{ ai_gen_id }}:hover {
+    text-decoration: underline;
+  }
+
+  .ai-featured-product-card__price-{{ ai_gen_id }} {
+    font-size: {{ block.settings.product_price_size }}px;
+    color: {{ block.settings.product_price_color }};
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .ai-featured-product-card__stock-info-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .ai-featured-product-card__stock-text-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.stock_text_color }};
+  }
+
+  .ai-featured-product-card__stock-count-{{ ai_gen_id }} {
+    font-weight: 700;
+    color: {{ block.settings.stock_count_color }};
+  }
+
+  .ai-featured-product-card__button-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: {{ block.settings.button_bg }};
+    color: {{ block.settings.button_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-featured-product-card__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_bg }};
+  }
+
+  .ai-featured-product-card__button-{{ ai_gen_id }}:disabled {
+    background-color: {{ block.settings.button_disabled_bg }};
+    color: {{ block.settings.button_disabled_color }};
+    cursor: not-allowed;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-featured-products__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .ai-featured-product-card__content-{{ ai_gen_id }} {
+      padding: 15px;
+    }
+  }
+{% endstyle %}
+
+<featured-products-{{ ai_gen_id }} class="ai-featured-products-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-featured-products__container-{{ ai_gen_id }}">
+    {% if block.settings.title != blank or block.settings.subtitle != blank %}
+      <div class="ai-featured-products__header-{{ ai_gen_id }}">
+        {% if block.settings.title != blank %}
+          <h2 class="ai-featured-products__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+        {% endif %}
+        {% if block.settings.subtitle != blank %}
+          <p class="ai-featured-products__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-featured-products__grid-{{ ai_gen_id }}">
+      {% for i in (1..4) %}
+        {% liquid
+          assign product_key = 'product_' | append: i
+          assign stock_key = 'initial_stock_' | append: i
+          assign product = block.settings[product_key]
+          assign initial_stock = block.settings[stock_key]
+        %}
+
+        {% if product != blank %}
+          <div class="ai-featured-product-card-{{ ai_gen_id }}" data-product-id="{{ product.id }}" data-initial-stock="{{ initial_stock }}">
+            <div class="ai-featured-product-card__image-wrapper-{{ ai_gen_id }}">
+              {% if product.featured_image %}
+                <img
+                  src="{{ product.featured_image | image_url: width: 500 }}"
+                  alt="{{ product.featured_image.alt | escape }}"
+                  class="ai-featured-product-card__image-{{ ai_gen_id }}"
+                  loading="lazy"
+                  width="500"
+                  height="500"
+                >
+              {% else %}
+                <div class="ai-featured-product-card__image-placeholder-{{ ai_gen_id }}">
+                  {{ 'product-1' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+
+              <div class="ai-featured-product-card__stock-badge-{{ ai_gen_id }}" data-stock-badge>
+                <span data-stock-count>{{ initial_stock }}</span> left
+              </div>
+            </div>
+
+            <div class="ai-featured-product-card__content-{{ ai_gen_id }}">
+              <h3 class="ai-featured-product-card__title-{{ ai_gen_id }}">
+                <a href="{{ product.url }}" class="ai-featured-product-card__title-link-{{ ai_gen_id }}">
+                  {{ product.title }}
+                </a>
+              </h3>
+
+              <div class="ai-featured-product-card__price-{{ ai_gen_id }}">
+                {{ product.price | money }}
+              </div>
+
+              <div class="ai-featured-product-card__stock-info-{{ ai_gen_id }}">
+                <span class="ai-featured-product-card__stock-text-{{ ai_gen_id }}">
+                  Stock:
+                  <span class="ai-featured-product-card__stock-count-{{ ai_gen_id }}" data-stock-display>{{ initial_stock }}</span>
+                </span>
+              </div>
+
+              <button
+                class="ai-featured-product-card__button-{{ ai_gen_id }}"
+                data-add-to-cart
+                data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+              >
+                {{ block.settings.button_label }}
+              </button>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</featured-products-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class FeaturedProducts{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.storageKey = 'ai_featured_products_stock_{{ ai_gen_id }}';
+      }
+
+      connectedCallback() {
+        this.initializeStock();
+        this.setupEventListeners();
+      }
+
+      initializeStock() {
+        const savedStock = this.getStoredStock();
+        const cards = this.querySelectorAll('.ai-featured-product-card-{{ ai_gen_id }}');
+
+        cards.forEach(card => {
+          const productId = card.dataset.productId;
+          const initialStock = parseInt(card.dataset.initialStock);
+          
+          let currentStock = initialStock;
+          if (savedStock[productId] !== undefined) {
+            currentStock = savedStock[productId];
+          } else {
+            savedStock[productId] = initialStock;
+          }
+
+          this.updateStockDisplay(card, currentStock);
+        });
+
+        this.saveStock(savedStock);
+      }
+
+      setupEventListeners() {
+        const buttons = this.querySelectorAll('[data-add-to-cart]');
+        
+        buttons.forEach(button => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const card = button.closest('.ai-featured-product-card-{{ ai_gen_id }}');
+            const variantId = button.dataset.variantId;
+            const productId = card.dataset.productId;
+            
+            this.addToCart(variantId, productId, card, button);
+          });
+        });
+      }
+
+      async addToCart(variantId, productId, card, button) {
+        const savedStock = this.getStoredStock();
+        const currentStock = savedStock[productId] || 0;
+
+        if (currentStock <= 0) {
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = 'Adding...';
+
+        try {
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              items: [{
+                id: variantId,
+                quantity: 1
+              }]
+            })
+          });
+
+          if (response.ok) {
+            const newStock = currentStock - 1;
+            savedStock[productId] = newStock;
+            this.saveStock(savedStock);
+            this.updateStockDisplay(card, newStock);
+
+            button.textContent = 'Added!';
+            setTimeout(() => {
+              button.textContent = '{{ block.settings.button_label }}';
+              button.disabled = newStock <= 0;
+            }, 2000);
+
+            document.dispatchEvent(new CustomEvent('cart:updated'));
+          } else {
+            throw new Error('Failed to add to cart');
+          }
+        } catch (error) {
+          console.error('Error adding to cart:', error);
+          button.textContent = 'Error';
+          setTimeout(() => {
+            button.textContent = '{{ block.settings.button_label }}';
+            button.disabled = false;
+          }, 2000);
+        }
+      }
+
+      updateStockDisplay(card, stock) {
+        const stockCountElements = card.querySelectorAll('[data-stock-count], [data-stock-display]');
+        const stockBadge = card.querySelector('[data-stock-badge]');
+        const button = card.querySelector('[data-add-to-cart]');
+
+        stockCountElements.forEach(el => {
+          el.textContent = stock;
+        });
+
+        stockBadge.classList.remove(
+          'ai-featured-product-card__stock-badge--low-{{ ai_gen_id }}',
+          'ai-featured-product-card__stock-badge--out-{{ ai_gen_id }}'
+        );
+
+        if (stock <= 0) {
+          stockBadge.classList.add('ai-featured-product-card__stock-badge--out-{{ ai_gen_id }}');
+          stockBadge.innerHTML = 'Out of stock';
+          button.disabled = true;
+          button.textContent = 'Sold out';
+        } else if (stock <= {{ block.settings.low_stock_threshold }}) {
+          stockBadge.classList.add('ai-featured-product-card__stock-badge--low-{{ ai_gen_id }}');
+        }
+      }
+
+      getStoredStock() {
+        try {
+          const stored = localStorage.getItem(this.storageKey);
+          return stored ? JSON.parse(stored) : {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      saveStock(stock) {
+        try {
+          localStorage.setItem(this.storageKey, JSON.stringify(stock));
+        } catch (e) {
+          console.error('Failed to save stock data:', e);
+        }
+      }
+    }
+
+    customElements.define('featured-products-{{ ai_gen_id }}', FeaturedProducts{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Featured products",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Featured Products"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Limited stock available"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Product 1"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "Product"
+    },
+    {
+      "type": "range",
+      "id": "initial_stock_1",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Initial stock count",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Product 2"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Product"
+    },
+    {
+      "type": "range",
+      "id": "initial_stock_2",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Initial stock count",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Product 3"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "Product"
+    },
+    {
+      "type": "range",
+      "id": "initial_stock_3",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Initial stock count",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Product 4"
+    },
+    {
+      "type": "product",
+      "id": "product_4",
+      "label": "Product"
+    },
+    {
+      "type": "range",
+      "id": "initial_stock_4",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Initial stock count",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Stock settings"
+    },
+    {
+      "type": "range",
+      "id": "low_stock_threshold",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "label": "Low stock threshold",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Label",
+      "default": "Add to cart"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Hover background",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_disabled_bg",
+      "label": "Disabled background",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "button_disabled_color",
+      "label": "Disabled text",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Product title",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "product_price_color",
+      "label": "Product price",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "stock_text_color",
+      "label": "Stock text",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "stock_count_color",
+      "label": "Stock count",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "stock_badge_bg",
+      "label": "Stock badge background",
+      "default": "#4CAF50"
+    },
+    {
+      "type": "color",
+      "id": "stock_badge_text",
+      "label": "Stock badge text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "low_stock_badge_bg",
+      "label": "Low stock background",
+      "default": "#FF9800"
+    },
+    {
+      "type": "color",
+      "id": "low_stock_badge_text",
+      "label": "Low stock text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "out_stock_badge_bg",
+      "label": "Out of stock background",
+      "default": "#F44336"
+    },
+    {
+      "type": "color",
+      "id": "out_stock_badge_text",
+      "label": "Out of stock text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Grid gap",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "product_title_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Product title size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "product_price_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Product price size",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured products"
+    }
+  ]
+}
+{% endschema %}

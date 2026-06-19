@@ -1,0 +1,532 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": false,
+        "back_button": false
+      }
+    },
+    "main-page": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "max_width": 980,
+        "content_alignment": "center",
+        "text_alignment": "start",
+        "spacing_desktop": 50,
+        "spacing_mobile": 30
+      }
+    },
+    "section_slideshow_JLqhkL": {
+      "type": "section-slideshow",
+      "blocks": {
+        "slide_4BrXzp": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/1217 (1)(1).mp4",
+            "show_play_button": false,
+            "video_mute": true,
+            "layout": "background",
+            "image_width": 50,
+            "overlay_opacity": 0,
+            "color_palette": "scheme-1",
+            "background_overlay_opacity": 100,
+            "text_position": "center",
+            "max_width": 600,
+            "title": "",
+            "title_underline_style": "none",
+            "text": "",
+            "enable_custom_font_styling": false,
+            "font_size": "16px",
+            "show_first_link": false,
+            "first_link_text": "Button",
+            "first_link_url": "/",
+            "first_button_style": "primary plain",
+            "show_second_link": false,
+            "second_link_text": "Button",
+            "second_link_url": "/",
+            "second_button_style": "secondary plain"
+          }
+        },
+        "slide_QwNfgD": {
+          "type": "slide",
+          "settings": {
+            "video": "shopify://files/videos/1217.mp4",
+            "show_play_button": false,
+            "video_mute": true,
+            "layout": "background",
+            "image_width": 60,
+            "overlay_opacity": 0,
+            "color_palette": "",
+            "background_overlay_opacity": 100,
+            "text_position": "center",
+            "max_width": 1000,
+            "title": "",
+            "title_underline_style": "none",
+            "text": "",
+            "enable_custom_font_styling": false,
+            "font_size": "16px",
+            "show_first_link": false,
+            "first_link_text": "Button",
+            "first_link_url": "/",
+            "first_button_style": "primary plain",
+            "show_second_link": false,
+            "second_link_text": "Button",
+            "second_link_url": "/",
+            "second_button_style": "secondary plain"
+          }
+        }
+      },
+      "block_order": [
+        "slide_4BrXzp",
+        "slide_QwNfgD"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "width": "wide",
+        "height": "16/9",
+        "enable_custom_height": false,
+        "custom_height": 300,
+        "autoplay": false,
+        "autoplay_seconds": 3,
+        "enable_controls": false,
+        "height_mobile": "16/9",
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "marquee2_VmEQ9Y": {
+      "type": "marquee2",
+      "blocks": {
+        "text_block_aYpidn": {
+          "type": "text_block",
+          "settings": {
+            "text": "NEW ARRIVALS",
+            "link": ""
+          }
+        },
+        "text_block_mjTpAE": {
+          "type": "text_block",
+          "settings": {
+            "text": "HOME DÉCOR",
+            "link": ""
+          }
+        },
+        "text_block_tjgEte": {
+          "type": "text_block",
+          "settings": {
+            "text": "FULLY CUSTOMIZE",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_block_aYpidn",
+        "text_block_mjTpAE",
+        "text_block_tjgEte"
+      ],
+      "name": "Scrolling Marquee V2",
+      "settings": {
+        "speed": 76,
+        "direction": "left",
+        "pause_on_hover": false,
+        "separator_icon": "star",
+        "icon_size": 14,
+        "gap": 50,
+        "bg_color": "#798361",
+        "text_color": "#ffffff",
+        "border_color": "rgba(0,0,0,0)",
+        "font_size": 18,
+        "font_size_mobile": 14,
+        "font_weight": "500",
+        "padding_y": 15
+      }
+    },
+    "blocks_cXfTiF": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_28ad635_r746j7": {
+          "type": "ai_gen_block_28ad635",
+          "settings": {
+            "title": "NEW ARRIVALS",
+            "subtitle": "",
+            "featured_products": [
+              "story-board-brown",
+              "story-board-white",
+              "story-board-brown-vertical",
+              "story-board-white-vertical",
+              "story-board-curvy-line-brown",
+              "story-board-curvy-line-white",
+              "story-board-2-brown",
+              "story-board-2-white"
+            ],
+            "products_to_show": 8,
+            "text_alignment": "center",
+            "product_text_alignment": "left",
+            "product_spacing": 20,
+            "header_spacing": 40,
+            "image_aspect_ratio": "1",
+            "show_vendor": false,
+            "show_price": true,
+            "show_button": false,
+            "button_text": "View product",
+            "card_padding": 16,
+            "card_border_radius": 8,
+            "background_color": "#ffffff",
+            "product_card_bg": "#ffffff",
+            "title_color": "#000000",
+            "subtitle_color": "#666666",
+            "product_title_color": "#000000",
+            "product_title_hover_color": "#798361",
+            "product_vendor_color": "#666666",
+            "product_price_color": "#d3464f",
+            "compare_price_color": "#999999",
+            "button_bg_color": "#ff6602",
+            "button_text_color": "#ffffff",
+            "button_hover_bg_color": "#e55a02",
+            "button_hover_text_color": "#ffffff",
+            "title_size": 32,
+            "subtitle_size": 16,
+            "product_title_size": 16,
+            "product_vendor_size": 13,
+            "product_price_size": 16,
+            "button_text_size": 14,
+            "button_border_radius": 0,
+            "section_padding_top": 20,
+            "section_padding_bottom": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_28ad635_r746j7"
+      ],
+      "name": "Featured products AI",
+      "settings": {
+        "width": "wide",
+        "color_palette": "",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_left": 0,
+        "padding_right": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_left_mobile": 0,
+        "padding_right_mobile": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_spacer_6w9b6B": {
+      "type": "section-spacer",
+      "name": "t:sections.spacer.presets.name",
+      "settings": {
+        "height": 20,
+        "height_mobile": 20
+      }
+    },
+    "section_image_with_text_3YRFV4": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "title_X8fPfE": {
+          "type": "title",
+          "settings": {
+            "title": "<h2><strong>Every date tells a story</strong></h2>",
+            "title_underline_style": "none"
+          }
+        },
+        "text_KP6ADc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every milestone is a blessing. </p><p>Celebrate your unique journey with a custom timeline that captures the heart of your relationship. </p><p>Your love story is divinely guided and cherished.</p>",
+            "font": "secondary",
+            "enable_custom_text_styling": false,
+            "font_size": "16px"
+          }
+        },
+        "buttons_EcUicE": {
+          "type": "buttons",
+          "settings": {
+            "show_first_link": true,
+            "first_link_text": "Explore",
+            "first_link_url": "shopify://collections/story-board",
+            "first_button_style": "tertiary inv",
+            "show_second_link": false,
+            "second_link_text": "Button",
+            "second_link_url": "/",
+            "second_button_style": "secondary plain"
+          }
+        }
+      },
+      "block_order": [
+        "title_X8fPfE",
+        "text_KP6ADc",
+        "buttons_EcUicE"
+      ],
+      "custom_css": [
+        "a.overlay-tertiary {--theme_bg_btn: #4c2b12;}"
+      ],
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/nh_s_n_ph_m_1_debf899a-020a-4735-8317-60795c0152ce.png",
+        "fill_image": false,
+        "overlay_opacity_img": 0,
+        "enable_controls": true,
+        "video_mute": true,
+        "width": "boxed",
+        "height": "size-s",
+        "enable_custom_height": true,
+        "custom_height": 300,
+        "color_palette": "",
+        "overlay_opacity": 0,
+        "layout": "image-left",
+        "text_position": "text-start",
+        "background_color_palette": "",
+        "background_overlay_opacity": 0,
+        "background_position": "left",
+        "background_width": 100,
+        "background_height": 100,
+        "background_width_mobile": 100,
+        "background_height_mobile": 100,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "blocks_FKKEWn": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_28ad635_NpyNtR": {
+          "type": "ai_gen_block_28ad635",
+          "settings": {
+            "title": "NEW ARRIVALS",
+            "subtitle": "",
+            "featured_products": [
+              "story-board-white",
+              "story-board-brown"
+            ],
+            "products_to_show": 8,
+            "text_alignment": "center",
+            "product_text_alignment": "left",
+            "product_spacing": 20,
+            "header_spacing": 40,
+            "image_aspect_ratio": "1",
+            "show_vendor": false,
+            "show_price": true,
+            "show_button": false,
+            "button_text": "View product",
+            "card_padding": 16,
+            "card_border_radius": 12,
+            "background_color": "#ffffff",
+            "product_card_bg": "#ffffff",
+            "title_color": "#000000",
+            "subtitle_color": "#666666",
+            "product_title_color": "#000000",
+            "product_title_hover_color": "#798361",
+            "product_vendor_color": "#666666",
+            "product_price_color": "#d3464f",
+            "compare_price_color": "#999999",
+            "button_bg_color": "#ff6602",
+            "button_text_color": "#ffffff",
+            "button_hover_bg_color": "#e55a02",
+            "button_hover_text_color": "#ffffff",
+            "title_size": 32,
+            "subtitle_size": 16,
+            "product_title_size": 16,
+            "product_vendor_size": 13,
+            "product_price_size": 16,
+            "button_text_size": 14,
+            "button_border_radius": 0,
+            "section_padding_top": 20,
+            "section_padding_bottom": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_28ad635_NpyNtR"
+      ],
+      "disabled": true,
+      "name": "Featured products AI",
+      "settings": {
+        "width": "wide",
+        "color_palette": "",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_left": 0,
+        "padding_right": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_left_mobile": 0,
+        "padding_right_mobile": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_image_with_text_GYaUx7": {
+      "type": "section-image-with-text",
+      "blocks": {
+        "title_bmdHVV": {
+          "type": "title",
+          "settings": {
+            "title": "<h2><strong>This is not merely a timeline.</strong></h2>",
+            "title_underline_style": "none"
+          }
+        },
+        "text_yhcqKN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>But a visual testimony of a love that grows stronger with every passing season.</p><p>Transform these precious memories into a tangible keepsake that honors the path you have walked together. </p><p>Whether it marks the day your paths first crossed or the moment sacred vows were spoken, let this artwork serve as a daily reminder of God’s perfect timing.<br/><br/></p><p></p>",
+            "font": "secondary",
+            "enable_custom_text_styling": false,
+            "font_size": "16px"
+          }
+        },
+        "buttons_tFEwda": {
+          "type": "buttons",
+          "settings": {
+            "show_first_link": false,
+            "first_link_text": "Button",
+            "first_link_url": "/",
+            "first_button_style": "primary plain",
+            "show_second_link": false,
+            "second_link_text": "Button",
+            "second_link_url": "/",
+            "second_button_style": "secondary plain"
+          }
+        }
+      },
+      "block_order": [
+        "title_bmdHVV",
+        "text_yhcqKN",
+        "buttons_tFEwda"
+      ],
+      "custom_css": [
+        "a.overlay-tertiary {--theme_bg_btn: #4c2b12;}"
+      ],
+      "name": "t:sections.image_with_text.presets.name",
+      "settings": {
+        "video": "shopify://files/videos/lQbPJwkBauLyLZ8AALB3hkWWE9mXDAk40rMcpygA.mp4",
+        "fill_image": false,
+        "overlay_opacity_img": 0,
+        "enable_controls": true,
+        "video_mute": true,
+        "width": "boxed",
+        "height": "size-s",
+        "enable_custom_height": true,
+        "custom_height": 250,
+        "color_palette": "",
+        "overlay_opacity": 0,
+        "layout": "image-right",
+        "text_position": "text-start",
+        "background_color_palette": "",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 100,
+        "background_height": 0,
+        "background_width_mobile": 0,
+        "background_height_mobile": 0,
+        "spacing_desktop": 20,
+        "spacing_mobile": -20,
+        "fix_zindex": 0
+      }
+    },
+    "section_custom_html_bMqFCX": {
+      "type": "section-custom-html",
+      "name": "WHY CHOOSE US?",
+      "settings": {
+        "custom_html": "<div class=\"custom-banner\">\n    <img id=\"img-desktop\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/1_fb93141c-00fe-4c40-9a03-8594e17ac47c.svg?v=1767000646\">\n    <img id=\"img-mobile\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/2_b0ae92b6-dd57-4780-b452-304d940692e3.svg?v=1767000646\">\n</div>\n<style>\n    @media (max-width: 760px) {\n        #img-desktop {\n            display: none;\n        }\n    }\n    @media (min-width: 761px) {\n        #img-mobile {\n            display: none;\n        }\n    }\n</style>",
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "image_grid_rXJ99V": {
+      "type": "image-grid",
+      "blocks": {
+        "image_Fy3Ur6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Made_in_US.png",
+            "link": ""
+          }
+        },
+        "image_JYAJJQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Made_with_Love.png",
+            "link": ""
+          }
+        },
+        "image_NaK3JY": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Personalizale.png",
+            "link": ""
+          }
+        },
+        "image_Fn6fnj": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Support_24_7.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_Fy3Ur6",
+        "image_JYAJJQ",
+        "image_NaK3JY",
+        "image_Fn6fnj"
+      ],
+      "custom_css": [],
+      "name": "USP",
+      "settings": {
+        "heading": "",
+        "bg_color": "#ffffff",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "gap": 50,
+        "border_radius": 0,
+        "aspect_ratio": "1 / 1"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main-page",
+    "section_slideshow_JLqhkL",
+    "marquee2_VmEQ9Y",
+    "blocks_cXfTiF",
+    "section_spacer_6w9b6B",
+    "section_image_with_text_3YRFV4",
+    "blocks_FKKEWn",
+    "section_image_with_text_GYaUx7",
+    "section_custom_html_bMqFCX",
+    "image_grid_rXJ99V"
+  ]
+}

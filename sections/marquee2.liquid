@@ -1,0 +1,291 @@
+{% comment %}
+  Section: Scrolling Marquee (V2 - Fixed Loop)
+  Author: Gemini AI
+  Description: Phiên bản sửa lỗi giật lag bằng cách thay thế Gap bằng Padding và tăng số lượng bản sao.
+{% endcomment %}
+
+<style>
+    #shopify-section-{{ section.id }} {margin-left: -33%; margin-right: -33%;}
+  .mq-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding: {{ section.settings.padding_y }}px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    border-top: 1px solid {{ section.settings.border_color }};
+    border-bottom: 1px solid {{ section.settings.border_color }};
+    font-size: 0; /* Loại bỏ khoảng trắng thừa do inline-block */
+  }
+
+  .mq-track {
+    display: flex;
+    width: fit-content;
+    /* QUAN TRỌNG: Không dùng gap ở đây để tránh lỗi tính toán vòng lặp */
+    animation: marquee-scroll {{ section.settings.speed }}s linear infinite;
+    will-change: transform; /* Tối ưu hiệu năng render */
+  }
+
+  /* Nhóm các item lại để nhân bản */
+  .mq-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    /* Dùng padding thay vì gap để đảm bảo chiều rộng group đồng nhất */
+    padding-right: {{ section.settings.gap }}px; 
+  }
+
+  .mq-item {
+    display: flex;
+    align-items: center;
+    font-size: {{ section.settings.font_size }}px;
+    font-weight: {{ section.settings.font_weight }};
+    text-transform: uppercase;
+    /* Khoảng cách giữa các item nhỏ trong 1 group */
+    margin-right: {{ section.settings.gap }}px; 
+  }
+  
+  /* Xóa margin của item cuối cùng trong group để nó ăn theo padding của group */
+  .mq-item:last-child {
+    margin-right: 0;
+  }
+
+  .mq-item a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+  }
+
+  .mq-icon {
+    display: inline-block;
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    margin-left: {{ section.settings.gap | divided_by: 2 }}px;
+    vertical-align: middle;
+  }
+
+  /* Keyframes: Chạy từ 0 đến -100% của 1 Group đơn lẻ? 
+     Không, ta chạy 1 khoảng cách lớn và reset.
+     Cách tốt nhất: Render nhiều bản sao và chạy tịnh tiến.
+  */
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); } /* Di chuyển hết 1 block lớn thì reset */
+  }
+
+  /* Hover pause */
+  {% if section.settings.pause_on_hover %}
+  .mq-track:hover {
+    animation-play-state: paused;
+  }
+  {% endif %}
+
+  /* Đảo chiều */
+  {% if section.settings.direction == 'right' %}
+    .mq-track {
+      animation-direction: reverse;
+    }
+  {% endif %}
+
+  /* Mobile */
+  @media screen and (max-width: 768px) {
+    .mq-item {
+      font-size: {{ section.settings.font_size_mobile }}px;
+    }
+  }
+</style>
+
+<div class="mq-section-{{ section.id }}">
+  <div class="mq-scroll-wrapper" style="display: flex; width: max-content;">
+    {% for k in (1..2) %} <div class="mq-track"> 
+        {% for i in (1..6) %} <div class="mq-group">
+            {% for block in section.blocks %}
+              <div class="mq-item" {{ block.shopify_attributes }}>
+                
+                {% if block.settings.link != blank %}
+                  <a href="{{ block.settings.link }}">
+                {% endif %}
+
+                <span>{{ block.settings.text }}</span>
+
+                {% if block.settings.link != blank %}
+                  </a>
+                {% endif %}
+
+                {% if section.settings.separator_icon == 'star' %}
+                  <svg class="mq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                {% elsif section.settings.separator_icon == 'dot' %}
+                  <svg class="mq-icon" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>
+                {% elsif section.settings.separator_icon == 'lightning' %}
+                   <svg class="mq-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+                {% endif %}
+
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Scrolling Marquee V2",
+  "settings": [
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "s",
+      "label": "Scroll Speed",
+      "default": 40,
+      "info": "Thời gian để chạy hết vòng lặp. Số càng lớn chạy càng CHẬM."
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Direction",
+      "options": [
+        { "value": "left", "label": "Right to Left" },
+        { "value": "right", "label": "Left to Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "separator_icon",
+      "label": "Separator Icon",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "star", "label": "Star" },
+        { "value": "dot", "label": "Dot" },
+        { "value": "lightning", "label": "Lightning" }
+      ],
+      "default": "star"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 20,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Space between items",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Desktop)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Text Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Content",
+          "default": "Free Shipping on Orders Over $50"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling Marquee V2",
+      "blocks": [
+        { "type": "text_block", "settings": { "text": "New Arrivals" } },
+        { "type": "text_block", "settings": { "text": "Shop Now" } },
+        { "type": "text_block", "settings": { "text": "Limited Time Offer" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

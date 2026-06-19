@@ -1,0 +1,593 @@
+{% doc %}
+  @prompt
+    image banner column
+    10 images max, clickable
+    2 arrow buttons
+    should be customizable
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-image-banner-{{ ai_gen_id }} {
+    position: relative;
+    width: 200px;
+    heigt: 300px;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding }}px;
+  }
+
+  .ai-image-banner-container-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-image-banner-track-{{ ai_gen_id }} {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: {{ block.settings.image_gap }}px;
+  }
+
+  .ai-image-banner-slide-{{ ai_gen_id }} {
+    flex: 0 0 calc((100% - {{ block.settings.image_gap | times: block.settings.columns_desktop | minus: 1 }}px) / {{ block.settings.columns_desktop }});
+    position: relative;
+    aspect-ratio: {{ block.settings.image_aspect_ratio }};
+  }
+
+  .ai-image-banner-slide-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: {{ block.settings.image_border_radius }}px;transition: transform 0.3s ease;
+  }
+
+  .ai-image-banner-slide-{{ ai_gen_id }} a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .ai-image-banner-slide-{{ ai_gen_id }}:hover img {
+    transform: scale({{ block.settings.hover_scale }});
+  }
+
+  .ai-image-banner-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    position: relative;
+  }
+
+  .ai-image-banner-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-image-banner-empty-state-{{ ai_gen_id }} {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .ai-image-banner-arrow-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: {{ block.settings.arrow_background }};
+    color: {{ block.settings.arrow_color }};
+    border: none;
+    width: {{ block.settings.arrow_size }}px;
+    height: {{ block.settings.arrow_size }}px;
+    border-radius:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+    opacity: {{ block.settings.arrow_opacity }};
+  }
+
+  .ai-image-banner-arrow-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.arrow_hover_background }};
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .ai-image-banner-arrow-{{ ai_gen_id }}--prev {
+    left: {{ block.settings.arrow_offset }}px;
+  }
+
+  .ai-image-banner-arrow-{{ ai_gen_id }}--next {
+    right: {{ block.settings.arrow_offset }}px;
+  }
+
+  .ai-image-banner-arrow-{{ ai_gen_id }} svg {
+    width: 50%;
+    height: 50%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-image-banner-slide-{{ ai_gen_id }} {
+      flex: 0 0 calc((100% - {{ block.settings.image_gap | times: block.settings.columns_mobile | minus: 1 }}px) / {{ block.settings.columns_mobile }});
+    }
+
+    .ai-image-banner-arrow-{{ ai_gen_id }} {
+      width: {{ block.settings.arrow_size | times: 0.8 }}px;
+      height: {{ block.settings.arrow_size | times: 0.8 }}px;
+    }
+
+    .ai-image-banner-arrow-{{ ai_gen_id }}--prev {
+      left: {{ block.settings.arrow_offset | times: 0.5 }}px;
+    }
+
+    .ai-image-banner-arrow-{{ ai_gen_id }}--next {
+      right: {{ block.settings.arrow_offset | times: 0.5 }}px;
+    }
+  }
+{% endstyle %}<image-banner-{{ ai_gen_id }}
+  class="ai-image-banner-{{ ai_gen_id }}"
+  data-columns-desktop="{{ block.settings.columns_desktop }}"
+  data-columns-mobile="{{ block.settings.columns_mobile }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-image-banner-container-{{ ai_gen_id }}">
+    <div class="ai-image-banner-track-{{ ai_gen_id }}">
+      {% for i in (1..10) %}
+        {% liquid
+          assign image_key = 'image_' | append: i
+          assign link_key = 'link_' | append: i
+          assign image = block.settings[image_key]
+          assign link = block.settings[link_key]
+        %}
+
+        {% if image %}
+          <div class="ai-image-banner-slide-{{ ai_gen_id }}">
+            {% if link %}
+              <a href="{{ link }}">
+                <img
+                  src="{{ image | image_url: width: 800 }}"
+                  alt="{{ image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ image.width }}"
+                  height="{{ image.height }}"
+                >
+              </a>
+            {% else %}
+              <img
+                src="{{ image | image_url: width: 800 }}"
+                alt="{{ image.alt | escape }}"
+                loading="lazy"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+              >
+            {% endif %}
+          </div>
+        {% elsif forloop.first %}
+          <div class="ai-image-banner-slide-{{ ai_gen_id }}">
+            <div class="ai-image-banner-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+              <div class="ai-image-banner-empty-state-{{ ai_gen_id }}">
+                Add images to get started
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <button
+      class="ai-image-banner-arrow-{{ ai_gen_id }} ai-image-banner-arrow-{{ ai_gen_id }}--prev"
+      aria-label="Previous images"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15,18 9,12 15,6"></polyline>
+      </svg>
+    </button>
+
+    <button
+      class="ai-image-banner-arrow-{{ ai_gen_id }} ai-image-banner-arrow-{{ ai_gen_id }}--next"
+      aria-label="Next images"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9,18 15,12 9,6"></polyline>
+      </svg>
+    </button>
+  </div>
+</image-banner-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ImageBanner{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentIndex = 0;
+        this.isTransitioning = false;
+      }
+
+      connectedCallback() {
+        this.track = this.querySelector('.ai-image-banner-track-{{ ai_gen_id }}');
+        this.slides = this.querySelectorAll('.ai-image-banner-slide-{{ ai_gen_id }}');
+        this.prevButton = this.querySelector('.ai-image-banner-arrow-{{ ai_gen_id }}--prev');
+        this.nextButton = this.querySelector('.ai-image-banner-arrow-{{ ai_gen_id }}--next');
+        this.columnsDesktop = parseInt(this.dataset.columnsDesktop);
+        this.columnsMobile = parseInt(this.dataset.columnsMobile);
+        
+        this.setupEventListeners();
+        this.updateArrowVisibility();
+        this.handleResize();
+        
+        window.addEventListener('resize', () => this.handleResize());
+      }
+
+      setupEventListeners() {
+        this.prevButton.addEventListener('click', () => this.prev());
+        this.nextButton.addEventListener('click', () => this.next());
+      }
+
+      handleResize() {
+        this.currentColumns = window.innerWidth <= 749 ? this.columnsMobile : this.columnsDesktop;
+        this.maxIndex = Math.max(0, this.slides.length - this.currentColumns);
+        this.currentIndex = Math.min(this.currentIndex, this.maxIndex);
+        this.updateTransform();
+        this.updateArrowVisibility();
+      }
+
+      prev() {
+        if (this.isTransitioning || this.currentIndex <= 0) return;
+        this.currentIndex = Math.max(0, this.currentIndex - 1);
+        this.updateTransform();
+        this.updateArrowVisibility();
+      }
+
+      next() {
+        if (this.isTransitioning || this.currentIndex >= this.maxIndex) return;
+        this.currentIndex = Math.min(this.maxIndex, this.currentIndex + 1);
+        this.updateTransform();
+        this.updateArrowVisibility();
+      }
+
+      updateTransform() {
+        if (!this.track || this.slides.length === 0) return;
+        
+        this.isTransitioning = true;
+        const slideWidth = this.slides[0].offsetWidth;
+        const gap = parseInt(getComputedStyle(this.track).gap) || 0;
+        const translateX = -(this.currentIndex * (slideWidth + gap));
+        
+        this.track.style.transform = `translateX(${translateX}px)`;
+        
+        setTimeout(() => {
+          this.isTransitioning = false;
+        }, 300);
+      }
+
+      updateArrowVisibility() {
+        if (this.slides.length <= this.currentColumns) {
+          this.prevButton.style.display = 'none';
+          this.nextButton.style.display = 'none';
+        } else {
+          this.prevButton.style.display = 'flex';
+          this.nextButton.style.display = 'flex';this.prevButton.style.opacity = this.currentIndex <= 0 ? '0.3' : '{{ block.settings.arrow_opacity }}';
+          this.nextButton.style.opacity = this.currentIndex >= this.maxIndex ? '0.3' : '{{ block.settings.arrow_opacity }}';
+        }
+      }
+    }
+
+    customElements.define('image-banner-{{ ai_gen_id }}', ImageBanner{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Image banner column",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "options": [
+        {"value": "1", "label": "1"},
+        {"value": "2", "label": "2"},
+        {"value": "3", "label": "3"},
+        {"value": "4", "label": "4"},
+        {"value": "5", "label": "5"}
+      ],
+      "default": "4"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {"value": "1", "label": "1"},
+        {"value": "2", "label": "2"}
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "image_gap",
+      "label": "Space between images",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Image style"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        {"value": "1/1", "label": "Square (1:1)"},
+        {"value": "4/3", "label": "Landscape (4:3)"},
+        {"value": "3/4", "label": "Portrait (3:4)"},
+        {"value": "16/9", "label": "Widescreen (16:9)"}
+      ],
+      "default": "1/1"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Container border radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "hover_scale",
+      "label": "Hover scale effect",
+      "min": 1,
+      "max": 1.2,
+      "step": 0.1,
+      "default": 1.1
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Navigation arrows"
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow size",
+      "min": 30,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "arrow_offset",
+      "label": "Arrow position from edge",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "arrow_opacity",
+      "label": "Arrow opacity",
+      "min": 0.3,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.8
+    },
+    {
+      "type": "color",
+      "id": "arrow_background",
+      "label": "Arrow background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_background",
+      "label": "Arrow hover background",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Image1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_3",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_4",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Image 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_5",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Image 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_6",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Image 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_7",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_7",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Image 8"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_8",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_8",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Image 9"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_9",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_9",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Image 10"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_10",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "link_10",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image banner column"
+    }
+  ]
+}
+{% endschema %}

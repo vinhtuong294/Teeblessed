@@ -1,0 +1,54 @@
+<style>
+  @media only screen and (max-width: 749px) {
+      #cm-preview {
+        height: 456px
+      }
+    }
+  
+</style>
+<style>
+  .cm-file-upload__change-btn-container input[type="file"] {
+    z-index: 10 ;
+  }
+
+  #cm-options button, .cm-upload-preview-dialog button {
+    min-width: unset!important;
+    min-height: unset!important;
+    margin: 0!important;
+    height: auto!important;
+    padding: 10px!important;
+  }
+
+  #cm-options button {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cm-upload-preview-dialog button {
+    padding: 0!important;
+  }
+
+  .cm-upload-preview-dialog {
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  #cm-options button:before, .cm-upload-preview-dialog button:before {
+    box-shadow: none;
+    position: relative;
+    list-style: none;
+    display: none;
+  }
+  
+  
+
+</style>
+
+<script>
+  window.onCmCustomAddToCart = () => {
+    document.querySelector("button[type='submit'].overlay-buy_button").click();
+  }
+</script>

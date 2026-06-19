@@ -1,0 +1,409 @@
+{% comment %}
+  Comparison Table Section - Configurable Layout & Smart Hiding
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Comparison Table",
+  "settings": [
+    {
+      "type": "range",
+      "label": "Contend Width",
+      "info": "The ideal size is 1200px or 2000px.",
+      "id": "content_width",
+      "min": 240,
+      "max": 2000,
+      "step": 20,
+      "unit": "px",
+      "default": 2000
+    },
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Craft My Sign is the right choice for you?"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "(Here’s a comparison, but there is really no comparison)"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content Position",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "bottom", "label": "Bottom" },
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "top",
+      "info": "On mobile, Left/Right positions will stack vertically."
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Table Configuration"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Logo (Img Link)"
+    },
+    {
+      "type": "text",
+      "id": "competitor_name",
+      "label": "Competitor Name (Right Column)",
+      "default": "Others"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F2F0EB"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary Color",
+      "default": "#557833"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Comparison Row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_name",
+          "label": "Feature Name",
+          "default": "Feature Name"
+        },
+        {
+          "type": "checkbox",
+          "id": "competitor_has_feature",
+          "label": "Does competitor have this?",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison Table Advanced",
+      "blocks": [
+        { "type": "row", "settings": { "feature_name": "Outdoor Protection" } },
+        { "type": "row", "settings": { "feature_name": "13 Color Options" } },
+        { "type": "row", "settings": { "feature_name": "In House Production" } },
+        { "type": "row", "settings": { "feature_name": "Personalizable", "competitor_has_feature": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+  .section-id-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: 60px 20px;
+    box-sizing: border-box;
+  }
+
+  .section-id-{{ section.id }} * {
+    box-sizing: border-box;
+  }
+
+  /* Main Layout Container */
+  .section-id-{{ section.id }} .layout-wrapper {
+    max-width: {{ section.settings.content_width }}px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+
+  /* Layout Variants */
+  .layout-top { flex-direction: column; }
+  .layout-bottom { flex-direction: column-reverse; }
+  .layout-left { flex-direction: row; }
+  .layout-right { flex-direction: row-reverse; }
+
+  /* Content Wrapper */
+  .content-wrapper {
+    text-align: {{ section.settings.text_alignment }};
+    width: 100%;
+  }
+
+  /* Width Adjustments for Side-by-Side Layouts */
+  .layout-left .content-wrapper,
+  .layout-right .content-wrapper {
+    flex: 0 0 30%; /* Takes 30% width */
+    min-width: 250px;
+  }
+  
+  .layout-left .comparison-table-container,
+  .layout-right .comparison-table-container {
+    flex: 1; /* Takes remaining space */
+  }
+
+  /* Typography */
+  .section-id-{{ section.id }} h2.title {
+    font-size: 2.5rem;
+    color: #111;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+  }
+
+  .section-id-{{ section.id }} p.subtitle {
+    color: #555;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* --- Table Styles (Same as before) --- */
+  .comparison-table-container {
+    width: 100%;
+    overflow-x: visible; 
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+    table-layout: fixed; 
+    margin: 0;
+  }
+
+  .comparison-table th {
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: none;
+    vertical-align: bottom;
+  }
+  .comparison-table thead,
+  .comparison-table th {
+    opacity: 1 !important; /* Ép độ đậm 100%, bỏ lớp mờ của theme */
+    background: transparent; /* Bỏ background lạ nếu theme tự thêm vào */
+    border: none !important; /* Bỏ viền mờ mặc định của theme */
+    text-shadow: none !important; /* Bỏ bóng chữ nếu có */
+  }
+  .comparison-table th.active-table-logo {
+    background-color: {{ section.settings.primary_color }};
+    color: #ffffff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    position: relative;
+    box-shadow: 0 -5px 15px rgba(112, 89, 89, 0.1);
+    font-size: 1.3rem;
+    padding: 20px 10px;
+  }
+
+  .comparison-table__others {
+    color: {{ section.settings.text_color }};
+    font-size: 1.1rem;
+    padding-bottom: 10px;
+  }
+
+  .comparison-table td {
+    padding: 15px;
+    vertical-align: middle;
+    overflow-wrap: break-word;
+  }
+
+  .comparison-table__row-name {
+    background-color: #ffffff;
+    text-align: left;
+    padding-left: 30px;
+    font-weight: bold;
+    color: #333;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    width: 40%; 
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.02);
+  }
+  
+  .comparison-table__row-name h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .active-table-content {
+    background-color: {{ section.settings.primary_color }};
+    position: relative;
+    z-index: 2;
+    width: 40%;
+  }
+
+  .comparison-table tbody tr:last-child .active-table-content {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+  }
+  
+  .comparison-table td:last-child {
+    background-color: #ffffff;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: 20%;
+    box-shadow: -2px 2px 5px rgba(0,0,0,0.02);
+  }
+
+  .comparison-table__checkmark {
+    width: 24px;
+    height: 24px;
+    fill: #ffffff;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .green-check {
+    fill: {{ section.settings.primary_color }} !important;
+  }
+
+  .comparison-table__x {
+    width: 18px;
+    height: 18px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .comparison-table__x::before,
+  .comparison-table__x::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 3px;
+    background-color: #000;
+    border-radius: 2px;
+  }
+  
+  .comparison-table__x::before { transform: translate(-50%, -50%) rotate(45deg); }
+  .comparison-table__x::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+  /* --- MOBILE RESPONSIVE --- */
+  @media (max-width: 900px) {
+     .layout-left, .layout-right {
+        flex-direction: column; /* Force stack on mobile */
+     }
+     
+     .content-wrapper {
+        text-align: center; /* Center text on mobile usually looks better */
+        margin-bottom: 20px;
+        width: 100%;
+     }
+     
+     .section-id-{{ section.id }} h2.title { font-size: 1.5rem; }
+     
+     /* Adjust columns for mobile */
+     .comparison-table__row-name { width: 35%; padding-left: 10px; padding-right: 5px; }
+     .active-table-content { width: 40%; }
+     .comparison-table td:last-child { width: 25%; }
+
+     .comparison-table th { padding: 10px 5px; font-size: 0.9rem; }
+     .comparison-table th.active-table-logo { font-size: 1rem; padding: 15px 5px; }
+     .comparison-table td { padding: 12px 5px; }
+     .comparison-table__row-name h3 { font-size: 12px; line-height: 1.3; }
+
+     .comparison-table__checkmark { width: 18px; height: 18px; }
+     .comparison-table__x { width: 14px; height: 14px; }
+     .comparison-table { border-spacing: 0 8px; }
+  }
+{% endstyle %}
+
+<div class="section-id-{{ section.id }}">
+  <div class="layout-wrapper layout-{{ section.settings.content_position }}">
+    
+    {% comment %}
+      Logic: Only render this text block if Heading OR Subheading is NOT blank.
+      If both are blank, this div is skipped, occupying 0 space.
+    {% endcomment %}
+    {% if section.settings.heading != blank or section.settings.subheading != blank %}
+      <div class="content-wrapper">
+        {% if section.settings.heading != blank %}
+          <h2 class="title">{{ section.settings.heading }}</h2>
+        {% endif %}
+        
+        {% if section.settings.subheading != blank %}
+          <p class="subtitle">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    <div class="comparison-table-container">
+      <table class="comparison-table">
+        <thead >
+          <tr style="background-color: #fff;">
+            <th>&nbsp;</th>
+            <th align="center" class="comparison-table__logo active-table-logo">
+              <img src="{{ section.settings.brand_name }}">
+            </th>
+            <th class="comparison-table__others" style="text-align: center;">
+              {{ section.settings.competitor_name }}
+            </th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          {% for block in section.blocks %}
+            <tr>
+              <td class="comparison-table__row-name">
+                <h3>{{ block.settings.feature_name }}</h3>
+              </td>
+              
+              <td align="center" class="active-table-content">
+                <svg class="comparison-table__checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.45 25.43">
+                  <polygon points="25.45 0 24.06 0 9.5 15.27 2.12 10.24 0 12.55 9.28 25.43 25.45 2.48 25.45 0"></polygon>
+                </svg>
+              </td>
+              
+              <td align="center">
+                {% if block.settings.competitor_has_feature %}
+                  <svg class="comparison-table__checkmark green-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.45 25.43">
+                    <polygon points="25.45 0 24.06 0 9.5 15.27 2.12 10.24 0 12.55 9.28 25.43 25.45 2.48 25.45 0"></polygon>
+                  </svg>
+                {% else %}
+                  <div class="comparison-table__x"></div>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

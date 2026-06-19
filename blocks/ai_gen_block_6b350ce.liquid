@@ -1,0 +1,404 @@
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-image-banner-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding }}px 0;
+  }
+
+  .ai-image-banner-container-{{ ai_gen_id }} {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Header chứa Title bên trái và Buttons bên phải */
+  .ai-image-banner-header-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 20px;
+  }
+
+  .ai-image-banner-title-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    font-weight: 600;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .ai-image-banner-arrows-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    gap: 10px;
+  }
+
+  .ai-image-banner-track-{{ ai_gen_id }} {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    gap: {{ block.settings.image_gap }}px;
+  }
+
+  .ai-image-banner-slide-{{ ai_gen_id }} {
+    flex: 0 0 auto;
+    width: calc((100% - {{ block.settings.image_gap | times: block.settings.columns_desktop | minus: 1 }}px) / {{ block.settings.columns_desktop }});
+    position: relative;
+  }
+
+  .ai-image-banner-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: {{ block.settings.image_aspect_ratio }};
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+    cursor: pointer;
+  }
+
+  .ai-image-banner-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .ai-image-banner-image-wrapper-{{ ai_gen_id }}:hover .ai-image-banner-image-{{ ai_gen_id }} {
+    transform: scale({{ block.settings.hover_scale }});
+  }
+
+  /* Nút điều hướng hình tròn */
+  .ai-image-banner-arrow-{{ ai_gen_id }} {
+    background-color: {{ block.settings.arrow_background }};
+    color: {{ block.settings.arrow_color }};
+    border: 1px solid #ddd;
+    width: {{ block.settings.arrow_size }}px;
+    height: {{ block.settings.arrow_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    min-width: 50px;
+  }
+
+  .ai-image-banner-arrow-{{ ai_gen_id }}:hover:not(:disabled) {
+    background-color: {{ block.settings.arrow_hover_background }};
+    border-color: {{ block.settings.arrow_color }};
+  }
+
+  .ai-image-banner-arrow-{{ ai_gen_id }}:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+
+  .ai-image-banner-arrow-{{ ai_gen_id }} svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-image-banner-header-{{ ai_gen_id }} {
+      justify-content: flex-start;
+      margin-bottom: 20px;
+    }
+    
+    .ai-image-banner-arrows-wrapper-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-image-banner-slide-{{ ai_gen_id }} {
+      width: 85%;
+    }
+
+    .ai-image-banner-track-{{ ai_gen_id }} {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .ai-image-banner-track-{{ ai_gen_id }}::-webkit-scrollbar {
+      display: none;
+    }
+  }
+{% endstyle %}
+
+<image-banner-{{ ai_gen_id }}
+  class="ai-image-banner-{{ ai_gen_id }}"
+  data-columns-desktop="{{ block.settings.columns_desktop }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-image-banner-container-{{ ai_gen_id }}">
+    
+    <div class="ai-image-banner-header-{{ ai_gen_id }}">
+      {% if block.settings.section_title != blank %}
+        <h2 class="ai-image-banner-title-{{ ai_gen_id }}" style="font-weight: bold;">{{ block.settings.section_title }}</h2>
+      {% endif %}
+
+      <div class="ai-image-banner-arrows-wrapper-{{ ai_gen_id }}">
+        <button class="ai-image-banner-arrow-{{ ai_gen_id }} ai-image-banner-arrow-prev-{{ ai_gen_id }}" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="ai-image-banner-arrow-{{ ai_gen_id }} ai-image-banner-arrow-next-{{ ai_gen_id }}" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ai-image-banner-track-{{ ai_gen_id }}">
+      {% for i in (1..10) %}
+        {% liquid
+          assign image_key = 'image_' | append: i
+          assign url_key = 'url_' | append: i
+          assign image = block.settings[image_key]
+          assign url = block.settings[url_key]
+        %}
+
+        {% if image != blank %}
+          <div class="ai-image-banner-slide-{{ ai_gen_id }}">
+            <a {% if url != blank %}href="{{ url }}"{% endif %} class="ai-image-banner-image-wrapper-{{ ai_gen_id }}">
+              <img
+                src="{{ image | image_url: width: 1000 }}"
+                alt="{{ image.alt | escape }}"
+                class="ai-image-banner-image-{{ ai_gen_id }}"
+                loading="lazy"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+              >
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</image-banner-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    if (!customElements.get('image-banner-{{ ai_gen_id }}')) {
+      class ImageBanner{{ ai_gen_id }} extends HTMLElement {
+        constructor() {
+          super();
+          this.currentIndex = 0;
+        }
+
+        connectedCallback() {
+          this.track = this.querySelector('.ai-image-banner-track-{{ ai_gen_id }}');
+          this.prevButton = this.querySelector('.ai-image-banner-arrow-prev-{{ ai_gen_id }}');
+          this.nextButton = this.querySelector('.ai-image-banner-arrow-next-{{ ai_gen_id }}');
+          this.slides = this.querySelectorAll('.ai-image-banner-slide-{{ ai_gen_id }}');
+          this.columnsDesktop = parseInt(this.dataset.columnsDesktop);
+
+          this.prevButton.addEventListener('click', () => this.slide(-1));
+          this.nextButton.addEventListener('click', () => this.slide(1));
+          this.updateArrowStates();
+          
+          window.addEventListener('resize', () => this.updatePosition());
+        }
+
+        slide(direction) {
+          const maxIndex = Math.max(0, this.slides.length - this.columnsDesktop);
+          this.currentIndex = Math.min(Math.max(this.currentIndex + direction, 0), maxIndex);
+          this.updatePosition();
+          this.updateArrowStates();
+        }
+
+        updatePosition() {
+          if (window.innerWidth > 749 && this.slides.length > 0) {
+            const slideWidth = this.slides[0].offsetWidth;
+            const gap = parseInt(getComputedStyle(this.track).gap) || 0;
+            const move = this.currentIndex * (slideWidth + gap);
+            this.track.style.transform = `translateX(-${move}px)`;
+          } else {
+            this.track.style.transform = 'none';
+          }
+        }
+
+        updateArrowStates() {
+          const maxIndex = Math.max(0, this.slides.length - this.columnsDesktop);
+          this.prevButton.disabled = this.currentIndex === 0;
+          this.nextButton.disabled = this.currentIndex >= maxIndex;
+        }
+      }
+      customElements.define('image-banner-{{ ai_gen_id }}', ImageBanner{{ ai_gen_id }});
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Image banner column",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "TEE BLESSED ON YOU"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title font size",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "options": [
+        {"value": "2", "label": "2"},
+        {"value": "3", "label": "3"},
+        {"value": "4", "label": "4"},
+        {"value": "5", "label": "5"}
+      ],
+      "default": "4"
+    },
+    {
+      "type": "range",
+      "id": "image_gap",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Image style"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Image aspect ratio",
+      "options": [
+        {"value": "1/1", "label": "Square (1:1)"},
+        {"value": "4/3", "label": "Landscape (4:3)"},
+        {"value": "3/4", "label": "Portrait (3:4)"},
+        {"value": "16/9", "label": "Widescreen (16:9)"}
+      ],
+      "default": "3/4"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "hover_scale",
+      "label": "Hover scale effect",
+      "min": 1.0,
+      "max": 1.2,
+      "step": 0.1,
+      "default": 1.1
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Navigation arrows"
+    },
+    {
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow size",
+      "min": 30,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "arrow_background",
+      "label": "Arrow background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_background",
+      "label": "Arrow hover background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    { "type": "image_picker", "id": "image_1", "label": "Image 1" },
+    { "type": "url", "id": "url_1", "label": "Image 1 link" },
+    { "type": "image_picker", "id": "image_2", "label": "Image 2" },
+    { "type": "url", "id": "url_2", "label": "Image 2 link" },
+    { "type": "image_picker", "id": "image_3", "label": "Image 3" },
+    { "type": "url", "id": "url_3", "label": "Image 3 link" },
+    { "type": "image_picker", "id": "image_4", "label": "Image 4" },
+    { "type": "url", "id": "url_4", "label": "Image 4 link" },
+    { "type": "image_picker", "id": "image_5", "label": "Image 5" },
+    { "type": "url", "id": "url_5", "label": "Image 5 link" },
+    { "type": "image_picker", "id": "image_6", "label": "Image 6" },
+    { "type": "url", "id": "url_6", "label": "Image 6 link" },
+    { "type": "image_picker", "id": "image_7", "label": "Image 7" },
+    { "type": "url", "id": "url_7", "label": "Image 7 link" },
+    { "type": "image_picker", "id": "image_8", "label": "Image 8" },
+    { "type": "url", "id": "url_8", "label": "Image 8 link" },
+    { "type": "image_picker", "id": "image_9", "label": "Image 9" },
+    { "type": "url", "id": "url_9", "label": "Image 9 link" },
+    { "type": "image_picker", "id": "image_10", "label": "Image 10" },
+    { "type": "url", "id": "url_10", "label": "Image 10 link" }
+  ],
+  "presets": [
+    {
+      "name": "Image banner column"
+    }
+  ]
+}
+{% endschema %}

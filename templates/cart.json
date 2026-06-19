@@ -1,0 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": false,
+        "back_button": false
+      }
+    },
+    "main-cart": {
+      "type": "main-cart",
+      "custom_css": [
+        "button.overlay-buy_button:before {background: #103778 !important; border: none;}"
+      ],
+      "settings": {
+        "title_size": "h2",
+        "show_dynamic_buybutton": false,
+        "enable_discount_tab": false,
+        "show_payment_methods": false,
+        "show_order_notes": true,
+        "order_notes_alignment": "right",
+        "enable_terms_checkbox": false,
+        "terms_text": "<p>I accept the <a href=\"/policies/privacy-policy\" title=\"Privacy Policy\">privacy policy</a></p>"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main-cart"
+  ]
+}

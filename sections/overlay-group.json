@@ -1,0 +1,65 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "custom.overlay",
+  "name": "Overlay",
+  "sections": {
+    "side-cart": {
+      "type": "section-side-cart",
+      "custom_css": [
+        "ul.l4ca.compact {display: flex !important; flex-direction: column !important;}",
+        "ul.l4ca.compact > li {order: 1;}",
+        "ul.l4ca.compact > li:has(a[href*=\"/products/shipping-protection\"]) {order: 100 !important;}",
+        "ul.l4ca.compact > li:has(a[href*=\"/products/free-15-e-book-10-discount\"]) {order: 101 !important;}"
+      ],
+      "settings": {
+        "empty_cart_text": "<p>Cart is empty...</p>",
+        "enable_cart_drawer_undo_remove": false,
+        "enable_cart_drawer_undo_remove_delay": false,
+        "cart_drawer_undo_remove_delay": 10,
+        "cart_drawer_checkout_button": true,
+        "enable_discount_tab": false,
+        "cart_order_notes": false,
+        "cart_drawer_width_mobile": 90
+      }
+    },
+    "newsletter_popup_apparel_TdUqYD": {
+      "type": "newsletter-popup-apparel",
+      "name": "Popup with apparel tag",
+      "settings": {
+        "enable_popup": true,
+        "delay": 6,
+        "frequency": 1,
+        "display_scope": "specific",
+        "show_on_home": true,
+        "show_on_collection": false,
+        "show_on_product": false,
+        "show_on_blog": false,
+        "show_on_cart": false,
+        "target_handles": "gildan-hoodie, cf-tshirt",
+        "image": "shopify://shop_images/5d50ea73-e054-481f-89fc-be7c53d4e2c8.png",
+        "subheading": "Join Our Community",
+        "heading": "Get 5% Off For Your First Order And Lots Of Good Deals",
+        "description": "",
+        "btn_label": "subscribe",
+        "disclaimer": "No spam, unsubscribe anytime.",
+        "bg_color": "#ffffff",
+        "text_color": "#333333",
+        "btn_bg": "#103778",
+        "btn_text": "#ffffff",
+        "overlay_opacity": 50
+      }
+    }
+  },
+  "order": [
+    "side-cart",
+    "newsletter_popup_apparel_TdUqYD"
+  ]
+}

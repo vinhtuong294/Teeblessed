@@ -1,0 +1,373 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "section_spacer_X6bUfP": {
+      "type": "section-spacer",
+      "settings": {
+        "height": -40,
+        "height_mobile": -20
+      }
+    },
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": false,
+        "back_button": false
+      }
+    },
+    "section_rich_text_UWWHqj": {
+      "type": "section-rich-text",
+      "blocks": {
+        "title_rfHh7T": {
+          "type": "title",
+          "settings": {
+            "title": "<h2>OUR STORY</h2>",
+            "title_underline_style": "none"
+          }
+        }
+      },
+      "block_order": [
+        "title_rfHh7T"
+      ],
+      "name": "t:sections.rich_text.presets.name",
+      "settings": {
+        "width": "boxed",
+        "height": "s",
+        "enable_custom_height": true,
+        "custom_height": 100,
+        "color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": true,
+        "text_position": "align-center text-center",
+        "content_width": 2000,
+        "height_mobile": "xs",
+        "background_width_mobile": 0,
+        "background_height_mobile": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_flexible_TLACDV": {
+      "type": "section-flexible",
+      "blocks": {
+        "content_r6mcfF": {
+          "type": "content",
+          "settings": {
+            "text_alignment": "left",
+            "content_width": 620,
+            "content_opacity": 100,
+            "background_color_palette": "scheme-1",
+            "enable_background": true,
+            "background_overlay_opacity": 100,
+            "background_radius": 0,
+            "horizontal_position": 0,
+            "vertical_position": 13,
+            "title": "",
+            "title_underline_style": "none",
+            "enable_custom_title_size": false,
+            "custom_title_size": 32,
+            "text": "<p>When I first began my journey, no one believed that I could create something meaningful. But I knew that with faith and perseverance, every challenge could be turned into an opportunity. I didn’t just want to sell T-shirts; I wanted to share the message of Christ with everyone, helping them feel the peace and love that faith brings.</p><p>At the beginning, I had just a small amount of savings and an old, worn-out computer. Everything seemed uncertain, but one thing was clear: I wanted to create a space where people could find hope and comfort through T-shirts with Bible verses and messages of love and salvation.</p>",
+            "enable_custom_font_styling": false,
+            "text_font": "primary",
+            "font_size": "16px",
+            "show_first_link": false,
+            "first_link_text": "Button",
+            "first_link_url": "/",
+            "first_button_style": "primary plain",
+            "show_second_link": false,
+            "second_link_text": "Button",
+            "second_link_url": "/",
+            "second_button_style": "secondary plain",
+            "background_color_palette_mobile": "scheme-1",
+            "mobile_hide": false
+          }
+        },
+        "image_FxXPJK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/26_c06304df-61cc-49c6-b276-7f9dbc337781.png",
+            "fill_image": true,
+            "image_opacity": 100,
+            "color_palette": "scheme-4",
+            "overlay_opacity_img": 0,
+            "horizontal_position": 88,
+            "vertical_position": 0,
+            "image_width": 39,
+            "constrain": true,
+            "image_height": 52,
+            "border_radius": 0,
+            "shape": "none",
+            "link_url": "",
+            "mobile_hide": false,
+            "mobile_sizes": false,
+            "image_width_mobile": 50,
+            "image_height_mobile": 50
+          }
+        }
+      },
+      "block_order": [
+        "content_r6mcfF",
+        "image_FxXPJK"
+      ],
+      "settings": {
+        "transparent": true,
+        "background_color_palette": "scheme-6",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "width": "wide",
+        "custom_height": 30,
+        "custom_height_tablet": 80,
+        "layout_mobile": "grid",
+        "content_below_media": false,
+        "media_mobile_height": "size-l",
+        "background_width_mobile": 0,
+        "background_height_mobile": 100,
+        "height_mobile": "xs",
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_flexible_6K77hV": {
+      "type": "section-flexible",
+      "blocks": {
+        "content_qHN6gN": {
+          "type": "content",
+          "settings": {
+            "text_alignment": "left",
+            "content_width": 700,
+            "content_opacity": 100,
+            "background_color_palette": "scheme-1",
+            "enable_background": true,
+            "background_overlay_opacity": 100,
+            "background_radius": 0,
+            "horizontal_position": 100,
+            "vertical_position": 13,
+            "title": "",
+            "title_underline_style": "none",
+            "enable_custom_title_size": false,
+            "custom_title_size": 32,
+            "text": "<p><br/>The work wasn’t easy. I had to do everything myself: from designing the products, sourcing materials, to building the store. In those early days, I often felt alone. Long nights spent in front of the screen, tweaking every detail on the website, worrying over each small order. But in my heart, I kept praying, believing that each T-shirt would be a reminder of God’s love and care.<br/>Then one day, it happened—my first order came in. I remember crying. Not because it was a big sale or because I had finally made a sale, but because I felt the presence of God in every step of the way. Every T-shirt I created was not just a product, but a mission.<br/></p>",
+            "enable_custom_font_styling": false,
+            "text_font": "primary",
+            "font_size": "16px",
+            "show_first_link": false,
+            "first_link_text": "Button",
+            "first_link_url": "/",
+            "first_button_style": "primary plain",
+            "show_second_link": false,
+            "second_link_text": "Button",
+            "second_link_url": "/",
+            "second_button_style": "secondary plain",
+            "background_color_palette_mobile": "scheme-1",
+            "mobile_hide": false
+          }
+        },
+        "image_qbmD48": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/27_c5075a34-e39f-4fd1-899d-beecf7a479cc.png",
+            "fill_image": true,
+            "image_opacity": 100,
+            "color_palette": "",
+            "overlay_opacity_img": 0,
+            "horizontal_position": 10,
+            "vertical_position": 17,
+            "image_width": 40,
+            "constrain": true,
+            "image_height": 67,
+            "border_radius": 0,
+            "shape": "none",
+            "link_url": "",
+            "mobile_hide": false,
+            "mobile_sizes": false,
+            "image_width_mobile": 50,
+            "image_height_mobile": 50
+          }
+        }
+      },
+      "block_order": [
+        "content_qHN6gN",
+        "image_qbmD48"
+      ],
+      "settings": {
+        "transparent": true,
+        "background_color_palette": "scheme-6",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "width": "wide",
+        "custom_height": 30,
+        "custom_height_tablet": 80,
+        "layout_mobile": "grid",
+        "content_below_media": true,
+        "media_mobile_height": "size-l",
+        "background_width_mobile": 0,
+        "background_height_mobile": 100,
+        "height_mobile": "xs",
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_flexible_w739eU": {
+      "type": "section-flexible",
+      "blocks": {
+        "image_eNzcwX": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/28_0c879631-a850-4eb6-9b73-6df9df834425.png",
+            "fill_image": true,
+            "image_opacity": 100,
+            "color_palette": "",
+            "overlay_opacity_img": 0,
+            "horizontal_position": 100,
+            "vertical_position": 17,
+            "image_width": 36,
+            "constrain": true,
+            "image_height": 67,
+            "border_radius": 0,
+            "shape": "none",
+            "link_url": "",
+            "mobile_hide": false,
+            "mobile_sizes": false,
+            "image_width_mobile": 50,
+            "image_height_mobile": 50
+          }
+        },
+        "content_fUBcxG": {
+          "type": "content",
+          "settings": {
+            "text_alignment": "left",
+            "content_width": 700,
+            "content_opacity": 100,
+            "background_color_palette": "scheme-1",
+            "enable_background": true,
+            "background_overlay_opacity": 100,
+            "background_radius": 0,
+            "horizontal_position": 0,
+            "vertical_position": 13,
+            "title": "",
+            "title_underline_style": "none",
+            "enable_custom_title_size": false,
+            "custom_title_size": 32,
+            "text": "<p></p><p>My store began to grow, not only because of the quality of the T-shirts, but because of the stories and messages they carried. I started receiving messages from customers, from people who wore the shirts and told me that they felt closer to God every time they put it on. That’s when I realized—this is what I had set out to do.</p><p>And that’s why I continue this journey. Not for the profits or personal success, but because I believe that a T-shirt can bring faith, hope, and peace to anyone who needs it. This journey is still ongoing, and I know that with every step, God is walking beside me.</p>",
+            "enable_custom_font_styling": false,
+            "text_font": "primary",
+            "font_size": "16px",
+            "show_first_link": false,
+            "first_link_text": "Button",
+            "first_link_url": "/",
+            "first_button_style": "primary plain",
+            "show_second_link": false,
+            "second_link_text": "Button",
+            "second_link_url": "/",
+            "second_button_style": "secondary plain",
+            "background_color_palette_mobile": "scheme-1",
+            "mobile_hide": false
+          }
+        }
+      },
+      "block_order": [
+        "image_eNzcwX",
+        "content_fUBcxG"
+      ],
+      "settings": {
+        "transparent": true,
+        "background_color_palette": "scheme-6",
+        "background_overlay_opacity": 100,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "width": "wide",
+        "custom_height": 30,
+        "custom_height_tablet": 80,
+        "layout_mobile": "grid",
+        "content_below_media": true,
+        "media_mobile_height": "size-l",
+        "background_width_mobile": 0,
+        "background_height_mobile": 100,
+        "height_mobile": "xs",
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "section_rich_text_RjQy3j": {
+      "type": "section-rich-text",
+      "blocks": {
+        "content_ghteiY": {
+          "type": "content",
+          "settings": {
+            "page": "",
+            "text": "<p><strong>Join us in “wearing your faith” and turning each day into a new journey of inspiration.</strong></p>",
+            "font": "secondary",
+            "enable_custom_text_styling": false,
+            "font_weight": "400",
+            "font_size": "16px"
+          }
+        }
+      },
+      "block_order": [
+        "content_ghteiY"
+      ],
+      "name": "t:sections.rich_text.presets.name",
+      "settings": {
+        "width": "wide",
+        "height": "s",
+        "enable_custom_height": true,
+        "custom_height": 100,
+        "color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 0,
+        "background_height": 100,
+        "background_color_section": true,
+        "text_position": "align-center text-center",
+        "content_width": 2000,
+        "height_mobile": "xs",
+        "background_width_mobile": 0,
+        "background_height_mobile": 100,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
+    },
+    "main-page": {
+      "type": "main-page",
+      "settings": {
+        "max_width": 1020,
+        "content_alignment": "center",
+        "text_alignment": "start",
+        "spacing_desktop": 50,
+        "spacing_mobile": 30
+      }
+    }
+  },
+  "order": [
+    "section_spacer_X6bUfP",
+    "breadcrumbs",
+    "section_rich_text_UWWHqj",
+    "section_flexible_TLACDV",
+    "section_flexible_6K77hV",
+    "section_flexible_w739eU",
+    "section_rich_text_RjQy3j",
+    "main-page"
+  ]
+}

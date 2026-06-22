@@ -75,7 +75,7 @@
                 <button
                   type="button"
                   class="shop-the-look__dot{% if hotspot_index == 0 %} is-active{% endif %}"
-                  style="--stl-x-desktop: {{ desktop_x }}%; --stl-y-desktop: {{ desktop_y }}%; --stl-x-mobile: {{ mobile_x }}%; --stl-y-mobile: {{ mobile_y }}%;"
+                  style="--stl-x-desktop: {{ desktop_x }}%; --stl-y-desktop: {{ desktop_y }}%; --stl-x-mobile: {{ mobile_x }}%; --stl-y-mobile: {{ mobile_y }}%; --stl-x-desktop-number: {{ desktop_x }};"
                   data-stl-hotspot="{{ block.id }}"
                   data-stl-index="{{ hotspot_index | plus: 1 }}"
                   aria-label="{{ hotspot_label | escape }}"
@@ -133,9 +133,9 @@
                     <a href="{{ product.url }}" class="shop-the-look__card-media" aria-label="{{ product.title | escape }}">
                   {%- else -%}
                     <div class="shop-the-look__card-media shop-the-look__card-media--placeholder" aria-hidden="true">
-                  {%- endif -%}
+                    {%- endif -%}
                     {%- if product.featured_image != blank -%}
-                      <img src="{{ product.featured_image | image_url: width: 360 }}" alt="{{ product.title | escape }}" loading="lazy">
+                      {{ product.featured_image | image_url: width: 360 | image_tag: alt: product.title, loading: 'lazy' }}
                     {%- else -%}
                       {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
                     {%- endif -%}
@@ -293,6 +293,7 @@
 
         const updateHotspotPreview = (hotspot, point) => {
           hotspot.style.setProperty(`--stl-x-${point.mode}`, `${point.x}%`);
+          hotspot.style.setProperty(`--stl-x-${point.mode}-number`, point.x);
           hotspot.style.setProperty(`--stl-y-${point.mode}`, `${point.y}%`);
           const coords = hotspot.querySelector('.shop-the-look__dot-coords');
           if (coords) {
@@ -796,8 +797,8 @@
       {%- else -%}
         --stl-card-font-family: inherit;
     {%- endcase -%}
-    padding-top: {{ section.settings.padding_top | multiply: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | multiply: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     position: relative;
     isolation: isolate;
     overflow: hidden;
@@ -1306,29 +1307,130 @@
   }
 
   @media screen and (min-width: 990px) {
+    .section-{{ section.id }}-padding {
+      padding-top: clamp(44px, 4vw, 72px);
+      padding-bottom: clamp(44px, 4vw, 72px);
+    }
+
+    .section-{{ section.id }}-padding .page-width {
+      width: calc(100% - clamp(36px, 8vw, 240px));
+      max-width: 1680px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .shop-the-look__header {
+      position: absolute;
+      top: clamp(30px, 4vw, 72px);
+      left: clamp(28px, 4vw, 64px);
+      z-index: 5;
+      max-width: min(440px, 36vw);
+      margin: 0;
+      text-align: left;
+    }
+
+    .shop-the-look__header .title {
+      font-size: clamp(34px, 2.6vw, 46px);
+      font-weight: 500;
+      line-height: 1.03;
+      text-transform: none;
+      white-space: nowrap;
+    }
+
     .shop-the-look__layout-container {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.36fr);
-      align-items: stretch;
-      gap: clamp(24px, 3.2vw, 44px);
+      --stl-desktop-frame-height: clamp(520px, 38vw, 680px);
+      position: relative;
+      display: block;
       width: 100%;
-      max-width: none;
+      min-height: var(--stl-desktop-frame-height);
       margin: 0 auto;
+      overflow: hidden;
+      background: #F1EDEA;
+    }
+
+    .shop-the-look__image-column {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      min-height: 0;
     }
 
     .shop-the-look__image-wrapper {
-      height: auto;
+      position: absolute;
+      inset: 0;
+      height: 100%;
       min-height: 0;
-      box-shadow: 0 18px 42px rgba(18, 18, 18, 0.08);
+      border-radius: 0;
+      background: transparent;
+      aspect-ratio: auto;
+      box-shadow: none;
+    }
+
+    .section-{{ section.id }}-padding .shop-the-look__image-wrapper .shop-the-look__image {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      object-fit: contain;
+      object-position: center bottom;
+    }
+
+    .shop-the-look__dot {
+      width: 54px;
+      height: 54px;
+      min-width: 54px;
+      min-height: 54px;
+      aspect-ratio: 1 / 1;
+      z-index: 6;
+      left: calc((100% - var(--stl-desktop-frame-height)) / 2 + (var(--stl-x-desktop-number) / 100) * var(--stl-desktop-frame-height));
+    }
+
+    .shop-the-look__dot-pulse {
+      display: none;
+    }
+
+    .shop-the-look__dot-circle {
+      flex: 0 0 54px;
+      width: 54px;
+      height: 54px;
+      min-width: 54px;
+      min-height: 54px;
+      aspect-ratio: 1 / 1;
+      box-sizing: border-box;
+      border: 0;
+      border-radius: 50%;
+      box-shadow: 0 12px 24px rgba(18, 18, 18, 0.16);
+    }
+
+    .shop-the-look__dot.is-active .shop-the-look__dot-circle {
+      box-shadow: 0 14px 28px rgba(18, 18, 18, 0.22);
+    }
+
+    .shop-the-look__dot-number svg {
+      display: none;
+    }
+
+    .shop-the-look__dot-number::before {
+      content: "" !important;
+      display: block !important;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
     }
 
     .shop-the-look__products-column {
-      min-height: 560px;
-      justify-content: center;
-      padding: clamp(18px, 2.3vw, 28px);
-      border: 1px solid rgba(18, 18, 18, 0.08);
-      border-radius: 8px;
-      background: var(--stl-card-panel-background);
+      position: absolute;
+      left: clamp(28px, 4vw, 64px);
+      bottom: clamp(28px, 4vw, 64px);
+      z-index: 5;
+      width: min(480px, 38vw);
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
     }
 
     .shop-the-look__products-holder {
@@ -1341,66 +1443,72 @@
     }
 
     .shop-the-look__products-header {
-      display: flex;
-      margin-bottom: 2px;
+      display: none;
     }
 
     .shop-the-look__product-content {
-      grid-template-columns: 1fr;
-      gap: 0;
-      max-width: 420px;
+      grid-template-columns: 122px minmax(0, 1fr);
+      gap: 14px;
+      width: 100%;
+      max-width: 480px;
       min-height: 0;
-      padding: 0;
-      border: 1px solid var(--stl-card-border);
-      border-radius: 8px;
+      padding: 10px;
+      border: 0;
+      border-radius: 0;
       overflow: hidden;
-      box-shadow: 0 18px 42px rgba(18, 18, 18, 0.11);
+      background: #ffffff;
+      box-shadow: 0 16px 34px rgba(18, 18, 18, 0.1);
       animation: stlProductReveal 0.24s ease both;
     }
 
     .shop-the-look__card-media {
-      width: 100%;
+      width: 122px;
       height: auto;
       aspect-ratio: 1 / 1;
       background: #f3f3f0;
     }
 
     .shop-the-look__card-info {
-      padding: 22px 24px 24px;
-      gap: 22px;
+      justify-content: center;
+      padding: 8px 8px 8px 0;
+      gap: 18px;
       background: var(--stl-card-background);
     }
 
     .shop-the-look__card-text {
-      gap: 8px;
+      gap: 7px;
     }
 
     .shop-the-look__product-title {
-      font-size: var(--stl-card-title-size-desktop);
-      line-height: 1.24;
+      font-size: min(var(--stl-card-title-size-desktop), 16px);
+      line-height: 1.28;
     }
 
     .shop-the-look__product-price {
-      font-size: var(--stl-card-price-size-desktop);
+      font-size: min(var(--stl-card-price-size-desktop), 14px);
     }
 
     .shop-the-look__quick-view {
-      width: 100%;
-      min-height: 46px;
-      justify-content: center;
-      gap: 8px;
-      border-radius: 4px;
-      background: var(--stl-card-button-background);
-      color: var(--stl-card-button-text);
-      font-size: 13px;
-      font-weight: var(--stl-card-button-weight);
-      letter-spacing: 0.02em;
-      text-transform: var(--stl-card-button-text-transform);
+      width: fit-content;
+      min-height: 0;
+      justify-content: flex-start;
+      gap: 10px;
+      border-radius: 0;
+      background: transparent;
+      color: var(--stl-card-title-color);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: none;
     }
 
     .shop-the-look__quick-view:hover {
-      text-decoration: none;
-      background: var(--stl-card-button-background-hover);
+      text-decoration: underline;
+      background: transparent;
+    }
+
+    .shop-the-look__products-column .shop-the-look__section-pagination {
+      display: none;
     }
   }
 

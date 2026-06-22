@@ -677,49 +677,37 @@
                                         {%- liquid
                                             assign fallback_product_count = 0
                                         -%}
-                                        {%- for fallback_product in best_seller_collection.products limit: 16 -%}
-                                            {%- if fallback_product_count > 0 -%},{%- endif -%}
-                                            {
-                                                "productUrl": {{ fallback_product.url | json }},
-                                                "productId": {{ fallback_product.id | json }}
-                                            }
-                                            {%- assign fallback_product_count = fallback_product_count | plus: 1 -%}
-                                        {%- endfor -%}
-                                        {%- if fallback_product_count < 8 and fallback_all_collection != blank -%}
-                                            {%- for fallback_product in fallback_all_collection.products limit: 16 -%}
+                                        {%- for fallback_product in best_seller_collection.products limit: 50 -%}
+                                            {%- if fallback_product.selected_or_first_available_variant.requires_shipping -%}
                                                 {%- if fallback_product_count > 0 -%},{%- endif -%}
                                                 {
                                                     "productUrl": {{ fallback_product.url | json }},
-                                                    "productId": {{ fallback_product.id | json }}
+                                                    "productId": {{ fallback_product.id | json }},
+                                                    "physicalProduct": true
                                                 }
                                                 {%- assign fallback_product_count = fallback_product_count | plus: 1 -%}
+                                            {%- endif -%}
+                                        {%- endfor -%}
+                                        {%- if fallback_product_count < 8 and fallback_all_collection != blank -%}
+                                            {%- for fallback_product in fallback_all_collection.products limit: 50 -%}
+                                                {%- if fallback_product.selected_or_first_available_variant.requires_shipping -%}
+                                                    {%- if fallback_product_count > 0 -%},{%- endif -%}
+                                                    {
+                                                        "productUrl": {{ fallback_product.url | json }},
+                                                        "productId": {{ fallback_product.id | json }},
+                                                        "physicalProduct": true
+                                                    }
+                                                    {%- assign fallback_product_count = fallback_product_count | plus: 1 -%}
+                                                {%- endif -%}
                                             {%- endfor -%}
                                         {%- endif -%}
                                     ]
                                 </script>
                                 <template data-recently-viewed-fallback-markup>
                                     {%- assign fallback_markup_count = 0 -%}
-                                    {%- for fallback_product in best_seller_collection.products limit: 16 -%}
-                                        <span data-fallback-product-id="{{ fallback_product.id }}">
-                                            {%- render 'product-item',
-                                                product: fallback_product,
-                                                compact: true,
-                                                show_image: true,
-                                                show_labels: false,
-                                                show_vendor: false,
-                                                show_title: false,
-                                                show_rating: false,
-                                                show_price: false,
-                                                show_stock: false,
-                                                enable_color_picker: false,
-                                                quickshop: false
-                                            -%}
-                                        </span>
-                                        {%- assign fallback_markup_count = fallback_markup_count | plus: 1 -%}
-                                    {%- endfor -%}
-                                    {%- if fallback_markup_count < 8 and fallback_all_collection != blank -%}
-                                        {%- for fallback_product in fallback_all_collection.products limit: 16 -%}
-                                            <span data-fallback-product-id="{{ fallback_product.id }}">
+                                    {%- for fallback_product in best_seller_collection.products limit: 50 -%}
+                                        {%- if fallback_product.selected_or_first_available_variant.requires_shipping -%}
+                                            <span data-fallback-product-id="{{ fallback_product.id }}" data-fallback-product-url="{{ fallback_product.url }}" data-fallback-physical-product="true">
                                                 {%- render 'product-item',
                                                     product: fallback_product,
                                                     compact: true,
@@ -735,6 +723,28 @@
                                                 -%}
                                             </span>
                                             {%- assign fallback_markup_count = fallback_markup_count | plus: 1 -%}
+                                        {%- endif -%}
+                                    {%- endfor -%}
+                                    {%- if fallback_markup_count < 8 and fallback_all_collection != blank -%}
+                                        {%- for fallback_product in fallback_all_collection.products limit: 50 -%}
+                                            {%- if fallback_product.selected_or_first_available_variant.requires_shipping -%}
+                                                <span data-fallback-product-id="{{ fallback_product.id }}" data-fallback-product-url="{{ fallback_product.url }}" data-fallback-physical-product="true">
+                                                    {%- render 'product-item',
+                                                        product: fallback_product,
+                                                        compact: true,
+                                                        show_image: true,
+                                                        show_labels: false,
+                                                        show_vendor: false,
+                                                        show_title: false,
+                                                        show_rating: false,
+                                                        show_price: false,
+                                                        show_stock: false,
+                                                        enable_color_picker: false,
+                                                        quickshop: false
+                                                    -%}
+                                                </span>
+                                                {%- assign fallback_markup_count = fallback_markup_count | plus: 1 -%}
+                                            {%- endif -%}
                                         {%- endfor -%}
                                     {%- endif -%}
                                 </template>

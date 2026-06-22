@@ -16,6 +16,7 @@
       {% if template.name == 'product' %}
       viewed_product: '{{ product.url }}',
       viewed_product_id: '{{ product.id }}',
+      viewed_product_physical: {{ product.selected_or_first_available_variant.requires_shipping | json }},
       {% endif %}
       template: '{{ template.name }}',
       cookiebanner_testmode: {{ settings.cookiebanner_testmode }},

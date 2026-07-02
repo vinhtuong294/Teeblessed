@@ -4,10 +4,19 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		{%- liquid
+			assign browser_theme_color = '#ffffff'
+			for scheme in settings.color_schemes
+				if scheme.id == settings.default_color_scheme.id
+					assign browser_theme_color = scheme.settings.primary_bg
+					break
+				endif
+			endfor
+		-%}
     {%- assign formatted_initial_value = gift_card.initial_value | money_without_trailing_zeros: gift_card.currency -%}
     {%- assign formatted_initial_value_stripped = formatted_initial_value | strip_html -%}
     <title>{{ 'gift_cards.issued.page_title' | t: value: formatted_initial_value_stripped, shop: shop.name }}</title>
-		<meta name="theme-color" content="{{ settings.accent_color }}">
+		<meta name="theme-color" content="{{ browser_theme_color }}">
 		<meta name="MobileOptimized" content="320">
 		<meta name="HandheldFriendly" content="true">
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover, shrink-to-fit=no">

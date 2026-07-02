@@ -15,7 +15,7 @@
         "template--21657903202617__6ed76557-f01f-4c16-be59-921274d42b0b-slide-1": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/banner_floral.png",
+            "image": "shopify://shop_images/banner_homepage_upscaled.png",
             "show_play_button": false,
             "video_mute": true,
             "layout": "background",
@@ -38,7 +38,7 @@
             "second_link_text": "SHOP NOW",
             "second_link_url": "shopify://collections/best-sellers",
             "second_button_style": "primary inv",
-            "image_mobile": "shopify://shop_images/bia_2026_1_45ba888a-91f3-4b72-ab6f-de239badb0b6.png"
+            "image_mobile": "shopify://shop_images/banner_homepage__2__upscaled.png"
           }
         }
       },
@@ -100,6 +100,7 @@
         "slide_DdDcqd",
         "slide_zAQR6F"
       ],
+      "disabled": true,
       "name": "3D Carousel Responsive",
       "settings": {
         "show_on_desktop": false,
@@ -130,14 +131,14 @@
             "title": "Best Sellers",
             "subtitle": "",
             "featured_products": [
-              "comfort-colors-250-years-of-freedom-watercolor-flag-t-shirt-tsta09",
-              "comfort-colors-america-god-shed-his-grace-on-thee-t-shirt-tsta10",
-              "comfort-colors-america-250-years-of-freedom-floral-t-shirt-tsta11",
-              "comfort-colors-america-floral-watercolor-faith-freedom-pride-t-shirt-tsta35",
-              "comfort-colors-250th-america-faith-freedom-hope-mason-jars-t-shirt-tsta45",
-              "comfort-colors-new-creation-justified-sanctified-t-shirt-tst04",
-              "comfort-colors-i-sing-because-im-free-sparrow-t-shirt-tst10",
-              "comfort-colors-saved-by-grace-butterfly-t-shirt-tst12"
+              "comfort-colors-god-is-good-all-the-time-t-shirt",
+              "comfort-colors-read-more-worry-less-pooh-and-piglet-t-shirt",
+              "comfort-colors-jesus-knows-the-way-t-shirt",
+              "comfort-colors-begin-by-trusting-god-t-shirt",
+              "comfort-colors-100-days-of-school-bear-t-shirt",
+              "comfort-colors-a-sweet-friendship-refreshes-the-soul-t-shirt-tspooh16",
+              "comfort-colors-good-day-for-learning-pooh-and-friends-t-shirt",
+              "comfort-colors-back-to-school-with-pooh-and-friends-t-shirt"
             ],
             "products_to_show": 8,
             "text_alignment": "center",
@@ -320,15 +321,16 @@
       "type": "section-featured-products",
       "custom_css": [
         "h3 {font-weight: BOLD;}",
-        "a {display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}"
+        "a {display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}",
+        "@media only screen and (max-width: 47.5em) {header.title-styling h3 {white-space: nowrap;}}"
       ],
       "name": "t:sections.featured_products.presets.name",
       "settings": {
         "products": [
-          "comfort-colors-new-creation-butterfly-t-shirt-tst03",
-          "comfort-colors-new-creation-justified-sanctified-t-shirt-tst04",
-          "comfort-colors-chase-peace-not-strife-dove-t-shirt-tst06",
-          "comfort-colors-but-the-lord-stood-by-me-dove-t-shirt-tst13"
+          "comfort-colors-good-day-for-learning-pooh-and-friends-t-shirt",
+          "comfort-colors-read-more-worry-less-pooh-and-piglet-t-shirt",
+          "comfort-colors-its-fine-back-to-school-pooh-and-friends-t-shirt",
+          "comfort-colors-back-to-school-with-pooh-and-friends-t-shirt"
         ],
         "number_of_items": 5,
         "text_alignment": "start",
@@ -338,14 +340,14 @@
         "background_width": 50,
         "background_height": 0,
         "background_color_section": false,
-        "title": "<h3><strong>EMBRACING THE NATURE</strong></h3>",
+        "title": "<h3><strong>BACK TO SCHOOL WITH P</strong>OOH AND FRIENDS</h3>",
         "title_underline_style": "none",
         "text": "",
         "enable_custom_font_styling": false,
         "font_size": "16px",
         "show_link": true,
         "link_text": "See all",
-        "link_url": "shopify://collections/christian-nature-symbols-t-shirts",
+        "link_url": "shopify://collections/back-to-school-with-pooh-and-friends",
         "button_style": "secondary link",
         "button_alignment": "end",
         "background_width_mobile": 100,
@@ -501,11 +503,11 @@
         "product_CgqGyw": {
           "type": "product",
           "settings": {
-            "product": "comfort-colors-new-creation-justified-sanctified-t-shirt-tst04",
-            "hotspot_horizontal": 67,
-            "hotspot_vertical": 39,
-            "hotspot_mobile_horizontal": 67,
-            "hotspot_mobile_vertical": 42
+            "product": "comfort-colors-god-is-good-all-the-time-t-shirt",
+            "hotspot_horizontal": 65,
+            "hotspot_vertical": 50,
+            "hotspot_mobile_horizontal": 69,
+            "hotspot_mobile_vertical": 49
           }
         }
       },
@@ -518,7 +520,7 @@
         "show_on_mobile": true,
         "heading": "Shop the Look",
         "heading_alignment": "left",
-        "image": "shopify://shop_images/35_OFF_19.png",
+        "image": "shopify://shop_images/TOP_5_MAU_C_DI_N_6.png",
         "desktop_image_ratio": "1 / 1",
         "mobile_image_ratio": "1 / 1",
         "background_color": "#ffffff",
@@ -548,11 +550,11 @@
         "product_9pfQgg": {
           "type": "product",
           "settings": {
-            "product": "comfort-colors-i-sing-because-im-free-sparrow-t-shirt-tst10",
-            "hotspot_horizontal": 26,
-            "hotspot_vertical": 29,
-            "hotspot_mobile_horizontal": 26,
-            "hotspot_mobile_vertical": 29
+            "product": "comfort-colors-read-more-worry-less-pooh-and-piglet-t-shirt",
+            "hotspot_horizontal": 36,
+            "hotspot_vertical": 54,
+            "hotspot_mobile_horizontal": 31,
+            "hotspot_mobile_vertical": 56
           }
         }
       },
@@ -565,7 +567,7 @@
         "show_on_mobile": true,
         "heading": "Shop the Look",
         "heading_alignment": "left",
-        "image": "shopify://shop_images/35_OFF_18.png",
+        "image": "shopify://shop_images/Morty_9_6f6c9e70-7178-41ba-9cf0-9ac30f596609.png",
         "desktop_image_ratio": "1 / 1",
         "mobile_image_ratio": "1 / 1",
         "background_color": "#ffffff",
@@ -620,7 +622,8 @@
             "arrows_color": "#000000",
             "transition_speed": 5,
             "header_text": "Customers are saying",
-            "show_average_rating": true
+            "show_average_rating": true,
+            "rating_display": "default"
           }
         }
       },

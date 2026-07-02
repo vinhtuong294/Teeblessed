@@ -33,12 +33,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="facebook-domain-verification" content="pvnqw1b5d9ynk94ucmssnm1nioa7ee" />
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {%- liquid
+      assign browser_theme_color = '#ffffff'
+      for scheme in settings.color_schemes
+        if scheme.id == settings.default_color_scheme.id
+          assign browser_theme_color = scheme.settings.primary_bg
+          break
+        endif
+      endfor
+    -%}
     <title>
       {{ page_title }}
       {% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
     </title>
     {%- if page_description -%}<meta name="description" content="{{ page_description | escape }}">{%- endif -%}
-    <meta name="theme-color" content="{{ settings.accent_color }}">
+    <meta name="theme-color" content="{{ browser_theme_color }}">
     <meta name="MobileOptimized" content="320">
     <meta name="HandheldFriendly" content="true">
     <meta

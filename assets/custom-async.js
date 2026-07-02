@@ -3987,52 +3987,23 @@ var getSearchResults = function (searchTerm, livesearch_placeholders) {
 var recentlyViewedProducts = function () {
 	
 	var recently_viewed_products = document.querySelectorAll(".recently-viewed-products:not(.recently-viewed-products-initialized)"),
-		currProductData,
-		blockedRecentlyViewedHandles = [
-			'shipping-protection',
-			'free-15-e-book-10-discount',
-			'package-protection',
-			'order-protection',
-			'shipping-insurance',
-			'routeins',
-			'warranty'
-		],
-		isRecentlyViewedPhysicalProduct = function (product) {
-			var productUrl = product && product.productUrl ? String(product.productUrl).toLowerCase() : '',
-				productHandle = productUrl.split('?')[0].split('#')[0].split('/products/').pop().split('/')[0];
-			if (!product || !product.productUrl || !product.productId) {
-				return false;
-			}
-			if (product.physicalProduct === false || product.requiresShipping === false || product.requires_shipping === false) {
-				return false;
-			}
-			if (blockedRecentlyViewedHandles.indexOf(productHandle) > -1) {
-				return false;
-			}
-			return true;
-		},
-		sanitizeRecentlyViewedProductData = function (products) {
-			if (!Array.isArray(products)) {
-				return [];
-			}
-			return products.filter(function (product) {
-				return isRecentlyViewedPhysicalProduct(product);
-			});
-		};
+		currProductData;
 	try {
 		currProductData = JSON.parse(localStorage.getItem("recentlyViewedProduct"));
 	} catch (error) {
 		currProductData = [];
 	}
-	currProductData = sanitizeRecentlyViewedProductData(currProductData);
-	if (general.viewed_product && general.viewed_product_physical !== false){
+	if (general.viewed_product){
 		var numberOfProducts = 12,
 			productUrl = general.viewed_product,
 			productId = general.viewed_product_id,
-			productData =  { productUrl: productUrl, productId: productId, physicalProduct: true },
+			productData =  { productUrl: productUrl, productId: productId },
 			pushNewProductData = false,
 			sameProduct, newProductData, sameProductIndex;
-		if (isRecentlyViewedPhysicalProduct(productData)) {
+		if (!Array.isArray(currProductData)) {
+			currProductData = [];
+			pushNewProductData = true;
+		} else {
 			sameProduct = currProductData.filter(e => e.productId === productId).length > 0;
 			if (sameProduct) {
 				sameProductIndex = currProductData.map(function(e) { return e.productId; }).indexOf(productId);
@@ -4045,12 +4016,13 @@ var recentlyViewedProducts = function () {
 				currProductData.shift();
 				pushNewProductData = true;
 			}
-			if (pushNewProductData) {
-				currProductData.push(productData);
-			}
+		}
+		if (pushNewProductData) {
+			currProductData.push(productData);
+			newProductData = JSON.stringify(currProductData);
+			localStorage.setItem("recentlyViewedProduct", newProductData);
 		}
 	}
-	localStorage.setItem("recentlyViewedProduct", JSON.stringify(currProductData));
 	if (recently_viewed_products.length) {
 		var storedProductData;
 		try {
@@ -4058,8 +4030,9 @@ var recentlyViewedProducts = function () {
 		} catch (error) {
 			storedProductData = [];
 		}
-		storedProductData = sanitizeRecentlyViewedProductData(storedProductData);
-		localStorage.setItem("recentlyViewedProduct", JSON.stringify(storedProductData));
+		if (!Array.isArray(storedProductData)) {
+			storedProductData = [];
+		}
 		var recentData = storedProductData.slice().reverse(),
 			fetchProducts = [],
 			fetchProductsMap = {};
@@ -4080,11 +4053,10 @@ var recentlyViewedProducts = function () {
 				} catch (error) {
 					fallbackProducts = [];
 				}
-				fallbackProducts = sanitizeRecentlyViewedProductData(fallbackProducts);
 			}
 			Array.from(recentData).forEach(function (product) {
 				var productId = product && product.productId ? String(product.productId) : '';
-				if (isRecentlyViewedPhysicalProduct(product) && productId && usedProductIds.indexOf(productId) === -1) {
+				if (product && product.productUrl && productId && usedProductIds.indexOf(productId) === -1) {
 					displayData.push(product);
 					usedProductIds.push(productId);
 				}
@@ -4102,7 +4074,7 @@ var recentlyViewedProducts = function () {
 			});
 			if (fillToItems && displayData.length < numberOfItems && fallbackProducts.length) {
 				Array.from(fallbackProducts).some(function (product) {
-					if (isRecentlyViewedPhysicalProduct(product)) {
+					if (product && product.productUrl && product.productId) {
 						displayData.push(product);
 					}
 					return displayData.length >= numberOfItems;
@@ -4182,13 +4154,6 @@ var recentlyViewedProducts = function () {
 									var fallbackMarkupItems = Array.from(fallbackMarkupContainer.querySelectorAll('[data-fallback-product-id]')),
 										fallbackHtml = '',
 										fallbackItemsAdded = 0;
-									fallbackMarkupItems = fallbackMarkupItems.filter(function (item) {
-										return isRecentlyViewedPhysicalProduct({
-											productId: item.dataset.fallbackProductId,
-											productUrl: item.dataset.fallbackProductUrl,
-											physicalProduct: item.dataset.fallbackPhysicalProduct !== 'false'
-										});
-									});
 									Array.from(fallbackMarkupItems).forEach(function (item) {
 										var productId = String(item.dataset.fallbackProductId || '');
 										if (list_collection.children.length + fallbackItemsAdded < number_of_items && usedFallbackProductIds.indexOf(productId) === -1) {

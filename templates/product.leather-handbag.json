@@ -159,16 +159,16 @@
         "selleasy_lb_upsell_widget_cpal_tjAnaM"
       ],
       "custom_css": [
-        "heightbutton.overlay-buy_button {cursor: pointer; /* Hiển thị con trỏ khi hover */ text-transform: uppercase; /* Chữ in hoa */}",
-        "input.lb-qty-count {--input_height: 22px;}",
-        ".old {color: #d11616; font-size: 14px;}",
-        ".new-price-001 {font-size: 22px !important;}",
-        ".lb-addon-title {text-align: center;}",
-        ".overlay-buy_button:before {background: #103778; border: none;}",
-        "div.lb-button {background-color: #103778 !important;}",
-        "span#new-price-1 {font-size: 20px !important;}",
-        "span.old {font-size: 13px !important;}",
-        ".margin-content {margin: 0;}"
+        "heightbutton.overlay-buy_button{cursor:pointer;text-transform:uppercase}",
+        "input.lb-qty-count{--input_height:22px}",
+        ".old{color:#d11616;font-size:14px}",
+        ".new-price-001{font-size:22px !important}",
+        ".lb-addon-title{text-align:center}",
+        ".overlay-buy_button:before{background:#103778border:none}",
+        "div.lb-button{background-color:#103778 !important}",
+        "span#new-price-1{font-size:20px !important}",
+        "span.old{font-size:13px !important}",
+        ".margin-content{margin:0}"
       ],
       "settings": {
         "width": "wide",
@@ -199,7 +199,7 @@
         "number_of_items": 4,
         "text_alignment": "start",
         "background_color_palette": "",
-        "background_overlay_opacity": 100,
+        "background_overlay_opacity": 0,
         "background_position": "left",
         "background_width": 0,
         "background_height": 0,
@@ -216,8 +216,10 @@
         "background_height_mobile": 0,
         "spacing_desktop": 50,
         "spacing_mobile": 0,
-        "fix_zindex": 0
-      }
+        "fix_zindex": 0,
+        "force_white_background": true
+      },
+      "custom_css": []
     },
     "section_featured_products_XwVAKE": {
       "type": "section-featured-products",

@@ -1,5 +1,26 @@
 {%- liquid
   assign collection = collections[section.settings.collection]
+  assign hide_section = false
+  assign is_leather_handbags_collection = false
+  assign section_title_downcase = section.settings.title | strip_html | downcase
+  if section.settings.hide_on_leather_handbags_product and product
+    if product.template_suffix == 'leather-handbag'
+      assign hide_section = true
+    endif
+    if hide_section == false
+      for product_collection in product.collections
+        if product_collection.handle == 'leather-handbags'
+          assign hide_section = true
+          break
+        endif
+      endfor
+    endif
+  endif
+  if section.settings.collection == 'leather-handbags'
+    if section_title_downcase contains 'leather handbags'
+      assign is_leather_handbags_collection = true
+    endif
+  endif
   if collection != blank
     assign total_number_of_items = collection.products.size | at_most: section.settings.limit
   else
@@ -34,9 +55,6 @@
       assign width_class = 'width-20'
   endcase
 
-  assign img_width_limit = limit
-  assign img_width = 100 | divided_by: img_width_limit
-
   if section.settings.show_link and section.settings.link_text != empty and collection != blank
     assign link = true
   endif
@@ -67,31 +85,7 @@
   endcapture
 -%}
 
-{%- capture image_sizes -%}
-  (min-width: 1300px)
-    {%- if img_width == 100 -%}
-      calc(1280px * 0.2)
-    {% else %}
-      calc(1280px * 0.{{ img_width }})
-    {% endif %}
-  ,
-  (min-width: 1000px)
-    {%- if img_width == 100 -%}
-      calc(100vw * 0.2)
-    {% else %}
-      calc(100vw * 0.{{ img_width }})
-    {% endif %}
-  ,
-  (min-width: 760px)
-  {% if slider %}
-    calc(100vw * 0.3)
-  {% else %}
-    320px
-  {% endif %}
-  ,
-  170px
-{%- endcapture -%}
-
+{%- unless hide_section -%}
 {%- if link %}
   {%- capture link -%}
     {%- liquid
@@ -190,6 +184,41 @@
 
 <style>
   #shopify-section-{{ section.id }} { z-index: {{ section.settings.fix_zindex }}!important; }
+  {%- if is_leather_handbags_collection -%}
+    #shopify-section-{{ section.id }} header.title-styling h3 {
+      font-weight: 700;
+    }
+    #shopify-section-{{ section.id }} .l4cl a {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    @media only screen and (max-width: 47.5em) {
+      #shopify-section-{{ section.id }} header.title-styling h3 {
+        white-space: nowrap;
+      }
+      #shopify-section-{{ section.id }} .l4cl.width-20,
+      #shopify-section-{{ section.id }} .l4cl.width-20 > li,
+      #shopify-section-{{ section.id }} .l4cl.width-20 .li {
+        --width: 200px!important;
+      }
+      #shopify-section-{{ section.id }} .l4cl > .swiper-button-nav {
+        display: none!important;
+      }
+    }
+  {%- endif -%}
+  {%- if section.settings.force_white_background -%}
+    #shopify-section-{{ section.id }},
+    #shopify-section-{{ section.id }} .m6bx,
+    #shopify-section-{{ section.id }} .module-color-palette,
+    #shopify-section-{{ section.id }} .img-overlay {
+      background: #fff!important;
+    }
+    #shopify-section-{{ section.id }} .img-overlay {
+      opacity: 0!important;
+    }
+  {%- endif -%}
   @media only screen and (min-width: 47.5em) {
     #shopify-section-{{ section.id }} .m6bx { margin-bottom: {{ section.settings.spacing_desktop }}px; }
   }
@@ -197,6 +226,7 @@
     #shopify-section-{{ section.id }} .m6bx { margin-bottom: {{ section.settings.spacing_mobile }}px; }
   }
 </style>
+{%- endunless -%}
 
 {% schema %}
 {
@@ -211,6 +241,12 @@
       "type": "collection",
       "id": "collection",
       "label": "t:sections.featured_collection.settings.collection.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_on_leather_handbags_product",
+      "label": "Hide on Leather Handbags product pages",
+      "default": false
     },
     {
       "type": "range",
@@ -309,6 +345,12 @@
       "id": "background_color_section",
       "label": "t:global.background.background_color_section.label",
       "info": "t:global.background.background_color_section.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "force_white_background",
+      "label": "Force white background",
+      "default": false
     },
     {
       "type": "header",

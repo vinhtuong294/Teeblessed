@@ -33,9 +33,6 @@
       assign width_class = 'width-20'
   endcase
 
-  assign img_width_limit = limit
-  assign img_width = 100 | divided_by: img_width_limit
-
   if section.settings.show_link and section.settings.link_text != empty and section.settings.link_url != blank
     assign link = true
   endif
@@ -63,31 +60,6 @@
     endif
   endcapture
 -%}
-
-{%- capture image_sizes -%}
-    (min-width: 1300px)
-      {%- if img_width == 100 -%}
-          calc(1280px * 0.2)
-      {% else %}
-          calc(1280px * 0.{{ img_width }})
-      {% endif %}
-    ,
-    (min-width: 1000px)
-      {%- if img_width == 100 -%}
-          calc(100vw * 0.2)
-      {% else %}
-          calc(100vw * 0.{{ img_width }})
-      {% endif %}
-    ,
-    (min-width: 760px)
-    {% if slider %}
-        calc(100vw * 0.3)
-    {% else %}
-        320px
-    {% endif %}
-    ,
-    170px
-{%- endcapture -%}
 
 {%- if link %}
   {%- capture link -%}
@@ -197,6 +169,17 @@
 </article>
 <style>
   #shopify-section-{{ section.id }} { z-index: {{ section.settings.fix_zindex }}!important; }
+  {%- if section.settings.force_white_background -%}
+    #shopify-section-{{ section.id }},
+    #shopify-section-{{ section.id }} .m6bx,
+    #shopify-section-{{ section.id }} .module-color-palette,
+    #shopify-section-{{ section.id }} .img-overlay {
+      background: #fff!important;
+    }
+    #shopify-section-{{ section.id }} .img-overlay {
+      opacity: 0!important;
+    }
+  {%- endif -%}
   @media only screen and (min-width: 47.5em) {
       #shopify-section-{{ section.id }} .m6bx { margin-bottom: {{ section.settings.spacing_desktop }}px; }
   }
@@ -307,6 +290,12 @@
       "id": "background_color_section",
       "label": "t:global.background.background_color_section.label",
       "info": "t:global.background.background_color_section.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "force_white_background",
+      "label": "Force white background",
+      "default": false
     },
     {
       "type": "header",

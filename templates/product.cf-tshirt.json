@@ -206,16 +206,16 @@
         "51846939-6835-411d-94d1-a9fbe0cf04c2"
       ],
       "custom_css": [
-        "heightbutton.overlay-buy_button {cursor: pointer; /* Hiển thị con trỏ khi hover */ text-transform: uppercase; /* Chữ in hoa */}",
-        "input.lb-qty-count {--input_height: 22px;}",
-        ".old {color: #d11616; font-size: 14px;}",
-        ".new-price-001 {font-size: 22px !important;}",
-        ".lb-addon-title {text-align: center;}",
-        ".overlay-buy_button:before {background: #103778; border: none;}",
-        "div.lb-button {background-color: #103778 !important;}",
-        "span#new-price-1 {font-size: 20px !important;}",
-        "span.old {font-size: 13px !important;}",
-        ".margin-content {margin: 0;}"
+        "heightbutton.overlay-buy_button{cursor:pointer;text-transform:uppercase}",
+        "input.lb-qty-count{--input_height:22px}",
+        ".old{color:#d11616;font-size:14px}",
+        ".new-price-001{font-size:22px !important}",
+        ".lb-addon-title{text-align:center}",
+        ".overlay-buy_button:before{background:#103778border:none}",
+        "div.lb-button{background-color:#103778 !important}",
+        "span#new-price-1{font-size:20px !important}",
+        "span.old{font-size:13px !important}",
+        ".margin-content{margin:0}"
       ],
       "settings": {
         "width": "wide",
@@ -246,10 +246,10 @@
         "number_of_items": 5,
         "text_alignment": "start",
         "background_color_palette": "",
-        "background_overlay_opacity": 75,
+        "background_overlay_opacity": 0,
         "background_position": "left",
-        "background_width": 100,
-        "background_height": 100,
+        "background_width": 0,
+        "background_height": 0,
         "background_color_section": false,
         "title": "<h2><strong>Customer also loved</strong></h2>",
         "title_underline_style": "none",
@@ -259,12 +259,16 @@
         "show_link": false,
         "link_text": "Button",
         "button_style": "primary plain",
-        "background_width_mobile": 100,
-        "background_height_mobile": 100,
+        "background_width_mobile": 0,
+        "background_height_mobile": 0,
         "spacing_desktop": 20,
         "spacing_mobile": 30,
-        "fix_zindex": 0
-      }
+        "fix_zindex": 0,
+        "force_white_background": true
+      },
+      "custom_css": [
+        ".m6bx {background: #fff;}"
+      ]
     },
     "1755140934a979b353": {
       "type": "_blocks",
@@ -435,6 +439,37 @@
         "spacing_mobile": 0,
         "fix_zindex": 0
       }
+    },
+    "section_featured_collection_leather_handbags": {
+      "type": "section-featured-collection",
+      "custom_css": [],
+      "name": "Leather Handbags bestsellers",
+      "settings": {
+        "collection": "leather-handbags",
+        "hide_on_leather_handbags_product": true,
+        "limit": 10,
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "background_color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 50,
+        "background_height": 0,
+        "background_color_section": false,
+        "title": "<h3><strong>LEATHER HANDBAGS</strong></h3>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "show_link": true,
+        "link_text": "See all",
+        "button_style": "secondary link",
+        "background_width_mobile": 100,
+        "background_height_mobile": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
     }
   },
   "order": [
@@ -442,6 +477,7 @@
     "breadcrumbs",
     "main-product",
     "section_featured_collection_r3FGFf",
+    "section_featured_collection_leather_handbags",
     "1755140934a979b353",
     "recommendations",
     "section_faq_3bCKfd"

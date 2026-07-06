@@ -243,12 +243,44 @@
         "spacing_mobile": 0,
         "fix_zindex": 0
       }
+    },
+    "section_featured_collection_leather_handbags": {
+      "type": "section-featured-collection",
+      "custom_css": [],
+      "name": "Leather Handbags bestsellers",
+      "settings": {
+        "collection": "leather-handbags",
+        "hide_on_leather_handbags_product": true,
+        "limit": 10,
+        "number_of_items": 5,
+        "text_alignment": "start",
+        "background_color_palette": "",
+        "background_overlay_opacity": 75,
+        "background_position": "left",
+        "background_width": 50,
+        "background_height": 0,
+        "background_color_section": false,
+        "title": "<h3><strong>LEATHER HANDBAGS</strong></h3>",
+        "title_underline_style": "none",
+        "text": "",
+        "enable_custom_font_styling": false,
+        "font_size": "16px",
+        "show_link": true,
+        "link_text": "See all",
+        "button_style": "secondary link",
+        "background_width_mobile": 100,
+        "background_height_mobile": 0,
+        "spacing_desktop": 0,
+        "spacing_mobile": 0,
+        "fix_zindex": 0
+      }
     }
   },
   "order": [
     "74050fd1-3b74-482c-b07b-8f854296f104",
     "breadcrumbs",
     "main-product",
+    "section_featured_collection_leather_handbags",
     "recommendations"
   ]
 }

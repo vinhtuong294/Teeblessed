@@ -439,6 +439,7 @@
     },
     "section_slideshow_Nb3qFc": {
       "type": "section-slideshow",
+      "disabled": true,
       "blocks": {
         "slide_Dg6yqi": {
           "type": "slide",

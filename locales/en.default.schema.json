@@ -2928,6 +2928,25 @@
             "label": "Adapt to first media"
           }
         },
+        "image_fit": {
+          "label": "Image fit",
+          "info": "Choose Fit entire image to show the full banner without cropping.",
+          "options__1": {
+            "label": "Fill frame (crop)"
+          },
+          "options__2": {
+            "label": "Fit entire image"
+          }
+        },
+        "transition_effect": {
+          "label": "Slide transition",
+          "options__1": {
+            "label": "Slide"
+          },
+          "options__2": {
+            "label": "Fade"
+          }
+        },
         "enable_custom_height": {
           "label": "Enable custom minimal height"
         },
@@ -2955,8 +2974,29 @@
           "label": "Show play / pause button",
           "info": "Only applicable when autoplay is enabled"
         },
+        "desktop_button": {
+          "header": "Desktop button",
+          "background_color": {
+            "label": "Desktop button background"
+          },
+          "text_color": {
+            "label": "Desktop button text"
+          },
+          "width": {
+            "label": "Desktop button width"
+          },
+          "height": {
+            "label": "Desktop button height"
+          },
+          "font_size": {
+            "label": "Desktop button font size"
+          }
+        },
         "mobile": {
           "header": "Mobile layout",
+          "show_links_mobile": {
+            "label": "Show buttons on mobile"
+          },
           "height_mobile": {
             "label": "Height",
             "options__1": {
@@ -2974,6 +3014,24 @@
             "adapt": {
               "label": "Adapt to first media"
             }
+          }
+        },
+        "mobile_button": {
+          "header": "Mobile button",
+          "background_color": {
+            "label": "Mobile button background"
+          },
+          "text_color": {
+            "label": "Mobile button text"
+          },
+          "width": {
+            "label": "Mobile button width"
+          },
+          "height": {
+            "label": "Mobile button height"
+          },
+          "font_size": {
+            "label": "Mobile button font size"
           }
         }
       },
@@ -3010,6 +3068,27 @@
             },
             "max_width": {
               "label": "Max. content width"
+            },
+            "button_position": {
+              "header": "Button position",
+              "desktop_position": {
+                "label": "Desktop button position"
+              },
+              "desktop_offset_x": {
+                "label": "Desktop horizontal offset"
+              },
+              "desktop_offset_y": {
+                "label": "Desktop vertical offset"
+              },
+              "mobile_position": {
+                "label": "Mobile button position"
+              },
+              "mobile_offset_x": {
+                "label": "Mobile horizontal offset"
+              },
+              "mobile_offset_y": {
+                "label": "Mobile vertical offset"
+              }
             },
             "buttons": {
               "heading": "Buttons",

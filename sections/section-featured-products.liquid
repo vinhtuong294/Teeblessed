@@ -182,6 +182,127 @@
   {%- endif -%}
   @media only screen and (min-width: 47.5em) {
       #shopify-section-{{ section.id }} .m6bx { margin-bottom: {{ section.settings.spacing_desktop }}px; }
+      #shopify-section-{{ section.id }} .l4cl.s4wi {
+        --featured-products-arrow-size: 48px;
+        --featured-products-arrow-top: clamp(104px, calc((100vw * 0.166666 - var(--rpp, 20px)) * 0.5 - 24px), 150px);
+        overflow: visible;
+      }
+      #shopify-section-{{ section.id }} .l4cl.s4wi.width-16 {
+        --featured-products-arrow-top: clamp(104px, calc((100vw * 0.166666 - var(--rpp, 20px)) * 0.5 - 24px), 150px);
+      }
+      #shopify-section-{{ section.id }} .l4cl.s4wi.width-20 {
+        --featured-products-arrow-top: clamp(120px, calc((100vw * 0.2 - var(--rpp, 20px)) * 0.5 - 24px), 170px);
+      }
+      #shopify-section-{{ section.id }} .l4cl.s4wi.width-25 {
+        --featured-products-arrow-top: clamp(120px, calc((100vw * 0.2 - var(--rpp, 20px)) * 0.5 - 24px), 170px);
+      }
+      #shopify-section-{{ section.id }} .l4cl.s4wi.width-33 {
+        --featured-products-arrow-top: clamp(160px, calc((100vw * 0.333333 - var(--rpp, 20px)) * 0.5 - 24px), 280px);
+      }
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        top: var(--featured-products-arrow-top) !important;
+        bottom: auto !important;
+        width: var(--featured-products-arrow-size) !important;
+        min-width: var(--featured-products-arrow-size) !important;
+        height: var(--featured-products-arrow-size) !important;
+        min-height: var(--featured-products-arrow-size) !important;
+        margin: 0 !important;
+        color: #20262d;
+        font-size: 0 !important;
+        line-height: 0 !important;
+        --ar_bg: #ffffff;
+        --ar_op: 1;
+        --ar_bg_h: #ffffff;
+        --ar_op_h: 1;
+        --ar_fg: #20262d;
+        --ar_fg_h: #20262d;
+        --button_height: var(--featured-products-arrow-size);
+        transform: none !important;
+        transition: none !important;
+        scale: 1 !important;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-prev {
+        left: 16px !important;
+        right: auto !important;
+      }
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-next {
+        left: auto !important;
+        right: 16px !important;
+      }
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav:hover,
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav:focus,
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav:active {
+        width: var(--featured-products-arrow-size) !important;
+        min-width: var(--featured-products-arrow-size) !important;
+        height: var(--featured-products-arrow-size) !important;
+        min-height: var(--featured-products-arrow-size) !important;
+        transform: none !important;
+        transition: none !important;
+        scale: 1 !important;
+      }
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav:before {
+        content: "" !important;
+        display: block !important;
+        position: absolute;
+        left: 50%;
+        right: auto;
+        top: 50%;
+        z-index: 3;
+        width: 21px;
+        height: 24px;
+        margin: 0;
+        border: 0;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 21px 24px;
+        box-sizing: border-box;
+        font-family: inherit !important;
+        text-indent: 0;
+        transform: translate(-50%, -50%) !important;
+        transition: none !important;
+        scale: 1 !important;
+        animation: none !important;
+        pointer-events: none;
+      }
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav:after {
+        width: var(--featured-products-arrow-size) !important;
+        min-width: var(--featured-products-arrow-size) !important;
+        height: var(--featured-products-arrow-size) !important;
+        min-height: var(--featured-products-arrow-size) !important;
+        margin-top: -24px !important;
+        border-radius: 999px !important;
+        background: #ffffff !important;
+        box-shadow: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        scale: 1 !important;
+        pointer-events: auto;
+      }
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav:hover:before,
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav:focus:before,
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav:active:before,
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav:hover:after,
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav:focus:after,
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-nav:active:after {
+        transform: none !important;
+        transition: none !important;
+        box-shadow: none !important;
+        scale: 1 !important;
+        animation: none !important;
+      }
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-prev:before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 4.5 8 12l7.5 7.5' fill='none' stroke='%2320262d' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+      #root #shopify-section-{{ section.id }} .l4cl.s4wi > .swiper-button-next:before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8.5 4.5 16 12l-7.5 7.5' fill='none' stroke='%2320262d' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
   }
   @media only screen and (max-width: 47.5em) {
       #shopify-section-{{ section.id }} .m6bx { margin-bottom: {{ section.settings.spacing_mobile }}px; }

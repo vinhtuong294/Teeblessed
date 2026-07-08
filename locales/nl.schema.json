@@ -1333,7 +1333,7 @@
           }
         },
         "quickshop_button_size": {
-          "label": "Quickshop knop grootte",
+          "label": "Quickshop knop grootte"
         },
         "cart_icon_no_text": {
           "label": "Toon winkelwagenpictogram",
@@ -4041,6 +4041,42 @@
       },
       "presets": {
         "name": "Uitgelichte collectie"
+      }
+    },
+    "recommend_product": {
+      "name": "Aanbevolen producten",
+      "settings": {
+        "collection": {
+          "label": "Fallback collectie"
+        },
+        "use_collection_based_recommendations": {
+          "label": "Gebruik productcollecties"
+        },
+        "exclude_non_shipping_products": {
+          "label": "Sluit producten uit die geen verzending nodig hebben"
+        },
+        "limit": {
+          "label": "Producten tonen"
+        },
+        "number_of_items": {
+          "label": "Producten per rij",
+          "info": "Als de lijst meer producten bevat dan weergegeven, wordt dit automatisch een slider. Swipe wordt automatisch geactiveerd op mobiel."
+        },
+        "text_alignment": {
+          "label": "Titelpositie",
+          "options__2": {
+            "label": "Links"
+          },
+          "options__3": {
+            "label": "Gecentreerd"
+          }
+        },
+        "force_white_background": {
+          "label": "Forceer witte achtergrond"
+        }
+      },
+      "presets": {
+        "name": "Aanbevolen producten"
       }
     },
     "featured_products": {

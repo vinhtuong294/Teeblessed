@@ -4260,6 +4260,42 @@
         "name": "Featured collection"
       }
     },
+    "recommend_product": {
+      "name": "Recommend product",
+      "settings": {
+        "collection": {
+          "label": "Fallback collection"
+        },
+        "use_collection_based_recommendations": {
+          "label": "Use product collections"
+        },
+        "exclude_non_shipping_products": {
+          "label": "Exclude products that do not require shipping"
+        },
+        "limit": {
+          "label": "Products to show"
+        },
+        "number_of_items": {
+          "label": "Products per row",
+          "info": "If list includes more products than shown, it will be a slider automatically. Swipe is automatically activated on mobile."
+        },
+        "text_alignment": {
+          "label": "Heading position",
+          "options__2": {
+            "label": "Left"
+          },
+          "options__3": {
+            "label": "Center"
+          }
+        },
+        "force_white_background": {
+          "label": "Force white background"
+        }
+      },
+      "presets": {
+        "name": "Recommend product"
+      }
+    },
     "featured_products": {
       "name": "Featured products",
       "settings": {

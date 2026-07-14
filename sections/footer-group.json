@@ -37,7 +37,7 @@
             "image_height": 100,
             "image_border_radius": false,
             "title": "FREE SHIPPING",
-            "text": "<p>Free shipping on orders $79+</p>",
+            "text": "<p>Free shipping over $45</p>",
             "show_link": true,
             "link_text": "Button",
             "link_url": "",

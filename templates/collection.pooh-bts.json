@@ -1,0 +1,191 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "hide_mobile": false,
+        "back_button": false
+      }
+    },
+    "section_spacer_bCpDPz": {
+      "type": "section-spacer",
+      "name": "t:sections.spacer.presets.name",
+      "settings": {
+        "height": -40,
+        "height_mobile": 0
+      }
+    },
+    "section_slideshow_rU9qTU": {
+      "type": "section-slideshow",
+      "blocks": {
+        "slide_CKwatm": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Static_BTS_3.png",
+            "show_play_button": true,
+            "video_mute": true,
+            "layout": "background",
+            "image_width": 50,
+            "overlay_opacity": 0,
+            "color_palette": "",
+            "background_overlay_opacity": 100,
+            "text_position": "center",
+            "max_width": 600,
+            "title": "",
+            "title_underline_style": "none",
+            "text": "",
+            "enable_custom_font_styling": false,
+            "font_size": "16px",
+            "button_desktop_position": "end",
+            "button_desktop_offset_x": 0,
+            "button_desktop_offset_y": 0,
+            "button_mobile_position": "end",
+            "button_mobile_offset_x": 0,
+            "button_mobile_offset_y": 0,
+            "show_first_link": false,
+            "first_link_text": "Button",
+            "first_link_url": "/",
+            "first_button_style": "primary plain",
+            "show_second_link": false,
+            "second_link_text": "Button",
+            "second_link_url": "/",
+            "second_button_style": "secondary plain",
+            "image_mobile": "shopify://shop_images/Static_BTS_2.png"
+          }
+        }
+      },
+      "block_order": [
+        "slide_CKwatm"
+      ],
+      "custom_css": [],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "width": "boxed",
+        "height": "adapt",
+        "image_fit": "cover",
+        "transition_effect": "slide",
+        "enable_custom_height": false,
+        "custom_height": 300,
+        "autoplay": false,
+        "autoplay_seconds": 3,
+        "enable_controls": false,
+        "desktop_button_background_color": "#ffffff",
+        "desktop_button_text_color": "#333333",
+        "desktop_button_width": 225,
+        "desktop_button_height": 75,
+        "desktop_button_font_size": 24,
+        "show_links_mobile": false,
+        "mobile_button_background_color": "#ffffff",
+        "mobile_button_text_color": "#333333",
+        "mobile_button_width": 150,
+        "mobile_button_height": 50,
+        "mobile_button_font_size": 15,
+        "height_mobile": "adapt",
+        "spacing_desktop": 50,
+        "spacing_mobile": 20,
+        "fix_zindex": 0
+      }
+    },
+    "main-collection": {
+      "type": "main-collection",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "text_alignment": "center",
+            "title_size": "h2",
+            "title": ""
+          }
+        },
+        "spacer_DEa7bB": {
+          "type": "spacer",
+          "disabled": true,
+          "settings": {
+            "height": 25
+          }
+        },
+        "sorting": {
+          "type": "sorting",
+          "settings": {}
+        },
+        "product_grid": {
+          "type": "product_grid",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "spacer_DEa7bB",
+        "sorting",
+        "product_grid"
+      ],
+      "custom_css": [
+        "h2 {font-weight: bold;}",
+        "h3.ff-secondary {display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;}",
+        "@media (min-width: 768px) {h2 {display: none !important; }}"
+      ],
+      "settings": {
+        "pagination_qty": 48,
+        "pagination_type": "pages",
+        "show_amount_of_products_in_collection": true,
+        "products_per_row": 4,
+        "secondary_products_per_row": 3,
+        "fill_images": false,
+        "fill_not_first": false,
+        "images_padding": 0,
+        "images_vertical_position": 0,
+        "show_collection_image": false,
+        "enable_filters": true,
+        "enable_menu": false,
+        "enable_collections": true,
+        "filters_layout": "drawer",
+        "enable_filters_checkboxes": false,
+        "filter_menu": "main-menu",
+        "collections_menu": [],
+        "main_menu_items_clickable": true,
+        "filter_sticky": false,
+        "filters_show_more_limit": 7,
+        "enable_custom_filters_font_size": true,
+        "filters_font_size": "14px",
+        "image_swatches_size": "m",
+        "image_swatches_fill_images": true,
+        "image_swatches_show_in_circle": true,
+        "fix_zindex": 1
+      }
+    },
+    "section_spacer_6NXfB9": {
+      "type": "section-spacer",
+      "name": "t:sections.spacer.presets.name",
+      "settings": {
+        "height": 70,
+        "height_mobile": 20
+      }
+    },
+    "section_spacer_9Drxzk": {
+      "type": "section-spacer",
+      "name": "t:sections.spacer.presets.name",
+      "settings": {
+        "height": 40,
+        "height_mobile": 40
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "section_spacer_bCpDPz",
+    "section_slideshow_rU9qTU",
+    "main-collection",
+    "section_spacer_6NXfB9",
+    "section_spacer_9Drxzk"
+  ]
+}

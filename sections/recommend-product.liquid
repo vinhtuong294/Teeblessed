@@ -265,17 +265,16 @@
   #shopify-section-{{ section.id }} [data-recommend-product-list] .swiper-wrapper > .swiper-slide:nth-child(n+{{ display_limit | plus: 1 }}) {
     display: none!important;
   }
-  {%- if section.settings.force_white_background -%}
-    #shopify-section-{{ section.id }},
-    #shopify-section-{{ section.id }} .m6bx,
-    #shopify-section-{{ section.id }} .module-color-palette,
-    #shopify-section-{{ section.id }} .img-overlay {
-      background: #fff!important;
-    }
-    #shopify-section-{{ section.id }} .img-overlay {
-      opacity: 0!important;
-    }
-  {%- endif -%}
+  #shopify-section-{{ section.id }},
+  #shopify-section-{{ section.id }} [data-recommend-product-section],
+  #shopify-section-{{ section.id }} [data-recommend-product-section].m6bx {
+    background: #fff!important;
+  }
+  #shopify-section-{{ section.id }} [data-recommend-product-section] > .img-overlay {
+    background: transparent!important;
+    display: none!important;
+    opacity: 0!important;
+  }
   @media only screen and (min-width: 47.5em) {
     #shopify-section-{{ section.id }} .m6bx { margin-bottom: {{ section.settings.spacing_desktop }}px; }
   }
@@ -459,7 +458,7 @@
       "min": 1,
       "max": 6,
       "step": 1,
-      "default": 5
+      "default": 6
     },
     {
       "type": "select",
@@ -495,7 +494,7 @@
       "max": 100,
       "step": 1,
       "unit": "%",
-      "default": 75
+      "default": 0
     },
     {
       "type": "select",
@@ -532,7 +531,7 @@
       "max": 100,
       "step": 1,
       "unit": "%",
-      "default": 100
+      "default": 0
     },
     {
       "type": "checkbox",
@@ -544,7 +543,7 @@
       "type": "checkbox",
       "id": "force_white_background",
       "label": "t:sections.recommend_product.settings.force_white_background.label",
-      "default": false
+      "default": true
     },
     {
       "type": "header",

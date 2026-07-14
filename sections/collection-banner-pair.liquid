@@ -1,0 +1,233 @@
+<section
+  class="collection-banner-pair"
+  style="--collection-banner-pair-gap: {{ section.settings.gap }}px;"
+>
+  <div class="collection-banner-pair__grid">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign collection_title = block.settings.title
+        if collection_title == blank and block.settings.collection != blank
+          assign collection_title = block.settings.collection.title
+        endif
+        assign collection_url = block.settings.collection.url | default: block.settings.link
+        assign button_label = block.settings.button_label
+      -%}
+
+      <article class="collection-banner-pair__item" {{ block.shopify_attributes }}>
+        <a
+          class="collection-banner-pair__card"
+          href="{{ collection_url | default: '#' }}"
+          aria-label="{{ collection_title | default: button_label | escape }}"
+        >
+          {%- if block.settings.image != blank -%}
+            {{
+              block.settings.image
+              | image_url: width: 2400
+              | image_tag:
+                class: 'collection-banner-pair__image',
+                loading: 'lazy',
+                widths: '750, 1000, 1500, 2000, 2400',
+                sizes: '(min-width: 750px) 50vw, 100vw'
+            }}
+          {%- elsif block.settings.external_image != blank -%}
+            <img
+              class="collection-banner-pair__image"
+              src="{{ block.settings.external_image | escape }}"
+              alt="{{ collection_title | escape }}"
+              loading="lazy"
+              width="2000"
+              height="2400"
+            >
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'collection-banner-pair__image collection-banner-pair__placeholder' }}
+          {%- endif -%}
+
+          <span class="collection-banner-pair__content">
+            {%- if collection_title != blank -%}
+              <span class="collection-banner-pair__title">{{ collection_title }}</span>
+            {%- endif -%}
+            {%- if button_label != blank -%}
+              <span class="collection-banner-pair__button">{{ button_label }}</span>
+            {%- endif -%}
+          </span>
+        </a>
+      </article>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background: #ffffff;
+    margin-top: 32px;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .collection-banner-pair {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .collection-banner-pair__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--collection-banner-pair-gap);
+  }
+
+  #shopify-section-{{ section.id }} .collection-banner-pair__item {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .collection-banner-pair__card {
+    background: #171717;
+    color: #ffffff;
+    display: grid;
+    aspect-ratio: 1 / 1;
+    isolation: isolate;
+    overflow: hidden;
+    place-items: center;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .collection-banner-pair__image {
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    object-position: center top;
+    position: absolute;
+    transition: transform 350ms ease;
+    width: 100%;
+    z-index: -2;
+  }
+
+  #shopify-section-{{ section.id }} .collection-banner-pair__placeholder {
+    background: #ececec;
+  }
+
+  #shopify-section-{{ section.id }} .collection-banner-pair__content {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    padding: 24px;
+    right: 0;
+    text-align: center;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 0.85), 0 4px 16px rgb(0 0 0 / 0.65);
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  #shopify-section-{{ section.id }} .collection-banner-pair__title {
+    display: block;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 auto;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .collection-banner-pair__button {
+    border-bottom: 1px solid currentColor;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 auto;
+    padding-bottom: 3px;
+    text-transform: uppercase;
+  }
+
+  @media (hover: hover) {
+    #shopify-section-{{ section.id }} .collection-banner-pair__card:hover .collection-banner-pair__image {
+      transform: scale(1.025);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .collection-banner-pair__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .collection-banner-pair__title {
+      font-size: 21px;
+    }
+
+    #shopify-section-{{ section.id }} .collection-banner-pair__button {
+      font-size: 13px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "t:sections.collection_banner_pair.name",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "t:sections.collection_banner_pair.settings.gap.label",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "t:sections.collection_banner_pair.blocks.banner.name",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "t:sections.collection_banner_pair.blocks.banner.settings.collection.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.collection_banner_pair.blocks.banner.settings.image.label"
+        },
+        {
+          "type": "url",
+          "id": "external_image",
+          "label": "t:sections.collection_banner_pair.blocks.banner.settings.external_image.label",
+          "info": "t:sections.collection_banner_pair.blocks.banner.settings.external_image.info"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.collection_banner_pair.blocks.banner.settings.title.label"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:sections.collection_banner_pair.blocks.banner.settings.button_label.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.collection_banner_pair.blocks.banner.settings.link.label"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.collection_banner_pair.presets.name"
+    }
+  ]
+}
+{% endschema %}

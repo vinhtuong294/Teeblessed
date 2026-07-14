@@ -2175,6 +2175,43 @@
         "name": "Afbeelding banner kolommen"
       }
     },
+    "collection_banner_pair": {
+      "name": "Collectie banner paar",
+      "settings": {
+        "gap": {
+          "label": "Ruimte tussen banners"
+        }
+      },
+      "blocks": {
+        "banner": {
+          "name": "Collectie banner",
+          "settings": {
+            "collection": {
+              "label": "Collectie"
+            },
+            "image": {
+              "label": "Banner afbeelding"
+            },
+            "external_image": {
+              "label": "Externe afbeelding URL",
+              "info": "Wordt gebruikt wanneer geen banner afbeelding is geselecteerd."
+            },
+            "title": {
+              "label": "Koptekst"
+            },
+            "button_label": {
+              "label": "Knop label"
+            },
+            "link": {
+              "label": "Reserve link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Collectie banner paar"
+      }
+    },
     "promo_gallery": {
       "name": "Promo galerij",
       "settings": {

@@ -180,6 +180,24 @@
           "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-cpal/790c1a03-a71f-4bc1-9869-00dad526d3c2",
           "settings": {}
         },
+        "sweatshirt_description": {
+          "type": "content",
+          "name": "Product description",
+          "settings": {
+            "layout": "accordion",
+            "collapse": false,
+            "title_size": "h2",
+            "title": "Description",
+            "icon": "info-old",
+            "header_image_width": 150,
+            "text": "<p>Made with premium U.S. cotton blended for extra durability, softness, and long-lasting wear.</p><p>Safety Green is compliant with ANSI / ISEA 107 high-visibility standards.</p><p>Finer yarns and new MVS Air spinning technology, that improves the fabric by reducing pilling, enhancing durability and creating premium-quality embroidery.</p><p>Classic fit.</p><p>1x1 rib with spandex for enhanced stretch and recovery.</p><p>Made with OEKO-TEX certified low-impact dyes.</p>",
+            "page": "",
+            "image_width": 555,
+            "liquid": "",
+            "html": "",
+            "show_contact_form": false
+          }
+        },
         "51846939-6835-411d-94d1-a9fbe0cf04c2": {
           "type": "content",
           "settings": {
@@ -219,6 +237,7 @@
         "custom_html_k8jQxd",
         "spacer_H9UFYp",
         "selleasy_lb_upsell_widget_cpal_9jpktG",
+        "sweatshirt_description",
         "51846939-6835-411d-94d1-a9fbe0cf04c2"
       ],
       "custom_css": [
@@ -243,7 +262,7 @@
         "images_vertical_position": 0,
         "enable_custom_font_size": true,
         "font_size": "16px",
-        "show_product_description": true,
+        "show_product_description": false,
         "title_size": "h2",
         "show_product_description_drawer": false,
         "product_description_enable_read_more": false,
@@ -256,19 +275,24 @@
       "type": "section-custom-html",
       "name": "t:sections.custom_html.presets.name",
       "settings": {
-        "custom_html": "<img id=\"d111\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/products_highlight_0b3da2e6-a007-4067-b39f-12b0adeee456.png?v=1771898849\">\n    <img id=\"d222\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/products_highlight_1_c23ab199-25c5-4809-9122-11d776f05fb8.png?v=1771898850\">\n    <style>\n        img#d111,#d222 {\n            width: 100%;\n        } \n        @media (max-width: 1000px)\n        {\n            #d111{\n                display: none;\n            }\n        }\n        @media (min-width: 1001px)\n        {\n            #d222 {\n                display: none;\n            }\n        }\n    </style>",
+        "custom_html": "<img id=\"d111\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/desktop.jpg?v=1784017592\" alt=\"Sweatshirt product details\">\n    <img id=\"d222\" src=\"https://cdn.shopify.com/s/files/1/0740/5879/3017/files/mobile.jpg?v=1784017593\" alt=\"Sweatshirt product details\">\n    <style>\n        img#d111,#d222 {\n            width: 100%;\n        } \n        @media (max-width: 1000px)\n        {\n            #d111{\n                display: none;\n            }\n        }\n        @media (min-width: 1001px)\n        {\n            #d222 {\n                display: none;\n            }\n        }\n    </style>",
         "spacing_desktop": 0,
         "spacing_mobile": 0,
         "fix_zindex": 0
       }
     },
     "section_featured_collection_t6hpwk": {
-      "type": "section-featured-collection",
-      "name": "t:sections.featured_collection.presets.name",
+      "type": "recommend-product",
+      "name": "t:sections.recommend_product.presets.name",
+      "custom_css": [
+        ".m6bx {padding-top: 30px;}"
+      ],
       "settings": {
-        "collection": "christian-nature-symbols-t-shirts",
+        "collection": "",
+        "use_collection_based_recommendations": true,
+        "exclude_non_shipping_products": true,
         "limit": 10,
-        "number_of_items": 4,
+        "number_of_items": 6,
         "text_alignment": "start",
         "background_color_palette": "",
         "background_overlay_opacity": 0,
@@ -290,10 +314,7 @@
         "spacing_mobile": 0,
         "fix_zindex": 0,
         "force_white_background": true
-      },
-      "custom_css": [
-        ".m6bx {background: #fff;}"
-      ]
+      }
     },
     "1755140934a979b353": {
       "type": "_blocks",

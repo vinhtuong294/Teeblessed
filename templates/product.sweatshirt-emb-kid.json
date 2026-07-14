@@ -345,7 +345,7 @@
       "settings": {
         "collection": "cozy-hoodie-2025",
         "limit": 10,
-        "number_of_items": 4,
+        "number_of_items": 6,
         "text_alignment": "start",
         "background_color_palette": "",
         "background_overlay_opacity": 0,
@@ -369,7 +369,7 @@
         "force_white_background": true
       },
       "custom_css": [
-        ".m6bx {background: #fff;}"
+        ".m6bx {background: #fff; padding-top: 30px;}"
       ]
     },
     "section_faq_jt8AEK": {

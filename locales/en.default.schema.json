@@ -2309,6 +2309,43 @@
         "name": "Image banner columns"
       }
     },
+    "collection_banner_pair": {
+      "name": "Collection banner pair",
+      "settings": {
+        "gap": {
+          "label": "Space between banners"
+        }
+      },
+      "blocks": {
+        "banner": {
+          "name": "Collection banner",
+          "settings": {
+            "collection": {
+              "label": "Collection"
+            },
+            "image": {
+              "label": "Banner image"
+            },
+            "external_image": {
+              "label": "External image URL",
+              "info": "Used when no banner image is selected."
+            },
+            "title": {
+              "label": "Heading"
+            },
+            "button_label": {
+              "label": "Button label"
+            },
+            "link": {
+              "label": "Fallback link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Collection banner pair"
+      }
+    },
     "promo_gallery": {
       "name": "Promo gallery",
       "settings": {

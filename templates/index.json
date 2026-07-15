@@ -756,6 +756,194 @@
         "padding_bottom": 0
       }
     },
+    "shop_the_look_slider_EY9nRC": {
+      "type": "shop-the-look-slider",
+      "blocks": {
+        "product_VfCzpB": {
+          "type": "product",
+          "settings": {
+            "product": "broken-chains-john-836-embroidered-sweatshirt",
+            "hotspot_horizontal": 73,
+            "hotspot_vertical": 44,
+            "hotspot_mobile_horizontal": 74,
+            "hotspot_mobile_vertical": 35
+          }
+        }
+      },
+      "block_order": [
+        "product_VfCzpB"
+      ],
+      "name": "Shop the Look",
+      "settings": {
+        "show_on_desktop": true,
+        "show_on_mobile": true,
+        "heading": "Shop the Look",
+        "heading_alignment": "center",
+        "image": "shopify://shop_images/35_1f016a5b-fb9c-476e-b3e2-cc87d48ddaa3.jpg",
+        "desktop_image_ratio": "1 / 1",
+        "mobile_image_ratio": "1 / 1",
+        "background_color": "#ffffff",
+        "product_card_panel_background": "#f7f7f5",
+        "product_card_background": "#ffffff",
+        "product_card_border": "#e6e2dc",
+        "product_card_title_color": "#121212",
+        "product_card_price_color": "#121212",
+        "product_card_button_background": "#121212",
+        "product_card_button_text": "#ffffff",
+        "product_card_button_background_hover": "#2a2a2a",
+        "product_card_font_family": "inherit",
+        "product_card_title_size_desktop": 18,
+        "product_card_title_size_mobile": 16,
+        "product_card_title_weight": "700",
+        "product_card_price_size_desktop": 15,
+        "product_card_price_size_mobile": 14,
+        "product_card_button_weight": "800",
+        "product_card_button_text_transform": "uppercase",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "shop_the_look_slider_4LMKJM": {
+      "type": "shop-the-look-slider",
+      "blocks": {
+        "product_ytF7z4": {
+          "type": "product",
+          "settings": {
+            "product": "personalized-emotion-character-teacher-t-shirt",
+            "hotspot_horizontal": 62,
+            "hotspot_vertical": 58,
+            "hotspot_mobile_horizontal": 62,
+            "hotspot_mobile_vertical": 58
+          }
+        }
+      },
+      "block_order": [
+        "product_ytF7z4"
+      ],
+      "name": "Shop the Look",
+      "settings": {
+        "show_on_desktop": true,
+        "show_on_mobile": true,
+        "heading": "Shop the Look",
+        "heading_alignment": "center",
+        "image": "shopify://shop_images/392.jpg",
+        "desktop_image_ratio": "1 / 1",
+        "mobile_image_ratio": "1 / 1",
+        "background_color": "#ffffff",
+        "product_card_panel_background": "#f7f7f5",
+        "product_card_background": "#ffffff",
+        "product_card_border": "#e6e2dc",
+        "product_card_title_color": "#121212",
+        "product_card_price_color": "#121212",
+        "product_card_button_background": "#121212",
+        "product_card_button_text": "#ffffff",
+        "product_card_button_background_hover": "#2a2a2a",
+        "product_card_font_family": "inherit",
+        "product_card_title_size_desktop": 18,
+        "product_card_title_size_mobile": 16,
+        "product_card_title_weight": "700",
+        "product_card_price_size_desktop": 15,
+        "product_card_price_size_mobile": 14,
+        "product_card_button_weight": "800",
+        "product_card_button_text_transform": "uppercase",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "shop_the_look_slider_773FAh": {
+      "type": "shop-the-look-slider",
+      "blocks": {
+        "product_ntTq37": {
+          "type": "product",
+          "settings": {
+            "product": "i-am-chosen-embroidered-sweatshirt",
+            "hotspot_horizontal": 85,
+            "hotspot_vertical": 45,
+            "hotspot_mobile_horizontal": 55,
+            "hotspot_mobile_vertical": 48
+          }
+        }
+      },
+      "block_order": [
+        "product_ntTq37"
+      ],
+      "name": "Shop the Look",
+      "settings": {
+        "show_on_desktop": true,
+        "show_on_mobile": true,
+        "heading": "Shop the Look",
+        "heading_alignment": "center",
+        "image": "shopify://shop_images/106.jpg",
+        "desktop_image_ratio": "1 / 1",
+        "mobile_image_ratio": "1 / 1",
+        "background_color": "#ffffff",
+        "product_card_panel_background": "#f7f7f5",
+        "product_card_background": "#ffffff",
+        "product_card_border": "#e6e2dc",
+        "product_card_title_color": "#121212",
+        "product_card_price_color": "#121212",
+        "product_card_button_background": "#121212",
+        "product_card_button_text": "#ffffff",
+        "product_card_button_background_hover": "#2a2a2a",
+        "product_card_font_family": "inherit",
+        "product_card_title_size_desktop": 18,
+        "product_card_title_size_mobile": 16,
+        "product_card_title_weight": "700",
+        "product_card_price_size_desktop": 15,
+        "product_card_price_size_mobile": 14,
+        "product_card_button_weight": "800",
+        "product_card_button_text_transform": "uppercase",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "shop_the_look_slider_wWqxfM": {
+      "type": "shop-the-look-slider",
+      "blocks": {
+        "product_HWL3TN": {
+          "type": "product",
+          "settings": {
+            "product": "god-says-i-am-bible-verse-leather-handbag",
+            "hotspot_horizontal": 70,
+            "hotspot_vertical": 76,
+            "hotspot_mobile_horizontal": 69,
+            "hotspot_mobile_vertical": 86
+          }
+        }
+      },
+      "block_order": [
+        "product_HWL3TN"
+      ],
+      "name": "Shop the Look",
+      "settings": {
+        "show_on_desktop": true,
+        "show_on_mobile": true,
+        "heading": "Shop the Look",
+        "heading_alignment": "center",
+        "image": "shopify://shop_images/ec959525-c844-45e9-b29d-1c8e76316cb0.png",
+        "desktop_image_ratio": "1 / 1",
+        "mobile_image_ratio": "1 / 1",
+        "background_color": "#ffffff",
+        "product_card_panel_background": "#f7f7f5",
+        "product_card_background": "#ffffff",
+        "product_card_border": "#e6e2dc",
+        "product_card_title_color": "#121212",
+        "product_card_price_color": "#121212",
+        "product_card_button_background": "#121212",
+        "product_card_button_text": "#ffffff",
+        "product_card_button_background_hover": "#2a2a2a",
+        "product_card_font_family": "inherit",
+        "product_card_title_size_desktop": 18,
+        "product_card_title_size_mobile": 16,
+        "product_card_title_weight": "700",
+        "product_card_price_size_desktop": 15,
+        "product_card_price_size_mobile": 14,
+        "product_card_button_weight": "800",
+        "product_card_button_text_transform": "uppercase",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "1773738797d061577b": {
       "type": "_blocks",
       "blocks": {
@@ -767,12 +955,12 @@
             "products": [],
             "star_rating": "4_to_5_star",
             "show_review_media": true,
-            "display_order": "most_recent",
-            "no_image_fallback": "review_text_only",
+            "display_order": "media_first",
+            "no_image_fallback": "product_image",
             "max_reviews": 20,
             "review_length": "small",
             "text_size": "small",
-            "image_ratio": "0.75",
+            "image_ratio": "1",
             "reviews_shown": 4,
             "show_reviewer_name": true,
             "show_product_name": true,
@@ -838,6 +1026,10 @@
     "section_spacer_jKecyB",
     "shopthelook_xP8Yhq",
     "shop_the_look_slider_E6c7yg",
+    "shop_the_look_slider_EY9nRC",
+    "shop_the_look_slider_4LMKJM",
+    "shop_the_look_slider_773FAh",
+    "shop_the_look_slider_wWqxfM",
     "1773738797d061577b"
   ]
 }

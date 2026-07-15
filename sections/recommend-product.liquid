@@ -117,10 +117,11 @@
     assign hide_section = true
   endif
 
+  assign items_per_row = section.settings.number_of_items | at_most: 6
   assign total_number_of_items = selected_count | at_most: display_limit
-  assign limit = total_number_of_items | at_most: section.settings.number_of_items
+  assign limit = total_number_of_items | at_most: items_per_row
   if limit == 0
-    assign limit = section.settings.number_of_items
+    assign limit = items_per_row
   endif
   if total_number_of_items > limit
     assign slider = true
@@ -141,8 +142,6 @@
       assign width_class = 'width-20'
     when 6
       assign width_class = 'width-16'
-    when 7
-      assign width_class = 'width-14'
     else
       assign width_class = 'width-20'
   endcase

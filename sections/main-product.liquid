@@ -100,6 +100,7 @@
         assign fill_first_image = false
     endif
 
+    assign product_description_content = section.settings.product_description_override | default: product.description
     assign form_id = 'main-product-form-' | append: product.id
 -%}
 
@@ -363,7 +364,7 @@
           })();
         </script>
         {%- if has_specs == false -%}
-            {%- if section.settings.show_product_description and product.description != empty and section.settings.show_product_description_drawer != true -%}
+            {%- if section.settings.show_product_description and product_description_content != empty and section.settings.show_product_description_drawer != true -%}
                 <footer class="m6tb static desktop-only quickshop-hide">
                     <nav class="hidden">
                         <ul>
@@ -375,18 +376,18 @@
                             <{{ section.settings.title_size }} class="mobile-hide">{{ 'product.description' | t }}</{{ section.settings.title_size }}>
                             {%- if section.settings.product_description_enable_read_more -%}
                                 <div class="m6lm">
-                                    {{ product.description }}
+                                    {{ product_description_content }}
                                 </div>
                                 <p class="has-link-more"><a href="./" class="strong link-more">{{ 'general.read_more.read' | t }} <span>{{ 'general.read_more.more' | t }}</span> <span class="hidden">{{ 'general.read_more.less' | t }}</span> <i aria-hidden="true" class="icon-chevron-down"></i></a></p>
                             {%- else -%}
-                                {{ product.description }}
+                                {{ product_description_content }}
                             {%- endif -%}
                         </div>
                     </div>
                 </footer>
             {%- endif %}
         {%- endif %}
-        {% if section.settings.show_product_description_drawer == false and product.description != empty %}
+        {% if section.settings.show_product_description_drawer == false and product_description_content != empty %}
             <div class="m6tb static desktop-only quickshop-hide">
                 <nav class="hidden">
                     <ul>
@@ -401,11 +402,11 @@
                                     <{{ section.settings.title_size }} class="mobile-hide">{{ 'product.description' | t }}</{{ section.settings.title_size }}>
                                 {%- if section.settings.product_description_enable_read_more -%}
                                     <div class="m6lm">
-                                        {{ product.description }}
+                                        {{ product_description_content }}
                                     </div>
                                     <p class="has-link-more"><a href="./" class="strong link-more">{{ 'general.read_more.read' | t }} <span>{{ 'general.read_more.more' | t }}</span> <span class="hidden">{{ 'general.read_more.less' | t }}</span> <i aria-hidden="true" class="icon-chevron-down"></i></a></p>
                                 {%- else -%}
-                                    {{ product.description }}
+                                    {{ product_description_content }}
                                 {%- endif -%}
                                 </div>
                             {%- endif %}
@@ -470,25 +471,25 @@
                                 assign short_description = product.metafields[product_short_description_namespace][product_short_description_key] | strip_html
                                 assign custom_short_description = true
                             else
-                                assign short_description = product.description | strip_html | truncatewords: 20
+                                assign short_description = product_description_content | strip_html | truncatewords: 20
                             endif
                         -%}
                         {%- if short_description != empty and short_description != nil -%}
                             <p class="m15 quickshop-hide-mobile" {{ block.shopify_attributes }}>
                                 {{ short_description }}
-                                {%- if block.settings.show_read_more and section.settings.show_product_description and product.description != empty -%}
+                                {%- if block.settings.show_read_more and section.settings.show_product_description and product_description_content != empty -%}
                                     <a {% if section.settings.show_product_description_drawer %}href="./" data-panel="product-information-{{ block.id }}"{% else %}href="#section-info"{% endif %} class="strong mobile-hide">{{ 'general.read_more.read_more' | t }}</a>
                                     <a {% if section.settings.show_product_description_drawer %}href="./" data-panel="product-information-{{ block.id }}"{% else %}href="#section-info-mobile"{% endif %} class="strong mobile-only">{{ 'general.read_more.read_more' | t }}</a>
                                 {%- endif -%}
                             </p>
                         {%- endif -%}
-                        {% if section.settings.show_product_description and section.settings.show_product_description_drawer and product.description != empty %}
+                        {% if section.settings.show_product_description and section.settings.show_product_description_drawer and product_description_content != empty %}
                             <aside class="m6pn" id="product-information-{{ block.id }}" aria-hidden="true">
                                 <header>
                                     <{{ settings.drawers_font_size_heading }}>{{ 'product.description' | t }}</{{ settings.drawers_font_size_heading }}>
                                 </header>
                                 <div class="margin-x025">
-                                    {{ product.description }}
+                                    {{ product_description_content }}
                                 </div>
                             </aside>
                         {% endif %}
@@ -648,8 +649,13 @@
                                 endfor
                             endif
                         endif
+
+                        assign variant_selection_tag = 'div'
+                        if enable_options == false and block.settings.selection_type == 'dropdown'
+                            assign variant_selection_tag = 'p'
+                        endif
                     -%}
-                    <{% if enable_options == false and block.settings.selection_type == 'dropdown' %}p{% else %}div{% endif %} class="f8pr-variant-selection no-zindex{% if is_color %} margin-x025{% endif %}" data-current-variant="{{ current_variant.id }}" {{ block.shopify_attributes }}>
+                    <{{ variant_selection_tag }} class="f8pr-variant-selection no-zindex{% if is_color %} margin-x025{% endif %}" data-current-variant="{{ current_variant.id }}" {{ block.shopify_attributes }}>
                         {%- if one_variant -%}
                             <input name="id" id="id-{{ section.id }}" value="{{ current_variant.id }}" type="hidden" form="{{ form_id }}">
                         {%- endif -%}
@@ -944,7 +950,7 @@
                                         <span>
                                         <input type="radio" id="{{ plan.id }}-{{ section.id }}" name="selling_plan" value="{{ plan.id }}" form="{{ form_id }}" {% if product.selling_plan_groups.size == 1 and product.requires_selling_plan == true %}required{% endif %}>
                                         <label for="{{ plan.id }}-{{ section.id }}">{{ plan.name }}</label>
-                                        <span class="s1pr"">
+                                        <span class="s1pr">
                                           {% if newPrice > 0 %}
                                               <span>{{ newPrice | money }}</span>
                                               {% if savedAmount > 0 %}
@@ -961,7 +967,7 @@
                                 </div>
                             {%- endfor -%}
                         {% endif %}
-                    </{% if enable_options == false and block.settings.selection_type == 'dropdown' %}p{% else %}div{% endif %}>
+                    </{{ variant_selection_tag }}>
 
                     
                 {%- when 'inventory' -%}
@@ -1643,10 +1649,10 @@
                 <p>{{ short_description }}</p>
             {%- endif -%}
 
-            {%- if section.settings.show_product_description and product.description != empty -%}
+            {%- if section.settings.show_product_description and product_description_content != empty -%}
                 <div class="m6tm mobile-only quickshop-hide" id="section-info-mobile">
                     <h4{% unless section.settings.product_description_mobile_collapse %} class="toggle"{% endunless %} style="font-weight: bold;">{{ 'product.description' | t }}</h4>
-                    <article>{{ product.description }}</article>
+                    <article>{{ product_description_content }}</article>
                 </div>
             {%- endif %}
         </div>
@@ -1665,7 +1671,7 @@
         #quickshop .accordion-a.description summary {
             font-size: var(--mob_{{ section.settings.tabs_title_size }});
         }
-        {%- if section.settings.show_product_description and product.description != empty -%}
+        {%- if section.settings.show_product_description and product_description_content != empty -%}
             #root .shopify-section:has([class*="main-product"] .m6tm  > h4:not(.toggle)) + div:has(.product-recommendations) {
                 margin-top: calc(var(--main_mr) * -1);
             }
@@ -1816,6 +1822,11 @@
     {
       "type": "header",
       "content": "t:main.product.settings.product_description.header"
+    },
+    {
+      "id": "product_description_override",
+      "type": "richtext",
+      "label": "t:main.product.settings.product_description.header"
     },
     {
       "id": "show_product_description",
